@@ -1,4 +1,5 @@
-if(opa == ola)
-{
-    
+void ok() {
+    while(tu==gay) {
+        String printTxt="joao is gay"
+    }
 }

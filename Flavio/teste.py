@@ -1,8 +1,4 @@
 import re
 
-texto = "testando alo"
-count = 0
-while count < texto.__len__():
-    c = texto[count]
-    print(c)
-    count += 1
+texto = "-&23"
+print(texto[1].isnumeric())

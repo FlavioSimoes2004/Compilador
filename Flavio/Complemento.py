@@ -1,5 +1,5 @@
 TokenList = ["int", "boolean", "String", "float", "double", "true", "false", "null", "if", "while", "for", "char", "void", "else", "scanf", "main", "return", "void"]
-opList = ["=", "<", ">", "&&", "||", "!", "*", "%", "-", "+", "/"]
+opList = ["=", "<", ">", "&&", "||", "!", "*", "%", "+", "/", "-", "&", "|"]
 compareOpList = ["<", "==", "<=", ">", ">=", "!="]
 specialSymbolList = [";", "(", ")", "[", "]", "{", "}", ","]
 
