@@ -1,4 +1,5 @@
 import re
 
-texto = "-&23"
-print(texto[1].isnumeric())
+patternID = re.compile(r'(^[a-zA-Z]+$)|([_a-zA-Z][_a-zA-Z0-9]+$)')
+texto = "e"
+print(bool(re.match(patternID, texto)))

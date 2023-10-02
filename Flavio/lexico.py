@@ -1,38 +1,45 @@
 import re
-from Complemento import getCode, TokenList, opList, compareOpList, specialSymbolList, Tokens, IdTable, opSymbol, compareOpSymbol, specialOpSymbol
+from Complemento import getCode, TokenList, opList, compareOpList, specialSymbolList#, Tokens, IdTable, opSymbol, compareOpSymbol, specialOpSymbol
 
-patternID = re.compile(r'[_a-zA-Z][_a-zA-Z0-9]+')
+Tokens = []
+IdTable = []
+opSymbol = []
+compareOpSymbol = []
+specialOpSymbol = []
+
+patternID = re.compile(r'(^[a-zA-Z]+$)|([_a-zA-Z][_a-zA-Z0-9]+$)')
 patternInt = re.compile(r'^-?\b\d+\b$')
 patternBool = re.compile(r'false|true')
 patternString = re.compile(r'"[^"]*"')
 patternDouble = re.compile(r'^-?\b\d+\.\d+\b$')
 
 def identify(table, lexema):
-    print(lexema)
     if lexema != "":
+        print(lexema)
         if lexema in TokenList:
             table.append(lexema)
             Tokens.append(lexema)
         elif bool(re.match(patternID, lexema)):
-            table.append("ID")
             if lexema not in IdTable:
                 IdTable.append(lexema)
+            table.append("(ID, "+ str(IdTable.index(lexema) + 1) + ")")
         else: #comparar para ver se é um valor
             if bool(re.match(patternInt, lexema)):
                 table.append('NUM_INT_' + lexema)
             elif bool(re.match(patternString, lexema)):
-                table.append("TEXTO")
+                table.append("TEXTO: " + lexema)
             elif bool(re.match(patternDouble, lexema)):
-                table.append("NUM_DOUBLE_" + lexema)
+                table.append("NUM_DEC_" + lexema)
             else:
-                table.append("ERRO")
+                raise Exception("//---------------ERRO------------------\\")
 
 def main():
     lexema = ""
     table = []
     openStr = False
     comment = False
-    general = openStr or comment
+    multiComment = False
+    general = openStr or comment or multiComment
     
     code = getCode()
     count = 0
@@ -41,10 +48,10 @@ def main():
         if c == ' ' and not general and lexema != "":
             identify(table, lexema)
             lexema = ""
-        elif c == '"' and not comment:
+        elif c == '"' and not comment and not multiComment:
             openStr = not openStr
             lexema += '"'
-        elif (c in opList or c in specialSymbolList) and not general:
+        elif (c in opList or c in specialSymbolList or c == '&' or c == '|') and (not general or (c == '*' and not comment and not openStr)):
             #if lexema != "" and lexema != "/":
                 #identify(table, lexema)
                 #lexema = ""
@@ -54,7 +61,7 @@ def main():
                 table.append(c)
                 specialOpSymbol.append(c)
                 lexema = ""
-            else: #opSymbol
+            elif c in opList:
                 if count + 1 < code.__len__():
                     newC = c + code[count + 1]
                     if newC in compareOpList:
@@ -73,36 +80,65 @@ def main():
                         lexema = ""
                         comment = True
                         count += 1
+                    elif newC == "/*":
+                        multiComment = True
+                        identify(table, lexema)
+                        lexema = ""
+                        count += 1
+                    elif newC == "*/":
+                        multiComment = False
+                        count += 1
                     elif c == '-':
                         if newC[1].isnumeric():
                             identify(table, lexema)
                             lexema = newC
                             count += 1
                     else:
-                        if c != '&' and c != '|':
-                            identify(table, lexema)
-                            table.append(c)
-                            opSymbol.append(c)
-                            lexema = ""
-                else:
-                    if c != '&' and c != '|':
                         identify(table, lexema)
                         table.append(c)
                         opSymbol.append(c)
                         lexema = ""
+                else:
+                    identify(table, lexema)
+                    table.append(c)
+                    opSymbol.append(c)
+                    lexema = ""
+            elif c == '&':
+                    if count + 1 < code.__len__():
+                        newC = c + code[count + 1]
+                        if newC == "&&":
+                            identify(table, lexema)
+                            table.append(newC)
+                            opSymbol.append(newC)
+                            lexema = ""
+                            count += 1
+                        else:
+                            lexema += c
+            else: #c == '|'
+                    if count + 1 < code.__len__():
+                        newC = c + code[count + 1]
+                        if newC == "||":
+                            identify(table, lexema)
+                            table.append(newC)
+                            opSymbol.append(newC)
+                            lexema = ""
+                            count += 1
+                        else:
+                            lexema += c
         else:
             if c != '\n':
                 if c == ' ':
                     if openStr:
                         lexema += c
-                elif not comment:
+                elif not comment and not multiComment:
                     lexema += c
             else:
-                if lexema != "":
-                    identify(table, lexema)
-                comment = False
-                lexema = ""
-        general = openStr or comment
+                if not openStr and not multiComment:
+                    if lexema != "":
+                        identify(table, lexema)
+                    comment = False
+                    lexema = ""
+        general = openStr or comment or multiComment
         count += 1
                 
     if lexema != "":
