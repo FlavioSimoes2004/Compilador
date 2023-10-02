@@ -2,5 +2,8 @@ int count = 0;
 while(count<=10)
 {
     count++;
-    println(count);
+    println(count, ola);
+    scanf();
+    /*o
+    "idjein"kdmwen//*/
 }
