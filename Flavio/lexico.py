@@ -133,16 +133,20 @@ def main():
                 elif not comment and not multiComment:
                     lexema += c
             else:
-                if not openStr and not multiComment:
+                if not openStr and not multiComment: #para cancelar um comentario normal
                     if lexema != "":
                         identify(table, lexema)
                     comment = False
                     lexema = ""
+                else:
+                    if openStr: #se for string ele adiciona
+                        lexema += c
         general = openStr or comment or multiComment
         count += 1
                 
-    if lexema != "":
-        identify(table, lexema)
+    identify(table, lexema)
+    if openStr or multiComment:
+        raise Exception("ERRO")
     print(table)
 
 

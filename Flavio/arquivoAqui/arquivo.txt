@@ -1,4 +1,6 @@
-for(int i = 0; i < 5; i++)
+int count = 0;
+while(count<=10)
 {
-    println(i);
+    count++;
+    println(count);
 }
