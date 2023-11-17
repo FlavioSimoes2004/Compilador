@@ -1,7 +1,7 @@
 import re
 from Complemento import getCode, TokenList, opList, compareOpList, specialSymbolList#, Tokens, IdTable, opSymbol, compareOpSymbol, specialOpSymbol
 
-Tokens = []
+reserved_word = []
 IdTable = []
 opSymbol = []
 compareOpSymbol = []
@@ -18,7 +18,7 @@ def identify(table, lexema):
         print(lexema)
         if lexema in TokenList:
             table.append(lexema)
-            Tokens.append(lexema)
+            reserved_word.append(lexema)
         elif bool(re.match(patternID, lexema)):
             if lexema not in IdTable:
                 IdTable.append(lexema)
