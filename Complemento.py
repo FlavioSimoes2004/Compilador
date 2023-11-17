@@ -12,7 +12,7 @@ IdTable = []
 
 def getCode():
     code = ""
-    with open('Flavio/arquivoAqui/arquivo.txt', 'r') as arquivo:
+    with open('arquivoAqui/arquivo.txt', 'r') as arquivo:
         for line in arquivo:
             code += line
     return code
