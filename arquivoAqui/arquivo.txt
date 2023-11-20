@@ -1,9 +1,1 @@
-int count = 0.0;
-while(count<=10)
-{
-    count++;
-    println(count, ola);
-    scanf();
-    /*o
-    "idjein"kdmwen//*/
-}
+int count "texto" -100 -100.9
