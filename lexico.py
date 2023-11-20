@@ -1,5 +1,5 @@
 import re
-from Complemento import getCode, TokenList, opList, compareOpList, specialSymbolList#, Tokens, IdTable, opSymbol, compareOpSymbol, specialOpSymbol
+from Complemento import getCode, ReservedWordList, opList, compareOpList, specialSymbolList#, Tokens, IdTable, opSymbol, compareOpSymbol, specialOpSymbol
 
 reserved_word = []
 IdTable = []
@@ -16,7 +16,7 @@ patternDouble = re.compile(r'^-?\b\d+\.\d+\b$')
 def identify(table, lexema):
     if lexema != "":
         print(lexema)
-        if lexema in TokenList:
+        if lexema in ReservedWordList:
             table.append(lexema)
             reserved_word.append(lexema)
         elif bool(re.match(patternID, lexema)):

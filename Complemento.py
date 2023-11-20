@@ -1,4 +1,4 @@
-TokenList = ["int", "boolean", "String", "float", "double", "true", "false", "null", "if", "while", "for", "char", "void", "else", "scanf", "main", "return", "void", "println"]
+ReservedWordList = ["int", "boolean", "String", "float", "double", "true", "false", "null", "if", "while", "for", "char", "void", "else", "scanf", "main", "return", "void", "println"]
 opList = ["=", "<", ">", "&&", "||", "!", "%", "+", "/", "-", "*"]
 compareOpList = ["<", "==", "<=", ">", ">=", "!="]
 specialSymbolList = [";", "(", ")", "[", "]", "{", "}", ","]
