@@ -35,6 +35,7 @@ def identify(table, lexema):
 
 def main():
     lexema = ""
+    global table
     table = []
     openStr = False
     comment = False
