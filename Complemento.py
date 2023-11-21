@@ -26,7 +26,10 @@ TIPOS = [
    'NUMBER_DEC', 
    'TYPE_BOOLEAN', 
    'TYPE_STRING', 
-   'ID'
+   'ID',
+   'OPERATOR',
+   'COMPARE_OPERATOR',
+   'SPECIAL_SYMBOL'
 ]
 
 RESERVED_WORD_LIST = {
@@ -45,4 +48,36 @@ RESERVED_WORD_LIST = {
     'main': 'MAIN',
     'return': 'RETURN',
     'println': 'PRINTLN'
+}
+
+OP_LIST = {
+    '=': 'EQUAL',
+    '&&': 'AND',
+    '||': 'OR',
+    '!': 'NOT',
+    '+': 'PLUS',
+    '-': 'MINUS',
+    '*': 'TIMES',
+    '/': 'DIVIDE',
+    '%': 'REST'
+}
+
+COMPARE_OP_LIST = {
+    '<' : 'LESS_THAN',
+    '==' : 'IS_EQUALS',
+    '<=' : 'LESS_THAN_OR_EQUALS',
+    '>' : 'GREATER_THAN',
+    '>=': 'GREATER_THAN_OR_EQUALS',
+    '!=': 'IS_DIFFERENT'
+}
+
+SPECIAL_SYMBOLS_LIST = {
+    ';': 'PONTO_VIRGULA',
+    '(': 'PAREN_ABERTO',
+    ')': 'PAREN_FECHADO',
+    '[': 'CHAVE_ABERTA',
+    ']': 'CHAVE_FECHADA',
+    '{': 'COLCHETE_ABERTO',
+    '}': 'COLCHETE_FECHADO',
+    ',': 'VIRGULA'
 }

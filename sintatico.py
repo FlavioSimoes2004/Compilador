@@ -4,9 +4,13 @@ import re
 
 tokens = []
 
+t_ignore  = ' \t'
+
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = Complemento.RESERVED_WORD_LIST.get(t.value,'ID')    # Check for reserved words
+
+    if t.value in Complemento.RESERVED_WORD_LIST:
+        t.type = Complemento.RESERVED_WORD_LIST.get(t.value)
     return t
 
 def t_TYPE_BOOLEAN(t):
@@ -25,26 +29,36 @@ def t_NUMBER_INT(t):
     return t
 
 def t_NUMBER_DEC(t):
-    r'-?\d+\.\d+'
-    t.value = float(t.value)
+    r'-?\b\d+\b$'
+    #t.value = float(t.value)
+    return t
+
+def t_COMMENT(t):
+    r'//.*'
+    pass
+
+def t_OPERATOR(t):
+    r'.'
+    if t.value in Complemento.COMPARE_OP_LIST:
+        t.type = 'COMPARE_OPERATOR'
+    elif t.value in Complemento.SPECIAL_SYMBOLS_LIST:
+        t.type = 'SPECIAL_SYMBOL'
+    return t
+
+def t_COMPARE_OPERATOR(t):
+    '..'
     return t
 
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
-t_ignore  = ' \t'
-
-def t_COMMENT(t):
-    r'^//'
-    pass
-
 def t_error(t):
     raise Exception("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
 def lexico():
-    tokens = Complemento.TIPOS + list(Complemento.RESERVED_WORD_LIST.values())
+    tokens = Complemento.TIPOS + list(Complemento.RESERVED_WORD_LIST.values()) + list(Complemento.OP_LIST.values()) + list(Complemento.COMPARE_OP_LIST.values()) + list(Complemento.SPECIAL_SYMBOLS_LIST.values())
     lexer = lex.lex()
 
     data = Complemento.getCode()
