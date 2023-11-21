@@ -1,0 +1,189 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    BOOLEAN
+    CHAR
+    CHAVE_ABERTA
+    CHAVE_FECHADA
+    COLCHETE_ABERTO
+    COLCHETE_FECHADO
+    COMPARE_OPERATOR
+    DIVIDE
+    DOUBLE
+    ELSE
+    EQUAL
+    FLOAT
+    FOR
+    GREATER_THAN
+    GREATER_THAN_OR_EQUALS
+    IF
+    INT
+    IS_DIFFERENT
+    IS_EQUALS
+    LESS_THAN
+    LESS_THAN_OR_EQUALS
+    MAIN
+    MINUS
+    NOT
+    OR
+    PAREN_ABERTO
+    PAREN_FECHADO
+    PLUS
+    PONTO_VIRGULA
+    PRINTLN
+    REST
+    RETURN
+    SCANF
+    STRING
+    TIMES
+    TYPE_BOOLEAN
+    TYPE_STRING
+    VIRGULA
+    VOID
+    WHILE
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> term OPERATOR term SPECIAL_SYMBOL
+Rule 2     term -> ID
+Rule 3     term -> NUMBER_INT
+Rule 4     term -> NUMBER_DEC
+
+Terminals, with rules where they appear
+
+AND                  : 
+BOOLEAN              : 
+CHAR                 : 
+CHAVE_ABERTA         : 
+CHAVE_FECHADA        : 
+COLCHETE_ABERTO      : 
+COLCHETE_FECHADO     : 
+COMPARE_OPERATOR     : 
+DIVIDE               : 
+DOUBLE               : 
+ELSE                 : 
+EQUAL                : 
+FLOAT                : 
+FOR                  : 
+GREATER_THAN         : 
+GREATER_THAN_OR_EQUALS : 
+ID                   : 2
+IF                   : 
+INT                  : 
+IS_DIFFERENT         : 
+IS_EQUALS            : 
+LESS_THAN            : 
+LESS_THAN_OR_EQUALS  : 
+MAIN                 : 
+MINUS                : 
+NOT                  : 
+NUMBER_DEC           : 4
+NUMBER_INT           : 3
+OPERATOR             : 1
+OR                   : 
+PAREN_ABERTO         : 
+PAREN_FECHADO        : 
+PLUS                 : 
+PONTO_VIRGULA        : 
+PRINTLN              : 
+REST                 : 
+RETURN               : 
+SCANF                : 
+SPECIAL_SYMBOL       : 1
+STRING               : 
+TIMES                : 
+TYPE_BOOLEAN         : 
+TYPE_STRING          : 
+VIRGULA              : 
+VOID                 : 
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 0
+term                 : 1 1
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . term OPERATOR term SPECIAL_SYMBOL
+    (2) term -> . ID
+    (3) term -> . NUMBER_INT
+    (4) term -> . NUMBER_DEC
+
+    ID              shift and go to state 3
+    NUMBER_INT      shift and go to state 4
+    NUMBER_DEC      shift and go to state 5
+
+    expression                     shift and go to state 1
+    term                           shift and go to state 2
+
+state 1
+
+    (0) S' -> expression .
+
+
+
+state 2
+
+    (1) expression -> term . OPERATOR term SPECIAL_SYMBOL
+
+    OPERATOR        shift and go to state 6
+
+
+state 3
+
+    (2) term -> ID .
+
+    OPERATOR        reduce using rule 2 (term -> ID .)
+    SPECIAL_SYMBOL  reduce using rule 2 (term -> ID .)
+
+
+state 4
+
+    (3) term -> NUMBER_INT .
+
+    OPERATOR        reduce using rule 3 (term -> NUMBER_INT .)
+    SPECIAL_SYMBOL  reduce using rule 3 (term -> NUMBER_INT .)
+
+
+state 5
+
+    (4) term -> NUMBER_DEC .
+
+    OPERATOR        reduce using rule 4 (term -> NUMBER_DEC .)
+    SPECIAL_SYMBOL  reduce using rule 4 (term -> NUMBER_DEC .)
+
+
+state 6
+
+    (1) expression -> term OPERATOR . term SPECIAL_SYMBOL
+    (2) term -> . ID
+    (3) term -> . NUMBER_INT
+    (4) term -> . NUMBER_DEC
+
+    ID              shift and go to state 3
+    NUMBER_INT      shift and go to state 4
+    NUMBER_DEC      shift and go to state 5
+
+    term                           shift and go to state 7
+
+state 7
+
+    (1) expression -> term OPERATOR term . SPECIAL_SYMBOL
+
+    SPECIAL_SYMBOL  shift and go to state 8
+
+
+state 8
+
+    (1) expression -> term OPERATOR term SPECIAL_SYMBOL .
+
+    $end            reduce using rule 1 (expression -> term OPERATOR term SPECIAL_SYMBOL .)
+

@@ -1,4 +1,5 @@
 import ply.lex as lex
+import ply.yacc as yacc
 import Complemento
 import re
 
@@ -35,7 +36,7 @@ def t_NUMBER_DEC(t):
 
 def t_NUMBER_INT(t):
     r'-?\d+'
-    t.value = int(t.value)
+    #t.value = int(t.value)
     return t
 
 def t_OPERATOR(t):
@@ -61,6 +62,7 @@ def t_error(t):
     t.lexer.skip(1)
 
 def lexico():
+    global tokens
     tokens = Complemento.TIPOS + list(Complemento.RESERVED_WORD_LIST.values()) + list(Complemento.OP_LIST.values()) + list(Complemento.COMPARE_OP_LIST.values()) + list(Complemento.SPECIAL_SYMBOLS_LIST.values())
     lexer = lex.lex()
 
@@ -77,11 +79,38 @@ def lexico():
         else:
             print(tok.type, tok.value)
         ordemTokens.append(tok)
+    print('LEXICO APROVADO!')
 
 
+
+
+
+def p_expression_plus(p):
+    '''expression : term OPERATOR term SPECIAL_SYMBOL'''
+    if p[4] == ';':
+        p[0] = p[1] + p[3]
+
+def p_term(p):
+    '''term : ID
+    | NUMBER_INT
+    | NUMBER_DEC'''
+    p[0] = p[1]
+
+def p_error(p):
+    raise Exception("Syntax error")
 
 def sintatico():
     lexico()
+
+    parser = yacc.yacc()
+    while True:
+        try:
+            s = input('Sintaxe > ')
+        except EOFError:
+            break
+        if not s: continue
+        result = parser.parse(s)
+        print(result)
 
 
 sintatico()
