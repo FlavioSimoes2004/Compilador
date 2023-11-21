@@ -3,12 +3,6 @@ opList = ["=", "<", ">", "&&", "||", "!", "%", "+", "/", "-", "*"]
 compareOpList = ["<", "==", "<=", ">", ">=", "!="]
 specialSymbolList = [";", "(", ")", "[", "]", "{", "}", ","]
 
-Tokens = []
-opSymbol = []
-compareOpSymbol = []
-specialOpSymbol = []
-IdTable = []
-
 
 def getCode():
     code = ""
@@ -81,3 +75,9 @@ SPECIAL_SYMBOLS_LIST = {
     '}': 'COLCHETE_FECHADO',
     ',': 'VIRGULA'
 }
+
+reserved_word_table = []
+operators_table = []
+compare_operators_table = []
+special_symbol_table = []
+id_table = []

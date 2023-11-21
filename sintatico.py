@@ -20,6 +20,7 @@ def t_ID(t):
 
     if t.value in Complemento.RESERVED_WORD_LIST:
         t.type = Complemento.RESERVED_WORD_LIST.get(t.value)
+        Complemento.reserved_word_table.append(t.value)
     return t
 
 def t_TYPE_BOOLEAN(t):
@@ -43,8 +44,12 @@ def t_OPERATOR(t):
         raise Exception("LEXICO: Illegal character '%s'" % t.value[0])
     if t.value in Complemento.COMPARE_OP_LIST:
         t.type = 'COMPARE_OPERATOR'
+        Complemento.compare_operators_table.append(t.value)
     elif t.value in Complemento.SPECIAL_SYMBOLS_LIST:
         t.type = 'SPECIAL_SYMBOL'
+        Complemento.special_symbol_table.append(t.value)
+    else: #is normal operator
+        Complemento.operators_table.append(t.value)
     return t
 
 def t_newline(t):
@@ -65,7 +70,13 @@ def lexico():
         tok = lexer.token()
         if not tok:
             break
-        print(tok.type, tok.value)
+        elif tok.type == 'ID':
+            if tok.value not in Complemento.id_table:
+                Complemento.id_table.append(tok.value)
+            print('(ID, ' , (Complemento.id_table.index(tok.value) + 1) , ',' , tok.value, ')')
+        else:
+            print(tok.type, tok.value)
+
 
 
 def sintatico():
@@ -73,3 +84,4 @@ def sintatico():
 
 
 sintatico()
+print("----------- FIM ---------------")
