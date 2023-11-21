@@ -6,6 +6,15 @@ tokens = []
 
 t_ignore  = ' \t'
 
+def t_COMMENT(t):
+    r'//.*'
+    pass
+
+def t_TYPE_STRING(t):
+    r'"[^"]*"'
+    t.value = str(t.value)
+    return t
+
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
 
@@ -18,9 +27,9 @@ def t_TYPE_BOOLEAN(t):
     t.value = bool(t.value)
     return t
 
-def t_TYPE_STRING(t):
-    r'"[^"]*"'
-    t.value = str(t.value)
+def t_NUMBER_DEC(t):
+    r'-?\d+\.\d+'
+    #t.value = float(t.value)
     return t
 
 def t_NUMBER_INT(t):
@@ -28,17 +37,10 @@ def t_NUMBER_INT(t):
     t.value = int(t.value)
     return t
 
-def t_NUMBER_DEC(t):
-    r'-?\b\d+\b$'
-    #t.value = float(t.value)
-    return t
-
-def t_COMMENT(t):
-    r'//.*'
-    pass
-
 def t_OPERATOR(t):
     r'.|..'
+    if t.value == '.' or t.value == '..':
+        raise Exception("LEXICO: Illegal character '%s'" % t.value[0])
     if t.value in Complemento.COMPARE_OP_LIST:
         t.type = 'COMPARE_OPERATOR'
     elif t.value in Complemento.SPECIAL_SYMBOLS_LIST:
@@ -50,7 +52,7 @@ def t_newline(t):
     t.lexer.lineno += len(t.value)
 
 def t_error(t):
-    raise Exception("Illegal character '%s'" % t.value[0])
+    raise Exception("LEXICO: Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
 
 def lexico():
