@@ -2,7 +2,7 @@ import ply.lex as lex
 import Complemento
 import re
 
-tokens = []
+ordemTokens = []
 
 t_ignore  = ' \t'
 
@@ -76,6 +76,7 @@ def lexico():
             print('(ID, ' , (Complemento.id_table.index(tok.value) + 1) , ',' , tok.value, ')')
         else:
             print(tok.type, tok.value)
+        ordemTokens.append(tok)
 
 
 

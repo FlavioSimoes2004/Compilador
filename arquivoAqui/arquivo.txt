@@ -1,3 +1,5 @@
+//ola mundo
+
 float calcularMedia(float nota1, float nota2) {
  float media = (nota1 + nota2) / 2.0;
  if (media >= 6.0) {
