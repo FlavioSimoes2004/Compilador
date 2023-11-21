@@ -1,2 +1,2 @@
-for i ; i < 10; i++
-a//ola
+for (i ; i < 10; i++);
+//ola

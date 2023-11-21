@@ -38,15 +38,11 @@ def t_COMMENT(t):
     pass
 
 def t_OPERATOR(t):
-    r'.'
+    r'.|..'
     if t.value in Complemento.COMPARE_OP_LIST:
         t.type = 'COMPARE_OPERATOR'
     elif t.value in Complemento.SPECIAL_SYMBOLS_LIST:
         t.type = 'SPECIAL_SYMBOL'
-    return t
-
-def t_COMPARE_OPERATOR(t):
-    '..'
     return t
 
 def t_newline(t):
