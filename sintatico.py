@@ -7,6 +7,38 @@ ordemTokens = []
 
 t_ignore  = ' \t'
 
+t_EQUAL = r'='
+t_PLUS = r'\+'
+t_MINUS = r'-'
+t_TIMES = r'\*'
+t_DIVIDE = r'/'
+t_REST = r'%'
+t_NOT = '!'
+t_AND = r'&&'
+t_OR = r'\|\|'
+t_PLUS_EQUAL = r'\+='
+t_MINUS_EQUAL = r'-='
+t_TIMES_EQUAL = r'\*='
+t_DIVIDE_EQUAL = '/='
+t_REST_EQUAL = '%='
+
+t_LESS_THAN = r'<'
+t_GREATER_THAN = r'>'
+t_IS_EQUALS = r'=='
+t_IS_DIFFERENT = r'!='
+t_LESS_THAN_OR_EQUALS = r'<='
+t_GREATER_THAN_OR_EQUALS = r'>='
+
+t_PONTO_VIRGULA = r';'
+t_PAREN_ABERTO = r'\('
+t_PAREN_FECHADO = r'\)'
+t_CHAVE_ABERTA = r'\['
+t_CHAVE_FECHADA = r'\]'
+t_COLCHETE_ABERTO = r'{'
+t_COLCHETE_FECHADO = r'}'
+t_VIRGULA = r','
+
+
 def t_COMMENT(t):
     r'//.*'
     return t
@@ -37,21 +69,6 @@ def t_NUMBER_DEC(t):
 def t_NUMBER_INT(t):
     r'-?\d+'
     #t.value = int(t.value)
-    return t
-
-def t_OPERATOR(t):
-    r'..|.'
-    if t.value == '.' or t.value == '..':
-        t_error(t)
-    elif t.value in Complemento.COMPARE_OP_LIST:
-        t.type = Complemento.COMPARE_OP_LIST.get(t.value)
-        Complemento.compare_operators_table.append(t.value)
-    elif t.value in Complemento.SPECIAL_SYMBOLS_LIST:
-        t.type = Complemento.SPECIAL_SYMBOLS_LIST.get(t.value)
-        Complemento.special_symbol_table.append(t.value)
-    else: #is normal operator
-        t.type = Complemento.OP_LIST.get(t.value)
-        Complemento.operators_table.append(t.value)
     return t
 
 def t_newline(t):
@@ -111,7 +128,15 @@ def p_atribuicao(p):
     | NUMBER_INT
     | TYPE_STRING
     | TYPE_BOOLEAN
-    | ID'''
+    | ID
+    | ID EQUAL expressao
+    | ID PLUS_EQUAL expressao
+    | ID MINUS_EQUAL expressao
+    | ID TIMES_EQUAL expressao
+    | ID DIVIDE_EQUAL expressao
+    | ID REST_EQUAL expressao
+    | ID AND EQUAL expressao
+    | ID OR EQUAL expressao'''
 
 def p_error(p):
     raise Exception("Syntax error")
