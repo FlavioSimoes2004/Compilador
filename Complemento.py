@@ -17,18 +17,20 @@ def getCode():
 #PLY
 TIPOS = [
    'NUMBER_INT',
-   'NUMBER_DEC', 
-   'TYPE_BOOLEAN', 
-   'TYPE_STRING', 
+   'NUMBER_DEC',
+   'TYPE_BOOLEAN',
+   'TYPE_STRING',
    'ID',
    'OPERATOR',
    'COMPARE_OPERATOR',
-   'SPECIAL_SYMBOL'
+   'SPECIAL_SYMBOL',
+   'COMMENT'
 ]
 
 RESERVED_WORD_LIST = {
     'int': 'INT',
     'String': 'STRING',
+    'char': 'CHAR',
     'boolean': 'BOOLEAN',
     'double': 'DOUBLE',
     'if': 'IF',

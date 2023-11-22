@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND BOOLEAN CHAR CHAVE_ABERTA CHAVE_FECHADA COLCHETE_ABERTO COLCHETE_FECHADO COMPARE_OPERATOR DIVIDE DOUBLE ELSE EQUAL FLOAT FOR GREATER_THAN GREATER_THAN_OR_EQUALS ID IF INT IS_DIFFERENT IS_EQUALS LESS_THAN LESS_THAN_OR_EQUALS MAIN MINUS NOT NUMBER_DEC NUMBER_INT OPERATOR OR PAREN_ABERTO PAREN_FECHADO PLUS PONTO_VIRGULA PRINTLN REST RETURN SCANF SPECIAL_SYMBOL STRING TIMES TYPE_BOOLEAN TYPE_STRING VIRGULA VOID WHILEexpression : term OPERATOR term SPECIAL_SYMBOLterm : ID\n    | NUMBER_INT\n    | NUMBER_DEC'
+_lr_signature = 'AND BOOLEAN CHAR CHAVE_ABERTA CHAVE_FECHADA COLCHETE_ABERTO COLCHETE_FECHADO COMMENT COMPARE_OPERATOR DIVIDE DOUBLE ELSE EQUAL FLOAT FOR GREATER_THAN GREATER_THAN_OR_EQUALS ID IF INT IS_DIFFERENT IS_EQUALS LESS_THAN LESS_THAN_OR_EQUALS MAIN MINUS NOT NUMBER_DEC NUMBER_INT OPERATOR OR PAREN_ABERTO PAREN_FECHADO PLUS PONTO_VIRGULA PRINTLN REST RETURN SCANF SPECIAL_SYMBOL STRING TIMES TYPE_BOOLEAN TYPE_STRING VIRGULA VOID WHILEprograma : declaracaodeclaracao : declaracao_variavel\n    \n    declaracao_variavel : tipo ID PONTO_VIRGULA\n    | tipo ID EQUAL expressao PONTO_VIRGULAtipo : INT\n    | STRING\n    | BOOLEAN\n    | DOUBLE\n    | CHAR\n    | FLOATexpressao : atribuicaoatribuicao : NUMBER_DEC\n    | NUMBER_INT\n    | TYPE_STRING\n    | TYPE_BOOLEAN\n    | ID'
     
-_lr_action_items = {'ID':([0,6,],[3,3,]),'NUMBER_INT':([0,6,],[4,4,]),'NUMBER_DEC':([0,6,],[5,5,]),'$end':([1,8,],[0,-1,]),'OPERATOR':([2,3,4,5,],[6,-2,-3,-4,]),'SPECIAL_SYMBOL':([3,4,5,7,],[-2,-3,-4,8,]),}
+_lr_action_items = {'INT':([0,],[5,]),'STRING':([0,],[6,]),'BOOLEAN':([0,],[7,]),'DOUBLE':([0,],[8,]),'CHAR':([0,],[9,]),'FLOAT':([0,],[10,]),'$end':([1,2,3,12,21,],[0,-1,-2,-3,-4,]),'ID':([4,5,6,7,8,9,10,13,],[11,-5,-6,-7,-8,-9,-10,14,]),'PONTO_VIRGULA':([11,14,15,16,17,18,19,20,],[12,-16,21,-11,-12,-13,-14,-15,]),'EQUAL':([11,],[13,]),'NUMBER_DEC':([13,],[17,]),'NUMBER_INT':([13,],[18,]),'TYPE_STRING':([13,],[19,]),'TYPE_BOOLEAN':([13,],[20,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,],[1,]),'term':([0,6,],[2,7,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'declaracao':([0,],[2,]),'declaracao_variavel':([0,],[3,]),'tipo':([0,],[4,]),'expressao':([13,],[15,]),'atribuicao':([13,],[16,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,9 +26,21 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> expression","S'",1,None,None,None),
-  ('expression -> term OPERATOR term SPECIAL_SYMBOL','expression',4,'p_expression_plus','sintatico.py',89),
-  ('term -> ID','term',1,'p_term','sintatico.py',94),
-  ('term -> NUMBER_INT','term',1,'p_term','sintatico.py',95),
-  ('term -> NUMBER_DEC','term',1,'p_term','sintatico.py',96),
+  ("S' -> programa","S'",1,None,None,None),
+  ('programa -> declaracao','programa',1,'p_programa','sintatico.py',90),
+  ('declaracao -> declaracao_variavel','declaracao',1,'p_declaracao','sintatico.py',93),
+  ('declaracao_variavel -> tipo ID PONTO_VIRGULA','declaracao_variavel',3,'p_declaracao','sintatico.py',95),
+  ('declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA','declaracao_variavel',5,'p_declaracao','sintatico.py',96),
+  ('tipo -> INT','tipo',1,'p_tipo','sintatico.py',99),
+  ('tipo -> STRING','tipo',1,'p_tipo','sintatico.py',100),
+  ('tipo -> BOOLEAN','tipo',1,'p_tipo','sintatico.py',101),
+  ('tipo -> DOUBLE','tipo',1,'p_tipo','sintatico.py',102),
+  ('tipo -> CHAR','tipo',1,'p_tipo','sintatico.py',103),
+  ('tipo -> FLOAT','tipo',1,'p_tipo','sintatico.py',104),
+  ('expressao -> atribuicao','expressao',1,'p_expressao','sintatico.py',107),
+  ('atribuicao -> NUMBER_DEC','atribuicao',1,'p_atribuicao','sintatico.py',110),
+  ('atribuicao -> NUMBER_INT','atribuicao',1,'p_atribuicao','sintatico.py',111),
+  ('atribuicao -> TYPE_STRING','atribuicao',1,'p_atribuicao','sintatico.py',112),
+  ('atribuicao -> TYPE_BOOLEAN','atribuicao',1,'p_atribuicao','sintatico.py',113),
+  ('atribuicao -> ID','atribuicao',1,'p_atribuicao','sintatico.py',114),
 ]

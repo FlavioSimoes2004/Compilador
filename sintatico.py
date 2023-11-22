@@ -9,11 +9,16 @@ t_ignore  = ' \t'
 
 def t_COMMENT(t):
     r'//.*'
-    pass
+    return t
 
 def t_TYPE_STRING(t):
     r'"[^"]*"'
     t.value = str(t.value)
+    return t
+
+def t_TYPE_BOOLEAN(t):
+    r'false|true'
+    t.value = bool(t.value)
     return t
 
 def t_ID(t):
@@ -22,11 +27,6 @@ def t_ID(t):
     if t.value in Complemento.RESERVED_WORD_LIST:
         t.type = Complemento.RESERVED_WORD_LIST.get(t.value)
         Complemento.reserved_word_table.append(t.value)
-    return t
-
-def t_TYPE_BOOLEAN(t):
-    r'false|true'
-    t.value = bool(t.value)
     return t
 
 def t_NUMBER_DEC(t):
@@ -40,16 +40,17 @@ def t_NUMBER_INT(t):
     return t
 
 def t_OPERATOR(t):
-    r'.|..'
+    r'..|.'
     if t.value == '.' or t.value == '..':
-        raise Exception("LEXICO: Illegal character '%s'" % t.value[0])
-    if t.value in Complemento.COMPARE_OP_LIST:
-        t.type = 'COMPARE_OPERATOR'
+        t_error(t)
+    elif t.value in Complemento.COMPARE_OP_LIST:
+        t.type = Complemento.COMPARE_OP_LIST.get(t.value)
         Complemento.compare_operators_table.append(t.value)
     elif t.value in Complemento.SPECIAL_SYMBOLS_LIST:
-        t.type = 'SPECIAL_SYMBOL'
+        t.type = Complemento.SPECIAL_SYMBOLS_LIST.get(t.value)
         Complemento.special_symbol_table.append(t.value)
     else: #is normal operator
+        t.type = Complemento.OP_LIST.get(t.value)
         Complemento.operators_table.append(t.value)
     return t
 
@@ -85,16 +86,32 @@ def lexico():
 
 
 
-def p_expression_plus(p):
-    '''expression : term OPERATOR term SPECIAL_SYMBOL'''
-    if p[4] == ';':
-        p[0] = p[1] + p[3]
+def p_programa(p):
+    '''programa : declaracao'''
 
-def p_term(p):
-    '''term : ID
+def p_declaracao(p):
+    '''declaracao : declaracao_variavel
+    
+    declaracao_variavel : tipo ID PONTO_VIRGULA
+    | tipo ID EQUAL expressao PONTO_VIRGULA'''
+
+def p_tipo(p):
+    '''tipo : INT
+    | STRING
+    | BOOLEAN
+    | DOUBLE
+    | CHAR
+    | FLOAT'''
+
+def p_expressao(p):
+    '''expressao : atribuicao'''
+
+def p_atribuicao(p):
+    '''atribuicao : NUMBER_DEC
     | NUMBER_INT
-    | NUMBER_DEC'''
-    p[0] = p[1]
+    | TYPE_STRING
+    | TYPE_BOOLEAN
+    | ID'''
 
 def p_error(p):
     raise Exception("Syntax error")
@@ -105,7 +122,7 @@ def sintatico():
     parser = yacc.yacc()
     while True:
         try:
-            s = input('Sintaxe > ')
+            s = input('sintatico > ')
         except EOFError:
             break
         if not s: continue
@@ -113,5 +130,6 @@ def sintatico():
         print(result)
 
 
+#lexico()
 sintatico()
 print("----------- FIM ---------------")

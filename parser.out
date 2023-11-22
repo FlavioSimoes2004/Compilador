@@ -3,23 +3,18 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Unused terminals:
 
     AND
-    BOOLEAN
-    CHAR
     CHAVE_ABERTA
     CHAVE_FECHADA
     COLCHETE_ABERTO
     COLCHETE_FECHADO
+    COMMENT
     COMPARE_OPERATOR
     DIVIDE
-    DOUBLE
     ELSE
-    EQUAL
-    FLOAT
     FOR
     GREATER_THAN
     GREATER_THAN_OR_EQUALS
     IF
-    INT
     IS_DIFFERENT
     IS_EQUALS
     LESS_THAN
@@ -27,52 +22,63 @@ Unused terminals:
     MAIN
     MINUS
     NOT
+    OPERATOR
     OR
     PAREN_ABERTO
     PAREN_FECHADO
     PLUS
-    PONTO_VIRGULA
     PRINTLN
     REST
     RETURN
     SCANF
-    STRING
+    SPECIAL_SYMBOL
     TIMES
-    TYPE_BOOLEAN
-    TYPE_STRING
     VIRGULA
     VOID
     WHILE
 
 Grammar
 
-Rule 0     S' -> expression
-Rule 1     expression -> term OPERATOR term SPECIAL_SYMBOL
-Rule 2     term -> ID
-Rule 3     term -> NUMBER_INT
-Rule 4     term -> NUMBER_DEC
+Rule 0     S' -> programa
+Rule 1     programa -> declaracao
+Rule 2     declaracao -> declaracao_variavel
+Rule 3     declaracao_variavel -> tipo ID PONTO_VIRGULA
+Rule 4     declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA
+Rule 5     tipo -> INT
+Rule 6     tipo -> STRING
+Rule 7     tipo -> BOOLEAN
+Rule 8     tipo -> DOUBLE
+Rule 9     tipo -> CHAR
+Rule 10    tipo -> FLOAT
+Rule 11    expressao -> atribuicao
+Rule 12    atribuicao -> NUMBER_DEC
+Rule 13    atribuicao -> NUMBER_INT
+Rule 14    atribuicao -> TYPE_STRING
+Rule 15    atribuicao -> TYPE_BOOLEAN
+Rule 16    atribuicao -> ID
 
 Terminals, with rules where they appear
 
 AND                  : 
-BOOLEAN              : 
-CHAR                 : 
+BOOLEAN              : 7
+CHAR                 : 9
 CHAVE_ABERTA         : 
 CHAVE_FECHADA        : 
 COLCHETE_ABERTO      : 
 COLCHETE_FECHADO     : 
+COMMENT              : 
 COMPARE_OPERATOR     : 
 DIVIDE               : 
-DOUBLE               : 
+DOUBLE               : 8
 ELSE                 : 
-EQUAL                : 
-FLOAT                : 
+EQUAL                : 4
+FLOAT                : 10
 FOR                  : 
 GREATER_THAN         : 
 GREATER_THAN_OR_EQUALS : 
-ID                   : 2
+ID                   : 3 4 16
 IF                   : 
-INT                  : 
+INT                  : 5
 IS_DIFFERENT         : 
 IS_EQUALS            : 
 LESS_THAN            : 
@@ -80,23 +86,23 @@ LESS_THAN_OR_EQUALS  :
 MAIN                 : 
 MINUS                : 
 NOT                  : 
-NUMBER_DEC           : 4
-NUMBER_INT           : 3
-OPERATOR             : 1
+NUMBER_DEC           : 12
+NUMBER_INT           : 13
+OPERATOR             : 
 OR                   : 
 PAREN_ABERTO         : 
 PAREN_FECHADO        : 
 PLUS                 : 
-PONTO_VIRGULA        : 
+PONTO_VIRGULA        : 3 4
 PRINTLN              : 
 REST                 : 
 RETURN               : 
 SCANF                : 
-SPECIAL_SYMBOL       : 1
-STRING               : 
+SPECIAL_SYMBOL       : 
+STRING               : 6
 TIMES                : 
-TYPE_BOOLEAN         : 
-TYPE_STRING          : 
+TYPE_BOOLEAN         : 15
+TYPE_STRING          : 14
 VIRGULA              : 
 VOID                 : 
 WHILE                : 
@@ -104,86 +110,198 @@ error                :
 
 Nonterminals, with rules where they appear
 
-expression           : 0
-term                 : 1 1
+atribuicao           : 11
+declaracao           : 1
+declaracao_variavel  : 2
+expressao            : 4
+programa             : 0
+tipo                 : 3 4
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . expression
-    (1) expression -> . term OPERATOR term SPECIAL_SYMBOL
-    (2) term -> . ID
-    (3) term -> . NUMBER_INT
-    (4) term -> . NUMBER_DEC
+    (0) S' -> . programa
+    (1) programa -> . declaracao
+    (2) declaracao -> . declaracao_variavel
+    (3) declaracao_variavel -> . tipo ID PONTO_VIRGULA
+    (4) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
+    (5) tipo -> . INT
+    (6) tipo -> . STRING
+    (7) tipo -> . BOOLEAN
+    (8) tipo -> . DOUBLE
+    (9) tipo -> . CHAR
+    (10) tipo -> . FLOAT
 
-    ID              shift and go to state 3
-    NUMBER_INT      shift and go to state 4
-    NUMBER_DEC      shift and go to state 5
+    INT             shift and go to state 5
+    STRING          shift and go to state 6
+    BOOLEAN         shift and go to state 7
+    DOUBLE          shift and go to state 8
+    CHAR            shift and go to state 9
+    FLOAT           shift and go to state 10
 
-    expression                     shift and go to state 1
-    term                           shift and go to state 2
+    programa                       shift and go to state 1
+    declaracao                     shift and go to state 2
+    declaracao_variavel            shift and go to state 3
+    tipo                           shift and go to state 4
 
 state 1
 
-    (0) S' -> expression .
+    (0) S' -> programa .
 
 
 
 state 2
 
-    (1) expression -> term . OPERATOR term SPECIAL_SYMBOL
+    (1) programa -> declaracao .
 
-    OPERATOR        shift and go to state 6
+    $end            reduce using rule 1 (programa -> declaracao .)
 
 
 state 3
 
-    (2) term -> ID .
+    (2) declaracao -> declaracao_variavel .
 
-    OPERATOR        reduce using rule 2 (term -> ID .)
-    SPECIAL_SYMBOL  reduce using rule 2 (term -> ID .)
+    $end            reduce using rule 2 (declaracao -> declaracao_variavel .)
 
 
 state 4
 
-    (3) term -> NUMBER_INT .
+    (3) declaracao_variavel -> tipo . ID PONTO_VIRGULA
+    (4) declaracao_variavel -> tipo . ID EQUAL expressao PONTO_VIRGULA
 
-    OPERATOR        reduce using rule 3 (term -> NUMBER_INT .)
-    SPECIAL_SYMBOL  reduce using rule 3 (term -> NUMBER_INT .)
+    ID              shift and go to state 11
 
 
 state 5
 
-    (4) term -> NUMBER_DEC .
+    (5) tipo -> INT .
 
-    OPERATOR        reduce using rule 4 (term -> NUMBER_DEC .)
-    SPECIAL_SYMBOL  reduce using rule 4 (term -> NUMBER_DEC .)
+    ID              reduce using rule 5 (tipo -> INT .)
 
 
 state 6
 
-    (1) expression -> term OPERATOR . term SPECIAL_SYMBOL
-    (2) term -> . ID
-    (3) term -> . NUMBER_INT
-    (4) term -> . NUMBER_DEC
+    (6) tipo -> STRING .
 
-    ID              shift and go to state 3
-    NUMBER_INT      shift and go to state 4
-    NUMBER_DEC      shift and go to state 5
+    ID              reduce using rule 6 (tipo -> STRING .)
 
-    term                           shift and go to state 7
 
 state 7
 
-    (1) expression -> term OPERATOR term . SPECIAL_SYMBOL
+    (7) tipo -> BOOLEAN .
 
-    SPECIAL_SYMBOL  shift and go to state 8
+    ID              reduce using rule 7 (tipo -> BOOLEAN .)
 
 
 state 8
 
-    (1) expression -> term OPERATOR term SPECIAL_SYMBOL .
+    (8) tipo -> DOUBLE .
 
-    $end            reduce using rule 1 (expression -> term OPERATOR term SPECIAL_SYMBOL .)
+    ID              reduce using rule 8 (tipo -> DOUBLE .)
+
+
+state 9
+
+    (9) tipo -> CHAR .
+
+    ID              reduce using rule 9 (tipo -> CHAR .)
+
+
+state 10
+
+    (10) tipo -> FLOAT .
+
+    ID              reduce using rule 10 (tipo -> FLOAT .)
+
+
+state 11
+
+    (3) declaracao_variavel -> tipo ID . PONTO_VIRGULA
+    (4) declaracao_variavel -> tipo ID . EQUAL expressao PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 12
+    EQUAL           shift and go to state 13
+
+
+state 12
+
+    (3) declaracao_variavel -> tipo ID PONTO_VIRGULA .
+
+    $end            reduce using rule 3 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
+
+
+state 13
+
+    (4) declaracao_variavel -> tipo ID EQUAL . expressao PONTO_VIRGULA
+    (11) expressao -> . atribuicao
+    (12) atribuicao -> . NUMBER_DEC
+    (13) atribuicao -> . NUMBER_INT
+    (14) atribuicao -> . TYPE_STRING
+    (15) atribuicao -> . TYPE_BOOLEAN
+    (16) atribuicao -> . ID
+
+    NUMBER_DEC      shift and go to state 17
+    NUMBER_INT      shift and go to state 18
+    TYPE_STRING     shift and go to state 19
+    TYPE_BOOLEAN    shift and go to state 20
+    ID              shift and go to state 14
+
+    expressao                      shift and go to state 15
+    atribuicao                     shift and go to state 16
+
+state 14
+
+    (16) atribuicao -> ID .
+
+    PONTO_VIRGULA   reduce using rule 16 (atribuicao -> ID .)
+
+
+state 15
+
+    (4) declaracao_variavel -> tipo ID EQUAL expressao . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 21
+
+
+state 16
+
+    (11) expressao -> atribuicao .
+
+    PONTO_VIRGULA   reduce using rule 11 (expressao -> atribuicao .)
+
+
+state 17
+
+    (12) atribuicao -> NUMBER_DEC .
+
+    PONTO_VIRGULA   reduce using rule 12 (atribuicao -> NUMBER_DEC .)
+
+
+state 18
+
+    (13) atribuicao -> NUMBER_INT .
+
+    PONTO_VIRGULA   reduce using rule 13 (atribuicao -> NUMBER_INT .)
+
+
+state 19
+
+    (14) atribuicao -> TYPE_STRING .
+
+    PONTO_VIRGULA   reduce using rule 14 (atribuicao -> TYPE_STRING .)
+
+
+state 20
+
+    (15) atribuicao -> TYPE_BOOLEAN .
+
+    PONTO_VIRGULA   reduce using rule 15 (atribuicao -> TYPE_BOOLEAN .)
+
+
+state 21
+
+    (4) declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .
+
+    $end            reduce using rule 4 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
 
