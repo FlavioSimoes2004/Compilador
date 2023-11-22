@@ -33,8 +33,8 @@ Rule 1     programa -> declaracao
 Rule 2     declaracao -> declaracao_variavel
 Rule 3     declaracao -> declaracao_funcao
 Rule 4     declaracao -> declaracao_estrutura
-Rule 5     declaracao -> COMMENT
-Rule 6     declaracao -> declaracao declaracao
+Rule 5     declaracao -> declaracao declaracao
+Rule 6     declaracao -> COMMENT
 Rule 7     declaracao -> <empty>
 Rule 8     declaracao_variavel -> tipo ID PONTO_VIRGULA
 Rule 9     declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA
@@ -77,7 +77,7 @@ CHAVE_ABERTA         : 37
 CHAVE_FECHADA        : 37
 COLCHETE_ABERTO      : 38
 COLCHETE_FECHADO     : 38
-COMMENT              : 5
+COMMENT              : 6
 COMPARE_OPERATOR     : 
 DIVIDE               : 
 DIVIDE_EQUAL         : 29
@@ -128,7 +128,7 @@ Nonterminals, with rules where they appear
 
 atribuicao           : 19
 bloco                : 10 11
-declaracao           : 1 6 6 38
+declaracao           : 1 5 5 38
 declaracao_estrutura : 4
 declaracao_funcao    : 3
 declaracao_variavel  : 2
@@ -147,8 +147,8 @@ state 0
     (2) declaracao -> . declaracao_variavel
     (3) declaracao -> . declaracao_funcao
     (4) declaracao -> . declaracao_estrutura
-    (5) declaracao -> . COMMENT
-    (6) declaracao -> . declaracao declaracao
+    (5) declaracao -> . declaracao declaracao
+    (6) declaracao -> . COMMENT
     (7) declaracao -> .
     (8) declaracao_variavel -> . tipo ID PONTO_VIRGULA
     (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
@@ -223,12 +223,12 @@ state 1
 state 2
 
     (1) programa -> declaracao .
-    (6) declaracao -> declaracao . declaracao
+    (5) declaracao -> declaracao . declaracao
     (2) declaracao -> . declaracao_variavel
     (3) declaracao -> . declaracao_funcao
     (4) declaracao -> . declaracao_estrutura
-    (5) declaracao -> . COMMENT
-    (6) declaracao -> . declaracao declaracao
+    (5) declaracao -> . declaracao declaracao
+    (6) declaracao -> . COMMENT
     (7) declaracao -> .
     (8) declaracao_variavel -> . tipo ID PONTO_VIRGULA
     (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
@@ -345,18 +345,18 @@ state 5
 
 state 6
 
-    (5) declaracao -> COMMENT .
+    (6) declaracao -> COMMENT .
 
-    COMMENT         reduce using rule 5 (declaracao -> COMMENT .)
-    VOID            reduce using rule 5 (declaracao -> COMMENT .)
-    INT             reduce using rule 5 (declaracao -> COMMENT .)
-    STRING          reduce using rule 5 (declaracao -> COMMENT .)
-    BOOLEAN         reduce using rule 5 (declaracao -> COMMENT .)
-    DOUBLE          reduce using rule 5 (declaracao -> COMMENT .)
-    CHAR            reduce using rule 5 (declaracao -> COMMENT .)
-    FLOAT           reduce using rule 5 (declaracao -> COMMENT .)
-    $end            reduce using rule 5 (declaracao -> COMMENT .)
-    COLCHETE_FECHADO reduce using rule 5 (declaracao -> COMMENT .)
+    COMMENT         reduce using rule 6 (declaracao -> COMMENT .)
+    VOID            reduce using rule 6 (declaracao -> COMMENT .)
+    INT             reduce using rule 6 (declaracao -> COMMENT .)
+    STRING          reduce using rule 6 (declaracao -> COMMENT .)
+    BOOLEAN         reduce using rule 6 (declaracao -> COMMENT .)
+    DOUBLE          reduce using rule 6 (declaracao -> COMMENT .)
+    CHAR            reduce using rule 6 (declaracao -> COMMENT .)
+    FLOAT           reduce using rule 6 (declaracao -> COMMENT .)
+    $end            reduce using rule 6 (declaracao -> COMMENT .)
+    COLCHETE_FECHADO reduce using rule 6 (declaracao -> COMMENT .)
 
 
 state 7
@@ -419,13 +419,13 @@ state 14
 
 state 15
 
-    (6) declaracao -> declaracao declaracao .
-    (6) declaracao -> declaracao . declaracao
+    (5) declaracao -> declaracao declaracao .
+    (5) declaracao -> declaracao . declaracao
     (2) declaracao -> . declaracao_variavel
     (3) declaracao -> . declaracao_funcao
     (4) declaracao -> . declaracao_estrutura
-    (5) declaracao -> . COMMENT
-    (6) declaracao -> . declaracao declaracao
+    (5) declaracao -> . declaracao declaracao
+    (6) declaracao -> . COMMENT
     (7) declaracao -> .
     (8) declaracao_variavel -> . tipo ID PONTO_VIRGULA
     (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
@@ -441,34 +441,34 @@ state 15
 
   ! shift/reduce conflict for COMMENT resolved as shift
   ! shift/reduce conflict for COMMENT resolved as shift
-  ! reduce/reduce conflict for VOID resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for INT resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for STRING resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for BOOLEAN resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for DOUBLE resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for CHAR resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for FLOAT resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for $end resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for COLCHETE_FECHADO resolved using rule 6 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for VOID resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for INT resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for STRING resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for BOOLEAN resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for CHAR resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for FLOAT resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for $end resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for COLCHETE_FECHADO resolved using rule 5 (declaracao -> declaracao declaracao .)
   ! shift/reduce conflict for VOID resolved as shift
   ! shift/reduce conflict for COMMENT resolved as shift
   ! shift/reduce conflict for VOID resolved as shift
-  ! reduce/reduce conflict for INT resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for STRING resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for BOOLEAN resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for DOUBLE resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for CHAR resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for FLOAT resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for $end resolved using rule 6 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for COLCHETE_FECHADO resolved using rule 6 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for INT resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for STRING resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for BOOLEAN resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for DOUBLE resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for CHAR resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for FLOAT resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for $end resolved using rule 5 (declaracao -> declaracao declaracao .)
+  ! reduce/reduce conflict for COLCHETE_FECHADO resolved using rule 5 (declaracao -> declaracao declaracao .)
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for BOOLEAN resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
-    $end            reduce using rule 6 (declaracao -> declaracao declaracao .)
-    COLCHETE_FECHADO reduce using rule 6 (declaracao -> declaracao declaracao .)
+    $end            reduce using rule 5 (declaracao -> declaracao declaracao .)
+    COLCHETE_FECHADO reduce using rule 5 (declaracao -> declaracao declaracao .)
     COMMENT         shift and go to state 6
     VOID            shift and go to state 8
     INT             shift and go to state 9
@@ -478,14 +478,14 @@ state 15
     CHAR            shift and go to state 13
     FLOAT           shift and go to state 14
 
-  ! COMMENT         [ reduce using rule 6 (declaracao -> declaracao declaracao .) ]
-  ! VOID            [ reduce using rule 6 (declaracao -> declaracao declaracao .) ]
-  ! INT             [ reduce using rule 6 (declaracao -> declaracao declaracao .) ]
-  ! STRING          [ reduce using rule 6 (declaracao -> declaracao declaracao .) ]
-  ! BOOLEAN         [ reduce using rule 6 (declaracao -> declaracao declaracao .) ]
-  ! DOUBLE          [ reduce using rule 6 (declaracao -> declaracao declaracao .) ]
-  ! CHAR            [ reduce using rule 6 (declaracao -> declaracao declaracao .) ]
-  ! FLOAT           [ reduce using rule 6 (declaracao -> declaracao declaracao .) ]
+  ! COMMENT         [ reduce using rule 5 (declaracao -> declaracao declaracao .) ]
+  ! VOID            [ reduce using rule 5 (declaracao -> declaracao declaracao .) ]
+  ! INT             [ reduce using rule 5 (declaracao -> declaracao declaracao .) ]
+  ! STRING          [ reduce using rule 5 (declaracao -> declaracao declaracao .) ]
+  ! BOOLEAN         [ reduce using rule 5 (declaracao -> declaracao declaracao .) ]
+  ! DOUBLE          [ reduce using rule 5 (declaracao -> declaracao declaracao .) ]
+  ! CHAR            [ reduce using rule 5 (declaracao -> declaracao declaracao .) ]
+  ! FLOAT           [ reduce using rule 5 (declaracao -> declaracao declaracao .) ]
   ! COMMENT         [ reduce using rule 7 (declaracao -> .) ]
   ! VOID            [ reduce using rule 7 (declaracao -> .) ]
   ! INT             [ reduce using rule 7 (declaracao -> .) ]
@@ -1096,8 +1096,8 @@ state 56
     (2) declaracao -> . declaracao_variavel
     (3) declaracao -> . declaracao_funcao
     (4) declaracao -> . declaracao_estrutura
-    (5) declaracao -> . COMMENT
-    (6) declaracao -> . declaracao declaracao
+    (5) declaracao -> . declaracao declaracao
+    (6) declaracao -> . COMMENT
     (7) declaracao -> .
     (8) declaracao_variavel -> . tipo ID PONTO_VIRGULA
     (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
@@ -1210,12 +1210,12 @@ state 61
 state 62
 
     (38) bloco -> COLCHETE_ABERTO declaracao . COLCHETE_FECHADO
-    (6) declaracao -> declaracao . declaracao
+    (5) declaracao -> declaracao . declaracao
     (2) declaracao -> . declaracao_variavel
     (3) declaracao -> . declaracao_funcao
     (4) declaracao -> . declaracao_estrutura
-    (5) declaracao -> . COMMENT
-    (6) declaracao -> . declaracao declaracao
+    (5) declaracao -> . declaracao declaracao
+    (6) declaracao -> . COMMENT
     (7) declaracao -> .
     (8) declaracao_variavel -> . tipo ID PONTO_VIRGULA
     (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
