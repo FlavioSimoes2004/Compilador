@@ -168,14 +168,17 @@ def sintatico():
     lexico()
 
     parser = yacc.yacc()
-    while True:
-        try:
-            s = input('sintatico > ')
-        except EOFError:
-            break
-        if not s: continue
-        result = parser.parse(s)
-        print(result)
+    #while True:
+    #    try:
+    #        s = input('sintatico > ')
+    #    except EOFError:
+    #        break
+    #    if not s: continue
+    #    result = parser.parse(s)
+    #    print(result)
+    s = Complemento.getCode()
+    result = parser.parse(s)
+    print(result)
 
 
 #lexico()
