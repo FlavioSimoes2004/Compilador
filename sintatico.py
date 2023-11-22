@@ -108,9 +108,19 @@ def p_programa(p):
 
 def p_declaracao(p):
     '''declaracao : declaracao_variavel
+    | declaracao_funcao
+    | declaracao_estrutura
+    | COMMENT
+    | declaracao declaracao
+    | 
     
     declaracao_variavel : tipo ID PONTO_VIRGULA
-    | tipo ID EQUAL expressao PONTO_VIRGULA'''
+    | tipo ID EQUAL expressao PONTO_VIRGULA
+    
+    declaracao_funcao : tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    | VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    
+    declaracao_estrutura : '''
 
 def p_tipo(p):
     '''tipo : INT
@@ -137,6 +147,17 @@ def p_atribuicao(p):
     | ID REST_EQUAL expressao
     | ID AND EQUAL expressao
     | ID OR EQUAL expressao'''
+
+def p_parametros(p):
+    '''parametros : parametro
+    | parametro VIRGULA parametros
+    | 
+    
+    parametro : tipo ID
+    | tipo ID CHAVE_ABERTA CHAVE_FECHADA'''
+
+def p_bloco(p):
+    '''bloco : COLCHETE_ABERTO declaracao COLCHETE_FECHADO'''
 
 def p_error(p):
     raise Exception("Syntax error")
