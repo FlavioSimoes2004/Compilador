@@ -110,8 +110,8 @@ def p_declaracao(p):
     '''declaracao : declaracao_variavel
     | declaracao_funcao
     | declaracao_estrutura
-    | COMMENT
     | declaracao declaracao
+    | COMMENT
     | 
     
     declaracao_variavel : tipo ID PONTO_VIRGULA
