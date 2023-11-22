@@ -116,6 +116,8 @@ def p_declaracao(p):
     
     declaracao_variavel : tipo ID PONTO_VIRGULA
     | tipo ID EQUAL expressao PONTO_VIRGULA
+    | ID PLUS PLUS PONTO_VIRGULA
+    | ID MINUS MINUS PONTO_VIRGULA
     
     declaracao_funcao : tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
     | VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
