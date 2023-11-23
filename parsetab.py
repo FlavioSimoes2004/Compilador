@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND BOOLEAN CHAR CHAVE_ABERTA CHAVE_FECHADA COLCHETE_ABERTO COLCHETE_FECHADO COMMENT COMPARE_OPERATOR DIVIDE DIVIDE_EQUAL DOUBLE ELSE EQUAL FLOAT FOR GREATER_THAN GREATER_THAN_OR_EQUALS ID IF INT IS_DIFFERENT IS_EQUALS LESS_THAN LESS_THAN_OR_EQUALS MAIN MINUS MINUS_EQUAL NOT NUMBER_DEC NUMBER_INT OPERATOR OR PAREN_ABERTO PAREN_FECHADO PLUS PLUS_EQUAL PONTO_VIRGULA PRINTLN REST REST_EQUAL RETURN SCANF SPECIAL_SYMBOL STRING TIMES TIMES_EQUAL TYPE_BOOLEAN TYPE_STRING VIRGULA VOID WHILEprograma : declaracaodeclaracao : declaracao_variavel\n    | declaracao_funcao\n    | declaracao_estrutura\n    | declaracao declaracao\n    | COMMENT\n    | \n    \n    declaracao_variavel : tipo ID PONTO_VIRGULA\n    | tipo ID EQUAL expressao PONTO_VIRGULA\n    | ID PLUS PLUS PONTO_VIRGULA\n    | ID MINUS MINUS PONTO_VIRGULA\n    | declaracao_variavel declaracao_variavel\n    \n    declaracao_funcao : tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco\n    | VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco\n    \n    declaracao_estrutura : ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADOtipo : INT\n    | STRING\n    | BOOLEAN\n    | DOUBLE\n    | CHAR\n    | FLOATexpressao : atribuicaoatribuicao : NUMBER_DEC\n    | NUMBER_INT\n    | TYPE_STRING\n    | TYPE_BOOLEAN\n    | ID\n    | ID EQUAL expressao\n    | ID PLUS_EQUAL expressao\n    | ID MINUS_EQUAL expressao\n    | ID TIMES_EQUAL expressao\n    | ID DIVIDE_EQUAL expressao\n    | ID REST_EQUAL expressao\n    | ID AND EQUAL expressao\n    | ID OR EQUAL expressao\n    | ID comparador expressaoparametros : parametro\n    | parametro VIRGULA parametros\n    | \n    \n    parametro : tipo ID\n    | tipo ID CHAVE_ABERTA CHAVE_FECHADAbloco : COLCHETE_ABERTO declaracao COLCHETE_FECHADOcomparador : LESS_THAN\n    | IS_EQUALS\n    | LESS_THAN_OR_EQUALS\n    | GREATER_THAN\n    | GREATER_THAN_OR_EQUALS\n    | IS_DIFFERENT'
+_lr_signature = 'AND BOOLEAN CHAR CHAVE_ABERTA CHAVE_FECHADA COLCHETE_ABERTO COLCHETE_FECHADO COMMENT COMPARE_OPERATOR DIVIDE DIVIDE_EQUAL DOUBLE ELSE EQUAL FLOAT FOR GREATER_THAN GREATER_THAN_OR_EQUALS ID IF INT IS_DIFFERENT IS_EQUALS LESS_THAN LESS_THAN_OR_EQUALS MAIN MINUS MINUS_EQUAL NOT NUMBER_DEC NUMBER_INT OPERATOR OR PAREN_ABERTO PAREN_FECHADO PLUS PLUS_EQUAL PONTO_VIRGULA PRINTLN REST REST_EQUAL RETURN SCANF SPECIAL_SYMBOL STRING TIMES TIMES_EQUAL TYPE_BOOLEAN TYPE_STRING VIRGULA VOID WHILEprograma : declaracaodeclaracao : declaracao_variavel\n    | declaracao_funcao\n    | declaracao_estrutura\n    | declaracao declaracao\n    | COMMENT\n    | retorno\n    | \n    \n    declaracao_variavel : tipo ID PONTO_VIRGULA\n    | tipo ID EQUAL expressao PONTO_VIRGULA\n    | ID PLUS PLUS PONTO_VIRGULA\n    | ID MINUS MINUS PONTO_VIRGULA\n    | declaracao_variavel declaracao_variavel\n    \n    declaracao_funcao : tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco\n    | VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco\n    \n    declaracao_estrutura : ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADOtipo : INT\n    | STRING\n    | BOOLEAN\n    | DOUBLE\n    | CHAR\n    | FLOATexpressao : atribuicaoatribuicao : NUMBER_DEC\n    | NUMBER_INT\n    | TYPE_STRING\n    | TYPE_BOOLEAN\n    | ID\n    | ID EQUAL expressao\n    | ID PLUS_EQUAL expressao\n    | ID MINUS_EQUAL expressao\n    | ID TIMES_EQUAL expressao\n    | ID DIVIDE_EQUAL expressao\n    | ID REST_EQUAL expressao\n    | ID AND EQUAL expressao\n    | ID OR EQUAL expressao\n    | ID comparador expressaoparametros : parametro\n    | parametro VIRGULA parametros\n    | \n    \n    parametro : tipo ID\n    | tipo ID CHAVE_ABERTA CHAVE_FECHADAbloco : COLCHETE_ABERTO declaracao COLCHETE_FECHADOcomparador : LESS_THAN\n    | IS_EQUALS\n    | LESS_THAN_OR_EQUALS\n    | GREATER_THAN\n    | GREATER_THAN_OR_EQUALS\n    | IS_DIFFERENTarray : ID CHAVE_ABERTA expressao CHAVE_FECHADA\n    | ID CHAVE_ABERTA CHAVE_FECHADA\n    | array_inicializacao\n    \n    array_inicializacao : COLCHETE_ABERTO expressao COLCHETE_FECHADOretorno : RETURN ID PONTO_VIRGULA\n    | RETURN expressao PONTO_VIRGULA\n    | RETURN ID PAREN_ABERTO parametros PAREN_FECHADO PONTO_VIRGULA'
     
-_lr_action_items = {'COMMENT':([0,2,3,4,5,6,16,17,26,43,44,45,62,77,78,80,84,85,],[6,6,-2,-3,-4,-6,6,-12,-8,-10,-11,-15,-9,-13,6,-14,6,-42,]),'ID':([0,2,3,4,5,6,7,9,10,11,12,13,14,15,16,17,18,23,26,27,31,40,43,44,45,47,48,49,50,51,52,55,56,57,58,59,60,61,62,73,74,77,78,80,84,85,],[8,8,19,-3,-4,-6,20,24,-16,-17,-18,-19,-20,-21,8,19,25,19,-8,33,19,63,-10,-11,-15,33,33,33,33,33,33,33,-43,-44,-45,-46,-47,-48,-9,33,33,-13,8,-14,8,-42,]),'VOID':([0,2,3,4,5,6,16,17,26,43,44,45,62,77,78,80,84,85,],[9,9,-2,-3,-4,-6,9,-12,-8,-10,-11,-15,-9,-13,9,-14,9,-42,]),'INT':([0,2,3,4,5,6,16,17,23,26,28,31,32,43,44,45,62,65,77,78,80,84,85,],[10,10,10,-3,-4,-6,10,10,10,-8,10,10,10,-10,-11,-15,-9,10,-13,10,-14,10,-42,]),'STRING':([0,2,3,4,5,6,16,17,23,26,28,31,32,43,44,45,62,65,77,78,80,84,85,],[11,11,11,-3,-4,-6,11,11,11,-8,11,11,11,-10,-11,-15,-9,11,-13,11,-14,11,-42,]),'BOOLEAN':([0,2,3,4,5,6,16,17,23,26,28,31,32,43,44,45,62,65,77,78,80,84,85,],[12,12,12,-3,-4,-6,12,12,12,-8,12,12,12,-10,-11,-15,-9,12,-13,12,-14,12,-42,]),'DOUBLE':([0,2,3,4,5,6,16,17,23,26,28,31,32,43,44,45,62,65,77,78,80,84,85,],[13,13,13,-3,-4,-6,13,13,13,-8,13,13,13,-10,-11,-15,-9,13,-13,13,-14,13,-42,]),'CHAR':([0,2,3,4,5,6,16,17,23,26,28,31,32,43,44,45,62,65,77,78,80,84,85,],[14,14,14,-3,-4,-6,14,14,14,-8,14,14,14,-10,-11,-15,-9,14,-13,14,-14,14,-42,]),'FLOAT':([0,2,3,4,5,6,16,17,23,26,28,31,32,43,44,45,62,65,77,78,80,84,85,],[15,15,15,-3,-4,-6,15,15,15,-8,15,15,15,-10,-11,-15,-9,15,-13,15,-14,15,-42,]),'$end':([0,1,2,3,4,5,6,16,17,26,43,44,45,62,77,80,85,],[-7,0,-1,-2,-3,-4,-6,-5,-12,-8,-10,-11,-15,-9,-13,-14,-42,]),'COLCHETE_FECHADO':([3,4,5,6,16,17,26,31,43,44,45,62,77,78,80,84,85,],[-2,-3,-4,-6,-5,-12,-8,45,-10,-11,-15,-9,-13,-7,-14,85,-42,]),'PLUS':([8,19,21,],[21,21,29,]),'MINUS':([8,19,22,],[22,22,30,]),'COLCHETE_ABERTO':([8,64,66,],[23,78,78,]),'PONTO_VIRGULA':([20,25,29,30,33,34,35,36,37,38,39,67,68,69,70,71,72,75,81,82,],[26,26,43,44,-27,62,-22,-23,-24,-25,-26,-28,-29,-30,-31,-32,-33,-36,-34,-35,]),'EQUAL':([20,25,33,53,54,],[27,27,47,73,74,]),'PAREN_ABERTO':([20,24,],[28,32,]),'NUMBER_DEC':([27,47,48,49,50,51,52,55,56,57,58,59,60,61,73,74,],[36,36,36,36,36,36,36,36,-43,-44,-45,-46,-47,-48,36,36,]),'NUMBER_INT':([27,47,48,49,50,51,52,55,56,57,58,59,60,61,73,74,],[37,37,37,37,37,37,37,37,-43,-44,-45,-46,-47,-48,37,37,]),'TYPE_STRING':([27,47,48,49,50,51,52,55,56,57,58,59,60,61,73,74,],[38,38,38,38,38,38,38,38,-43,-44,-45,-46,-47,-48,38,38,]),'TYPE_BOOLEAN':([27,47,48,49,50,51,52,55,56,57,58,59,60,61,73,74,],[39,39,39,39,39,39,39,39,-43,-44,-45,-46,-47,-48,39,39,]),'PAREN_FECHADO':([28,32,41,42,46,63,65,79,83,],[-39,-39,64,-37,66,-40,-39,-38,-41,]),'PLUS_EQUAL':([33,],[48,]),'MINUS_EQUAL':([33,],[49,]),'TIMES_EQUAL':([33,],[50,]),'DIVIDE_EQUAL':([33,],[51,]),'REST_EQUAL':([33,],[52,]),'AND':([33,],[53,]),'OR':([33,],[54,]),'LESS_THAN':([33,],[56,]),'IS_EQUALS':([33,],[57,]),'LESS_THAN_OR_EQUALS':([33,],[58,]),'GREATER_THAN':([33,],[59,]),'GREATER_THAN_OR_EQUALS':([33,],[60,]),'IS_DIFFERENT':([33,],[61,]),'VIRGULA':([42,63,83,],[65,-40,-41,]),'CHAVE_ABERTA':([63,],[76,]),'CHAVE_FECHADA':([76,],[83,]),}
+_lr_action_items = {'COMMENT':([0,2,3,4,5,6,7,18,19,35,42,59,65,66,67,79,88,89,91,92,94,95,],[6,6,-2,-3,-4,-6,-7,6,-13,-9,-54,-55,-11,-12,-16,-10,-14,6,-15,-56,6,-43,]),'ID':([0,2,3,4,5,6,7,8,10,11,12,13,14,15,16,17,18,19,20,25,35,36,40,42,44,45,46,47,48,49,52,53,54,55,56,57,58,59,62,65,66,67,76,77,79,88,89,91,92,94,95,],[9,9,21,-3,-4,-6,-7,22,26,27,-17,-18,-19,-20,-21,-22,9,21,34,21,-9,60,21,-54,60,60,60,60,60,60,60,-44,-45,-46,-47,-48,-49,-55,80,-11,-12,-16,60,60,-10,-14,9,-15,-56,9,-43,]),'VOID':([0,2,3,4,5,6,7,18,19,35,42,59,65,66,67,79,88,89,91,92,94,95,],[10,10,-2,-3,-4,-6,-7,10,-13,-9,-54,-55,-11,-12,-16,-10,-14,10,-15,-56,10,-43,]),'RETURN':([0,2,3,4,5,6,7,18,19,35,42,59,65,66,67,79,88,89,91,92,94,95,],[11,11,-2,-3,-4,-6,-7,11,-13,-9,-54,-55,-11,-12,-16,-10,-14,11,-15,-56,11,-43,]),'INT':([0,2,3,4,5,6,7,18,19,25,35,37,40,41,42,43,59,65,66,67,79,82,88,89,91,92,94,95,],[12,12,12,-3,-4,-6,-7,12,12,12,-9,12,12,12,-54,12,-55,-11,-12,-16,-10,12,-14,12,-15,-56,12,-43,]),'STRING':([0,2,3,4,5,6,7,18,19,25,35,37,40,41,42,43,59,65,66,67,79,82,88,89,91,92,94,95,],[13,13,13,-3,-4,-6,-7,13,13,13,-9,13,13,13,-54,13,-55,-11,-12,-16,-10,13,-14,13,-15,-56,13,-43,]),'BOOLEAN':([0,2,3,4,5,6,7,18,19,25,35,37,40,41,42,43,59,65,66,67,79,82,88,89,91,92,94,95,],[14,14,14,-3,-4,-6,-7,14,14,14,-9,14,14,14,-54,14,-55,-11,-12,-16,-10,14,-14,14,-15,-56,14,-43,]),'DOUBLE':([0,2,3,4,5,6,7,18,19,25,35,37,40,41,42,43,59,65,66,67,79,82,88,89,91,92,94,95,],[15,15,15,-3,-4,-6,-7,15,15,15,-9,15,15,15,-54,15,-55,-11,-12,-16,-10,15,-14,15,-15,-56,15,-43,]),'CHAR':([0,2,3,4,5,6,7,18,19,25,35,37,40,41,42,43,59,65,66,67,79,82,88,89,91,92,94,95,],[16,16,16,-3,-4,-6,-7,16,16,16,-9,16,16,16,-54,16,-55,-11,-12,-16,-10,16,-14,16,-15,-56,16,-43,]),'FLOAT':([0,2,3,4,5,6,7,18,19,25,35,37,40,41,42,43,59,65,66,67,79,82,88,89,91,92,94,95,],[17,17,17,-3,-4,-6,-7,17,17,17,-9,17,17,17,-54,17,-55,-11,-12,-16,-10,17,-14,17,-15,-56,17,-43,]),'$end':([0,1,2,3,4,5,6,7,18,19,35,42,59,65,66,67,79,88,91,92,95,],[-8,0,-1,-2,-3,-4,-6,-7,-5,-13,-9,-54,-55,-11,-12,-16,-10,-14,-15,-56,-43,]),'COLCHETE_FECHADO':([3,4,5,6,7,18,19,35,40,42,59,65,66,67,79,88,89,91,92,94,95,],[-2,-3,-4,-6,-7,-5,-13,-9,67,-54,-55,-11,-12,-16,-10,-14,-8,-15,-56,95,-43,]),'PLUS':([9,21,23,],[23,23,38,]),'MINUS':([9,21,24,],[24,24,39,]),'COLCHETE_ABERTO':([9,81,83,],[25,89,89,]),'NUMBER_DEC':([11,36,44,45,46,47,48,49,52,53,54,55,56,57,58,76,77,],[30,30,30,30,30,30,30,30,30,-44,-45,-46,-47,-48,-49,30,30,]),'NUMBER_INT':([11,36,44,45,46,47,48,49,52,53,54,55,56,57,58,76,77,],[31,31,31,31,31,31,31,31,31,-44,-45,-46,-47,-48,-49,31,31,]),'TYPE_STRING':([11,36,44,45,46,47,48,49,52,53,54,55,56,57,58,76,77,],[32,32,32,32,32,32,32,32,32,-44,-45,-46,-47,-48,-49,32,32,]),'TYPE_BOOLEAN':([11,36,44,45,46,47,48,49,52,53,54,55,56,57,58,76,77,],[33,33,33,33,33,33,33,33,33,-44,-45,-46,-47,-48,-49,33,33,]),'PONTO_VIRGULA':([22,27,28,29,30,31,32,33,34,38,39,60,61,70,71,72,73,74,75,78,84,85,86,],[35,42,59,-23,-24,-25,-26,-27,35,65,66,-28,79,-29,-30,-31,-32,-33,-34,-37,92,-35,-36,]),'EQUAL':([22,27,34,50,51,60,],[36,44,36,76,77,44,]),'PAREN_ABERTO':([22,26,27,],[37,41,43,]),'PLUS_EQUAL':([27,60,],[45,45,]),'MINUS_EQUAL':([27,60,],[46,46,]),'TIMES_EQUAL':([27,60,],[47,47,]),'DIVIDE_EQUAL':([27,60,],[48,48,]),'REST_EQUAL':([27,60,],[49,49,]),'AND':([27,60,],[50,50,]),'OR':([27,60,],[51,51,]),'LESS_THAN':([27,60,],[53,53,]),'IS_EQUALS':([27,60,],[54,54,]),'LESS_THAN_OR_EQUALS':([27,60,],[55,55,]),'GREATER_THAN':([27,60,],[56,56,]),'GREATER_THAN_OR_EQUALS':([27,60,],[57,57,]),'IS_DIFFERENT':([27,60,],[58,58,]),'PAREN_FECHADO':([37,41,43,63,64,68,69,80,82,90,93,],[-40,-40,-40,81,-38,83,84,-41,-40,-39,-42,]),'VIRGULA':([64,80,93,],[82,-41,-42,]),'CHAVE_ABERTA':([80,],[87,]),'CHAVE_FECHADA':([87,],[93,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programa':([0,],[1,]),'declaracao':([0,2,16,78,84,],[2,16,16,84,16,]),'declaracao_variavel':([0,2,3,16,17,23,31,78,84,],[3,3,17,3,17,31,17,3,3,]),'declaracao_funcao':([0,2,16,78,84,],[4,4,4,4,4,]),'declaracao_estrutura':([0,2,16,78,84,],[5,5,5,5,5,]),'tipo':([0,2,3,16,17,23,28,31,32,65,78,84,],[7,7,18,7,18,18,40,18,40,40,7,7,]),'expressao':([27,47,48,49,50,51,52,55,73,74,],[34,67,68,69,70,71,72,75,81,82,]),'atribuicao':([27,47,48,49,50,51,52,55,73,74,],[35,35,35,35,35,35,35,35,35,35,]),'parametros':([28,32,65,],[41,46,79,]),'parametro':([28,32,65,],[42,42,42,]),'comparador':([33,],[55,]),'bloco':([64,66,],[77,80,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'declaracao':([0,2,18,89,94,],[2,18,18,94,18,]),'declaracao_variavel':([0,2,3,18,19,25,40,89,94,],[3,3,19,3,19,40,19,3,3,]),'declaracao_funcao':([0,2,18,89,94,],[4,4,4,4,4,]),'declaracao_estrutura':([0,2,18,89,94,],[5,5,5,5,5,]),'retorno':([0,2,18,89,94,],[7,7,7,7,7,]),'tipo':([0,2,3,18,19,25,37,40,41,43,82,89,94,],[8,8,20,8,20,20,62,20,62,62,62,8,8,]),'expressao':([11,36,44,45,46,47,48,49,52,76,77,],[28,61,70,71,72,73,74,75,78,85,86,]),'atribuicao':([11,36,44,45,46,47,48,49,52,76,77,],[29,29,29,29,29,29,29,29,29,29,29,]),'comparador':([27,60,],[52,52,]),'parametros':([37,41,43,82,],[63,68,69,90,]),'parametro':([37,41,43,82,],[64,64,64,64,]),'bloco':([81,83,],[88,91,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -33,46 +33,54 @@ _lr_productions = [
   ('declaracao -> declaracao_estrutura','declaracao',1,'p_declaracao','sintatico.py',112),
   ('declaracao -> declaracao declaracao','declaracao',2,'p_declaracao','sintatico.py',113),
   ('declaracao -> COMMENT','declaracao',1,'p_declaracao','sintatico.py',114),
-  ('declaracao -> <empty>','declaracao',0,'p_declaracao','sintatico.py',115),
-  ('declaracao_variavel -> tipo ID PONTO_VIRGULA','declaracao_variavel',3,'p_declaracao','sintatico.py',117),
-  ('declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA','declaracao_variavel',5,'p_declaracao','sintatico.py',118),
-  ('declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA','declaracao_variavel',4,'p_declaracao','sintatico.py',119),
-  ('declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA','declaracao_variavel',4,'p_declaracao','sintatico.py',120),
-  ('declaracao_variavel -> declaracao_variavel declaracao_variavel','declaracao_variavel',2,'p_declaracao','sintatico.py',121),
-  ('declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco','declaracao_funcao',6,'p_declaracao','sintatico.py',123),
-  ('declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco','declaracao_funcao',6,'p_declaracao','sintatico.py',124),
-  ('declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO','declaracao_estrutura',4,'p_declaracao','sintatico.py',126),
-  ('tipo -> INT','tipo',1,'p_tipo','sintatico.py',129),
-  ('tipo -> STRING','tipo',1,'p_tipo','sintatico.py',130),
-  ('tipo -> BOOLEAN','tipo',1,'p_tipo','sintatico.py',131),
-  ('tipo -> DOUBLE','tipo',1,'p_tipo','sintatico.py',132),
-  ('tipo -> CHAR','tipo',1,'p_tipo','sintatico.py',133),
-  ('tipo -> FLOAT','tipo',1,'p_tipo','sintatico.py',134),
-  ('expressao -> atribuicao','expressao',1,'p_expressao','sintatico.py',137),
-  ('atribuicao -> NUMBER_DEC','atribuicao',1,'p_atribuicao','sintatico.py',140),
-  ('atribuicao -> NUMBER_INT','atribuicao',1,'p_atribuicao','sintatico.py',141),
-  ('atribuicao -> TYPE_STRING','atribuicao',1,'p_atribuicao','sintatico.py',142),
-  ('atribuicao -> TYPE_BOOLEAN','atribuicao',1,'p_atribuicao','sintatico.py',143),
-  ('atribuicao -> ID','atribuicao',1,'p_atribuicao','sintatico.py',144),
-  ('atribuicao -> ID EQUAL expressao','atribuicao',3,'p_atribuicao','sintatico.py',145),
-  ('atribuicao -> ID PLUS_EQUAL expressao','atribuicao',3,'p_atribuicao','sintatico.py',146),
-  ('atribuicao -> ID MINUS_EQUAL expressao','atribuicao',3,'p_atribuicao','sintatico.py',147),
-  ('atribuicao -> ID TIMES_EQUAL expressao','atribuicao',3,'p_atribuicao','sintatico.py',148),
-  ('atribuicao -> ID DIVIDE_EQUAL expressao','atribuicao',3,'p_atribuicao','sintatico.py',149),
-  ('atribuicao -> ID REST_EQUAL expressao','atribuicao',3,'p_atribuicao','sintatico.py',150),
-  ('atribuicao -> ID AND EQUAL expressao','atribuicao',4,'p_atribuicao','sintatico.py',151),
-  ('atribuicao -> ID OR EQUAL expressao','atribuicao',4,'p_atribuicao','sintatico.py',152),
-  ('atribuicao -> ID comparador expressao','atribuicao',3,'p_atribuicao','sintatico.py',153),
-  ('parametros -> parametro','parametros',1,'p_parametros','sintatico.py',156),
-  ('parametros -> parametro VIRGULA parametros','parametros',3,'p_parametros','sintatico.py',157),
-  ('parametros -> <empty>','parametros',0,'p_parametros','sintatico.py',158),
-  ('parametro -> tipo ID','parametro',2,'p_parametros','sintatico.py',160),
-  ('parametro -> tipo ID CHAVE_ABERTA CHAVE_FECHADA','parametro',4,'p_parametros','sintatico.py',161),
-  ('bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO','bloco',3,'p_bloco','sintatico.py',164),
-  ('comparador -> LESS_THAN','comparador',1,'p_comparador','sintatico.py',167),
-  ('comparador -> IS_EQUALS','comparador',1,'p_comparador','sintatico.py',168),
-  ('comparador -> LESS_THAN_OR_EQUALS','comparador',1,'p_comparador','sintatico.py',169),
-  ('comparador -> GREATER_THAN','comparador',1,'p_comparador','sintatico.py',170),
-  ('comparador -> GREATER_THAN_OR_EQUALS','comparador',1,'p_comparador','sintatico.py',171),
-  ('comparador -> IS_DIFFERENT','comparador',1,'p_comparador','sintatico.py',172),
+  ('declaracao -> retorno','declaracao',1,'p_declaracao','sintatico.py',115),
+  ('declaracao -> <empty>','declaracao',0,'p_declaracao','sintatico.py',116),
+  ('declaracao_variavel -> tipo ID PONTO_VIRGULA','declaracao_variavel',3,'p_declaracao','sintatico.py',118),
+  ('declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA','declaracao_variavel',5,'p_declaracao','sintatico.py',119),
+  ('declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA','declaracao_variavel',4,'p_declaracao','sintatico.py',120),
+  ('declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA','declaracao_variavel',4,'p_declaracao','sintatico.py',121),
+  ('declaracao_variavel -> declaracao_variavel declaracao_variavel','declaracao_variavel',2,'p_declaracao','sintatico.py',122),
+  ('declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco','declaracao_funcao',6,'p_declaracao','sintatico.py',124),
+  ('declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco','declaracao_funcao',6,'p_declaracao','sintatico.py',125),
+  ('declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO','declaracao_estrutura',4,'p_declaracao','sintatico.py',127),
+  ('tipo -> INT','tipo',1,'p_tipo','sintatico.py',130),
+  ('tipo -> STRING','tipo',1,'p_tipo','sintatico.py',131),
+  ('tipo -> BOOLEAN','tipo',1,'p_tipo','sintatico.py',132),
+  ('tipo -> DOUBLE','tipo',1,'p_tipo','sintatico.py',133),
+  ('tipo -> CHAR','tipo',1,'p_tipo','sintatico.py',134),
+  ('tipo -> FLOAT','tipo',1,'p_tipo','sintatico.py',135),
+  ('expressao -> atribuicao','expressao',1,'p_expressao','sintatico.py',138),
+  ('atribuicao -> NUMBER_DEC','atribuicao',1,'p_atribuicao','sintatico.py',141),
+  ('atribuicao -> NUMBER_INT','atribuicao',1,'p_atribuicao','sintatico.py',142),
+  ('atribuicao -> TYPE_STRING','atribuicao',1,'p_atribuicao','sintatico.py',143),
+  ('atribuicao -> TYPE_BOOLEAN','atribuicao',1,'p_atribuicao','sintatico.py',144),
+  ('atribuicao -> ID','atribuicao',1,'p_atribuicao','sintatico.py',145),
+  ('atribuicao -> ID EQUAL expressao','atribuicao',3,'p_atribuicao','sintatico.py',146),
+  ('atribuicao -> ID PLUS_EQUAL expressao','atribuicao',3,'p_atribuicao','sintatico.py',147),
+  ('atribuicao -> ID MINUS_EQUAL expressao','atribuicao',3,'p_atribuicao','sintatico.py',148),
+  ('atribuicao -> ID TIMES_EQUAL expressao','atribuicao',3,'p_atribuicao','sintatico.py',149),
+  ('atribuicao -> ID DIVIDE_EQUAL expressao','atribuicao',3,'p_atribuicao','sintatico.py',150),
+  ('atribuicao -> ID REST_EQUAL expressao','atribuicao',3,'p_atribuicao','sintatico.py',151),
+  ('atribuicao -> ID AND EQUAL expressao','atribuicao',4,'p_atribuicao','sintatico.py',152),
+  ('atribuicao -> ID OR EQUAL expressao','atribuicao',4,'p_atribuicao','sintatico.py',153),
+  ('atribuicao -> ID comparador expressao','atribuicao',3,'p_atribuicao','sintatico.py',154),
+  ('parametros -> parametro','parametros',1,'p_parametros','sintatico.py',157),
+  ('parametros -> parametro VIRGULA parametros','parametros',3,'p_parametros','sintatico.py',158),
+  ('parametros -> <empty>','parametros',0,'p_parametros','sintatico.py',159),
+  ('parametro -> tipo ID','parametro',2,'p_parametros','sintatico.py',161),
+  ('parametro -> tipo ID CHAVE_ABERTA CHAVE_FECHADA','parametro',4,'p_parametros','sintatico.py',162),
+  ('bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO','bloco',3,'p_bloco','sintatico.py',165),
+  ('comparador -> LESS_THAN','comparador',1,'p_comparador','sintatico.py',168),
+  ('comparador -> IS_EQUALS','comparador',1,'p_comparador','sintatico.py',169),
+  ('comparador -> LESS_THAN_OR_EQUALS','comparador',1,'p_comparador','sintatico.py',170),
+  ('comparador -> GREATER_THAN','comparador',1,'p_comparador','sintatico.py',171),
+  ('comparador -> GREATER_THAN_OR_EQUALS','comparador',1,'p_comparador','sintatico.py',172),
+  ('comparador -> IS_DIFFERENT','comparador',1,'p_comparador','sintatico.py',173),
+  ('array -> ID CHAVE_ABERTA expressao CHAVE_FECHADA','array',4,'p_array','sintatico.py',176),
+  ('array -> ID CHAVE_ABERTA CHAVE_FECHADA','array',3,'p_array','sintatico.py',177),
+  ('array -> array_inicializacao','array',1,'p_array','sintatico.py',178),
+  ('array_inicializacao -> COLCHETE_ABERTO expressao COLCHETE_FECHADO','array_inicializacao',3,'p_array','sintatico.py',180),
+  ('retorno -> RETURN ID PONTO_VIRGULA','retorno',3,'p_retorno','sintatico.py',183),
+  ('retorno -> RETURN expressao PONTO_VIRGULA','retorno',3,'p_retorno','sintatico.py',184),
+  ('retorno -> RETURN ID PAREN_ABERTO parametros PAREN_FECHADO PONTO_VIRGULA','retorno',6,'p_retorno','sintatico.py',185),
 ]

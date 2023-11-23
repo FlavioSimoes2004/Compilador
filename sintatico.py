@@ -112,6 +112,7 @@ def p_declaracao(p):
     | declaracao_estrutura
     | declaracao declaracao
     | COMMENT
+    | retorno
     | 
     
     declaracao_variavel : tipo ID PONTO_VIRGULA
@@ -177,6 +178,11 @@ def p_array(p):
     | array_inicializacao
     
     array_inicializacao : COLCHETE_ABERTO expressao COLCHETE_FECHADO'''
+
+def p_retorno(p):
+    '''retorno : RETURN ID PONTO_VIRGULA
+    | RETURN expressao PONTO_VIRGULA
+    | RETURN ID PAREN_ABERTO parametros PAREN_FECHADO PONTO_VIRGULA'''
 
 def p_error(p):
     raise Exception("Syntax error")

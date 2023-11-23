@@ -1,4 +1,6 @@
 boolean procedimento(int teste1, int teste2)
 {
-    int a = b < 10;
+    return 10;
+    int b;
+    return 10;
 }
