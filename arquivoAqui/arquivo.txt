@@ -1,7 +1,4 @@
 boolean procedimento(int teste1, int teste2)
 {
-    int a = 0;
-    a++;
-    a--;
-    int b = a += m;
+    int a = b < 10;
 }

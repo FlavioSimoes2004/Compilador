@@ -6,13 +6,7 @@ Unused terminals:
     DIVIDE
     ELSE
     FOR
-    GREATER_THAN
-    GREATER_THAN_OR_EQUALS
     IF
-    IS_DIFFERENT
-    IS_EQUALS
-    LESS_THAN
-    LESS_THAN_OR_EQUALS
     MAIN
     NOT
     OPERATOR
@@ -38,105 +32,114 @@ Rule 8     declaracao_variavel -> tipo ID PONTO_VIRGULA
 Rule 9     declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA
 Rule 10    declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA
 Rule 11    declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA
-Rule 12    declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
-Rule 13    declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
-Rule 14    declaracao_estrutura -> <empty>
-Rule 15    tipo -> INT
-Rule 16    tipo -> STRING
-Rule 17    tipo -> BOOLEAN
-Rule 18    tipo -> DOUBLE
-Rule 19    tipo -> CHAR
-Rule 20    tipo -> FLOAT
-Rule 21    expressao -> atribuicao
-Rule 22    atribuicao -> NUMBER_DEC
-Rule 23    atribuicao -> NUMBER_INT
-Rule 24    atribuicao -> TYPE_STRING
-Rule 25    atribuicao -> TYPE_BOOLEAN
-Rule 26    atribuicao -> ID
-Rule 27    atribuicao -> ID EQUAL expressao
-Rule 28    atribuicao -> ID PLUS_EQUAL expressao
-Rule 29    atribuicao -> ID MINUS_EQUAL expressao
-Rule 30    atribuicao -> ID TIMES_EQUAL expressao
-Rule 31    atribuicao -> ID DIVIDE_EQUAL expressao
-Rule 32    atribuicao -> ID REST_EQUAL expressao
-Rule 33    atribuicao -> ID AND EQUAL expressao
-Rule 34    atribuicao -> ID OR EQUAL expressao
-Rule 35    parametros -> parametro
-Rule 36    parametros -> parametro VIRGULA parametros
-Rule 37    parametros -> <empty>
-Rule 38    parametro -> tipo ID
-Rule 39    parametro -> tipo ID CHAVE_ABERTA CHAVE_FECHADA
-Rule 40    bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO
+Rule 12    declaracao_variavel -> declaracao_variavel declaracao_variavel
+Rule 13    declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+Rule 14    declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+Rule 15    declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO
+Rule 16    tipo -> INT
+Rule 17    tipo -> STRING
+Rule 18    tipo -> BOOLEAN
+Rule 19    tipo -> DOUBLE
+Rule 20    tipo -> CHAR
+Rule 21    tipo -> FLOAT
+Rule 22    expressao -> atribuicao
+Rule 23    atribuicao -> NUMBER_DEC
+Rule 24    atribuicao -> NUMBER_INT
+Rule 25    atribuicao -> TYPE_STRING
+Rule 26    atribuicao -> TYPE_BOOLEAN
+Rule 27    atribuicao -> ID
+Rule 28    atribuicao -> ID EQUAL expressao
+Rule 29    atribuicao -> ID PLUS_EQUAL expressao
+Rule 30    atribuicao -> ID MINUS_EQUAL expressao
+Rule 31    atribuicao -> ID TIMES_EQUAL expressao
+Rule 32    atribuicao -> ID DIVIDE_EQUAL expressao
+Rule 33    atribuicao -> ID REST_EQUAL expressao
+Rule 34    atribuicao -> ID AND EQUAL expressao
+Rule 35    atribuicao -> ID OR EQUAL expressao
+Rule 36    atribuicao -> ID comparador expressao
+Rule 37    parametros -> parametro
+Rule 38    parametros -> parametro VIRGULA parametros
+Rule 39    parametros -> <empty>
+Rule 40    parametro -> tipo ID
+Rule 41    parametro -> tipo ID CHAVE_ABERTA CHAVE_FECHADA
+Rule 42    bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO
+Rule 43    comparador -> LESS_THAN
+Rule 44    comparador -> IS_EQUALS
+Rule 45    comparador -> LESS_THAN_OR_EQUALS
+Rule 46    comparador -> GREATER_THAN
+Rule 47    comparador -> GREATER_THAN_OR_EQUALS
+Rule 48    comparador -> IS_DIFFERENT
 
 Terminals, with rules where they appear
 
-AND                  : 33
-BOOLEAN              : 17
-CHAR                 : 19
-CHAVE_ABERTA         : 39
-CHAVE_FECHADA        : 39
-COLCHETE_ABERTO      : 40
-COLCHETE_FECHADO     : 40
+AND                  : 34
+BOOLEAN              : 18
+CHAR                 : 20
+CHAVE_ABERTA         : 41
+CHAVE_FECHADA        : 41
+COLCHETE_ABERTO      : 15 42
+COLCHETE_FECHADO     : 15 42
 COMMENT              : 6
 COMPARE_OPERATOR     : 
 DIVIDE               : 
-DIVIDE_EQUAL         : 31
-DOUBLE               : 18
+DIVIDE_EQUAL         : 32
+DOUBLE               : 19
 ELSE                 : 
-EQUAL                : 9 27 33 34
-FLOAT                : 20
+EQUAL                : 9 28 34 35
+FLOAT                : 21
 FOR                  : 
-GREATER_THAN         : 
-GREATER_THAN_OR_EQUALS : 
-ID                   : 8 9 10 11 12 13 26 27 28 29 30 31 32 33 34 38 39
+GREATER_THAN         : 46
+GREATER_THAN_OR_EQUALS : 47
+ID                   : 8 9 10 11 13 14 15 27 28 29 30 31 32 33 34 35 36 40 41
 IF                   : 
-INT                  : 15
-IS_DIFFERENT         : 
-IS_EQUALS            : 
-LESS_THAN            : 
-LESS_THAN_OR_EQUALS  : 
+INT                  : 16
+IS_DIFFERENT         : 48
+IS_EQUALS            : 44
+LESS_THAN            : 43
+LESS_THAN_OR_EQUALS  : 45
 MAIN                 : 
 MINUS                : 11 11
-MINUS_EQUAL          : 29
+MINUS_EQUAL          : 30
 NOT                  : 
-NUMBER_DEC           : 22
-NUMBER_INT           : 23
+NUMBER_DEC           : 23
+NUMBER_INT           : 24
 OPERATOR             : 
-OR                   : 34
-PAREN_ABERTO         : 12 13
-PAREN_FECHADO        : 12 13
+OR                   : 35
+PAREN_ABERTO         : 13 14
+PAREN_FECHADO        : 13 14
 PLUS                 : 10 10
-PLUS_EQUAL           : 28
+PLUS_EQUAL           : 29
 PONTO_VIRGULA        : 8 9 10 11
 PRINTLN              : 
 REST                 : 
-REST_EQUAL           : 32
+REST_EQUAL           : 33
 RETURN               : 
 SCANF                : 
 SPECIAL_SYMBOL       : 
-STRING               : 16
+STRING               : 17
 TIMES                : 
-TIMES_EQUAL          : 30
-TYPE_BOOLEAN         : 25
-TYPE_STRING          : 24
-VIRGULA              : 36
-VOID                 : 13
+TIMES_EQUAL          : 31
+TYPE_BOOLEAN         : 26
+TYPE_STRING          : 25
+VIRGULA              : 38
+VOID                 : 14
 WHILE                : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-atribuicao           : 21
-bloco                : 12 13
-declaracao           : 1 5 5 40
+atribuicao           : 22
+bloco                : 13 14
+comparador           : 36
+declaracao           : 1 5 5 42
 declaracao_estrutura : 4
 declaracao_funcao    : 3
-declaracao_variavel  : 2
-expressao            : 9 27 28 29 30 31 32 33 34
-parametro            : 35 36
-parametros           : 12 13 36
+declaracao_variavel  : 2 12 12 15
+expressao            : 9 28 29 30 31 32 33 34 35 36
+parametro            : 37 38
+parametros           : 13 14 38
 programa             : 0
-tipo                 : 8 9 12 38 39
+tipo                 : 8 9 13 40 41
 
 Parsing method: LALR
 
@@ -154,29 +157,20 @@ state 0
     (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
     (10) declaracao_variavel -> . ID PLUS PLUS PONTO_VIRGULA
     (11) declaracao_variavel -> . ID MINUS MINUS PONTO_VIRGULA
-    (12) declaracao_funcao -> . tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
-    (13) declaracao_funcao -> . VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
-    (14) declaracao_estrutura -> .
-    (15) tipo -> . INT
-    (16) tipo -> . STRING
-    (17) tipo -> . BOOLEAN
-    (18) tipo -> . DOUBLE
-    (19) tipo -> . CHAR
-    (20) tipo -> . FLOAT
+    (12) declaracao_variavel -> . declaracao_variavel declaracao_variavel
+    (13) declaracao_funcao -> . tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (14) declaracao_funcao -> . VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (15) declaracao_estrutura -> . ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO
+    (16) tipo -> . INT
+    (17) tipo -> . STRING
+    (18) tipo -> . BOOLEAN
+    (19) tipo -> . DOUBLE
+    (20) tipo -> . CHAR
+    (21) tipo -> . FLOAT
 
   ! shift/reduce conflict for COMMENT resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for VOID resolved as shift
-  ! shift/reduce conflict for COMMENT resolved as shift
-  ! shift/reduce conflict for ID resolved as shift
-  ! shift/reduce conflict for VOID resolved as shift
-  ! reduce/reduce conflict for INT resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for STRING resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for BOOLEAN resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for DOUBLE resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for CHAR resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for FLOAT resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for $end resolved using rule 7 (declaracao -> .)
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for BOOLEAN resolved as shift
@@ -203,16 +197,6 @@ state 0
   ! DOUBLE          [ reduce using rule 7 (declaracao -> .) ]
   ! CHAR            [ reduce using rule 7 (declaracao -> .) ]
   ! FLOAT           [ reduce using rule 7 (declaracao -> .) ]
-  ! COMMENT         [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! ID              [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! VOID            [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! INT             [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! STRING          [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! BOOLEAN         [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! DOUBLE          [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! CHAR            [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! FLOAT           [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! $end            [ reduce using rule 14 (declaracao_estrutura -> .) ]
 
     programa                       shift and go to state 1
     declaracao                     shift and go to state 2
@@ -241,30 +225,21 @@ state 2
     (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
     (10) declaracao_variavel -> . ID PLUS PLUS PONTO_VIRGULA
     (11) declaracao_variavel -> . ID MINUS MINUS PONTO_VIRGULA
-    (12) declaracao_funcao -> . tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
-    (13) declaracao_funcao -> . VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
-    (14) declaracao_estrutura -> .
-    (15) tipo -> . INT
-    (16) tipo -> . STRING
-    (17) tipo -> . BOOLEAN
-    (18) tipo -> . DOUBLE
-    (19) tipo -> . CHAR
-    (20) tipo -> . FLOAT
+    (12) declaracao_variavel -> . declaracao_variavel declaracao_variavel
+    (13) declaracao_funcao -> . tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (14) declaracao_funcao -> . VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (15) declaracao_estrutura -> . ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO
+    (16) tipo -> . INT
+    (17) tipo -> . STRING
+    (18) tipo -> . BOOLEAN
+    (19) tipo -> . DOUBLE
+    (20) tipo -> . CHAR
+    (21) tipo -> . FLOAT
 
   ! shift/reduce conflict for COMMENT resolved as shift
   ! reduce/reduce conflict for $end resolved using rule 1 (programa -> declaracao .)
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for VOID resolved as shift
-  ! shift/reduce conflict for COMMENT resolved as shift
-  ! shift/reduce conflict for ID resolved as shift
-  ! shift/reduce conflict for VOID resolved as shift
-  ! reduce/reduce conflict for INT resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for STRING resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for BOOLEAN resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for DOUBLE resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for CHAR resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for FLOAT resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for $end resolved using rule 1 (programa -> declaracao .)
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for BOOLEAN resolved as shift
@@ -292,16 +267,6 @@ state 2
   ! CHAR            [ reduce using rule 7 (declaracao -> .) ]
   ! FLOAT           [ reduce using rule 7 (declaracao -> .) ]
   ! $end            [ reduce using rule 7 (declaracao -> .) ]
-  ! COMMENT         [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! ID              [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! VOID            [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! INT             [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! STRING          [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! BOOLEAN         [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! DOUBLE          [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! CHAR            [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! FLOAT           [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! $end            [ reduce using rule 14 (declaracao_estrutura -> .) ]
 
     declaracao                     shift and go to state 16
     declaracao_variavel            shift and go to state 3
@@ -312,19 +277,48 @@ state 2
 state 3
 
     (2) declaracao -> declaracao_variavel .
+    (12) declaracao_variavel -> declaracao_variavel . declaracao_variavel
+    (8) declaracao_variavel -> . tipo ID PONTO_VIRGULA
+    (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
+    (10) declaracao_variavel -> . ID PLUS PLUS PONTO_VIRGULA
+    (11) declaracao_variavel -> . ID MINUS MINUS PONTO_VIRGULA
+    (12) declaracao_variavel -> . declaracao_variavel declaracao_variavel
+    (16) tipo -> . INT
+    (17) tipo -> . STRING
+    (18) tipo -> . BOOLEAN
+    (19) tipo -> . DOUBLE
+    (20) tipo -> . CHAR
+    (21) tipo -> . FLOAT
 
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for BOOLEAN resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for FLOAT resolved as shift
     COMMENT         reduce using rule 2 (declaracao -> declaracao_variavel .)
-    ID              reduce using rule 2 (declaracao -> declaracao_variavel .)
     VOID            reduce using rule 2 (declaracao -> declaracao_variavel .)
-    INT             reduce using rule 2 (declaracao -> declaracao_variavel .)
-    STRING          reduce using rule 2 (declaracao -> declaracao_variavel .)
-    BOOLEAN         reduce using rule 2 (declaracao -> declaracao_variavel .)
-    DOUBLE          reduce using rule 2 (declaracao -> declaracao_variavel .)
-    CHAR            reduce using rule 2 (declaracao -> declaracao_variavel .)
-    FLOAT           reduce using rule 2 (declaracao -> declaracao_variavel .)
     $end            reduce using rule 2 (declaracao -> declaracao_variavel .)
     COLCHETE_FECHADO reduce using rule 2 (declaracao -> declaracao_variavel .)
+    ID              shift and go to state 19
+    INT             shift and go to state 10
+    STRING          shift and go to state 11
+    BOOLEAN         shift and go to state 12
+    DOUBLE          shift and go to state 13
+    CHAR            shift and go to state 14
+    FLOAT           shift and go to state 15
 
+  ! ID              [ reduce using rule 2 (declaracao -> declaracao_variavel .) ]
+  ! INT             [ reduce using rule 2 (declaracao -> declaracao_variavel .) ]
+  ! STRING          [ reduce using rule 2 (declaracao -> declaracao_variavel .) ]
+  ! BOOLEAN         [ reduce using rule 2 (declaracao -> declaracao_variavel .) ]
+  ! DOUBLE          [ reduce using rule 2 (declaracao -> declaracao_variavel .) ]
+  ! CHAR            [ reduce using rule 2 (declaracao -> declaracao_variavel .) ]
+  ! FLOAT           [ reduce using rule 2 (declaracao -> declaracao_variavel .) ]
+
+    declaracao_variavel            shift and go to state 17
+    tipo                           shift and go to state 18
 
 state 4
 
@@ -381,67 +375,69 @@ state 7
 
     (8) declaracao_variavel -> tipo . ID PONTO_VIRGULA
     (9) declaracao_variavel -> tipo . ID EQUAL expressao PONTO_VIRGULA
-    (12) declaracao_funcao -> tipo . ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (13) declaracao_funcao -> tipo . ID PAREN_ABERTO parametros PAREN_FECHADO bloco
 
-    ID              shift and go to state 17
+    ID              shift and go to state 20
 
 
 state 8
 
     (10) declaracao_variavel -> ID . PLUS PLUS PONTO_VIRGULA
     (11) declaracao_variavel -> ID . MINUS MINUS PONTO_VIRGULA
+    (15) declaracao_estrutura -> ID . COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO
 
-    PLUS            shift and go to state 18
-    MINUS           shift and go to state 19
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
+    COLCHETE_ABERTO shift and go to state 23
 
 
 state 9
 
-    (13) declaracao_funcao -> VOID . ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (14) declaracao_funcao -> VOID . ID PAREN_ABERTO parametros PAREN_FECHADO bloco
 
-    ID              shift and go to state 20
+    ID              shift and go to state 24
 
 
 state 10
 
-    (15) tipo -> INT .
+    (16) tipo -> INT .
 
-    ID              reduce using rule 15 (tipo -> INT .)
+    ID              reduce using rule 16 (tipo -> INT .)
 
 
 state 11
 
-    (16) tipo -> STRING .
+    (17) tipo -> STRING .
 
-    ID              reduce using rule 16 (tipo -> STRING .)
+    ID              reduce using rule 17 (tipo -> STRING .)
 
 
 state 12
 
-    (17) tipo -> BOOLEAN .
+    (18) tipo -> BOOLEAN .
 
-    ID              reduce using rule 17 (tipo -> BOOLEAN .)
+    ID              reduce using rule 18 (tipo -> BOOLEAN .)
 
 
 state 13
 
-    (18) tipo -> DOUBLE .
+    (19) tipo -> DOUBLE .
 
-    ID              reduce using rule 18 (tipo -> DOUBLE .)
+    ID              reduce using rule 19 (tipo -> DOUBLE .)
 
 
 state 14
 
-    (19) tipo -> CHAR .
+    (20) tipo -> CHAR .
 
-    ID              reduce using rule 19 (tipo -> CHAR .)
+    ID              reduce using rule 20 (tipo -> CHAR .)
 
 
 state 15
 
-    (20) tipo -> FLOAT .
+    (21) tipo -> FLOAT .
 
-    ID              reduce using rule 20 (tipo -> FLOAT .)
+    ID              reduce using rule 21 (tipo -> FLOAT .)
 
 
 state 16
@@ -458,15 +454,16 @@ state 16
     (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
     (10) declaracao_variavel -> . ID PLUS PLUS PONTO_VIRGULA
     (11) declaracao_variavel -> . ID MINUS MINUS PONTO_VIRGULA
-    (12) declaracao_funcao -> . tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
-    (13) declaracao_funcao -> . VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
-    (14) declaracao_estrutura -> .
-    (15) tipo -> . INT
-    (16) tipo -> . STRING
-    (17) tipo -> . BOOLEAN
-    (18) tipo -> . DOUBLE
-    (19) tipo -> . CHAR
-    (20) tipo -> . FLOAT
+    (12) declaracao_variavel -> . declaracao_variavel declaracao_variavel
+    (13) declaracao_funcao -> . tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (14) declaracao_funcao -> . VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (15) declaracao_estrutura -> . ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO
+    (16) tipo -> . INT
+    (17) tipo -> . STRING
+    (18) tipo -> . BOOLEAN
+    (19) tipo -> . DOUBLE
+    (20) tipo -> . CHAR
+    (21) tipo -> . FLOAT
 
   ! shift/reduce conflict for COMMENT resolved as shift
   ! shift/reduce conflict for COMMENT resolved as shift
@@ -482,17 +479,6 @@ state 16
   ! reduce/reduce conflict for COLCHETE_FECHADO resolved using rule 5 (declaracao -> declaracao declaracao .)
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for VOID resolved as shift
-  ! shift/reduce conflict for COMMENT resolved as shift
-  ! shift/reduce conflict for ID resolved as shift
-  ! shift/reduce conflict for VOID resolved as shift
-  ! reduce/reduce conflict for INT resolved using rule 5 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for STRING resolved using rule 5 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for BOOLEAN resolved using rule 5 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for DOUBLE resolved using rule 5 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for CHAR resolved using rule 5 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for FLOAT resolved using rule 5 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for $end resolved using rule 5 (declaracao -> declaracao declaracao .)
-  ! reduce/reduce conflict for COLCHETE_FECHADO resolved using rule 5 (declaracao -> declaracao declaracao .)
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for BOOLEAN resolved as shift
@@ -531,17 +517,6 @@ state 16
   ! FLOAT           [ reduce using rule 7 (declaracao -> .) ]
   ! $end            [ reduce using rule 7 (declaracao -> .) ]
   ! COLCHETE_FECHADO [ reduce using rule 7 (declaracao -> .) ]
-  ! COMMENT         [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! ID              [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! VOID            [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! INT             [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! STRING          [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! BOOLEAN         [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! DOUBLE          [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! CHAR            [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! FLOAT           [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! $end            [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! COLCHETE_FECHADO [ reduce using rule 14 (declaracao_estrutura -> .) ]
 
     declaracao                     shift and go to state 16
     declaracao_variavel            shift and go to state 3
@@ -551,506 +526,764 @@ state 16
 
 state 17
 
-    (8) declaracao_variavel -> tipo ID . PONTO_VIRGULA
-    (9) declaracao_variavel -> tipo ID . EQUAL expressao PONTO_VIRGULA
-    (12) declaracao_funcao -> tipo ID . PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (12) declaracao_variavel -> declaracao_variavel declaracao_variavel .
+    (12) declaracao_variavel -> declaracao_variavel . declaracao_variavel
+    (8) declaracao_variavel -> . tipo ID PONTO_VIRGULA
+    (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
+    (10) declaracao_variavel -> . ID PLUS PLUS PONTO_VIRGULA
+    (11) declaracao_variavel -> . ID MINUS MINUS PONTO_VIRGULA
+    (12) declaracao_variavel -> . declaracao_variavel declaracao_variavel
+    (16) tipo -> . INT
+    (17) tipo -> . STRING
+    (18) tipo -> . BOOLEAN
+    (19) tipo -> . DOUBLE
+    (20) tipo -> . CHAR
+    (21) tipo -> . FLOAT
 
-    PONTO_VIRGULA   shift and go to state 21
-    EQUAL           shift and go to state 22
-    PAREN_ABERTO    shift and go to state 23
+  ! shift/reduce conflict for ID resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for STRING resolved as shift
+  ! shift/reduce conflict for BOOLEAN resolved as shift
+  ! shift/reduce conflict for DOUBLE resolved as shift
+  ! shift/reduce conflict for CHAR resolved as shift
+  ! shift/reduce conflict for FLOAT resolved as shift
+    COMMENT         reduce using rule 12 (declaracao_variavel -> declaracao_variavel declaracao_variavel .)
+    VOID            reduce using rule 12 (declaracao_variavel -> declaracao_variavel declaracao_variavel .)
+    $end            reduce using rule 12 (declaracao_variavel -> declaracao_variavel declaracao_variavel .)
+    COLCHETE_FECHADO reduce using rule 12 (declaracao_variavel -> declaracao_variavel declaracao_variavel .)
+    ID              shift and go to state 19
+    INT             shift and go to state 10
+    STRING          shift and go to state 11
+    BOOLEAN         shift and go to state 12
+    DOUBLE          shift and go to state 13
+    CHAR            shift and go to state 14
+    FLOAT           shift and go to state 15
 
+  ! ID              [ reduce using rule 12 (declaracao_variavel -> declaracao_variavel declaracao_variavel .) ]
+  ! INT             [ reduce using rule 12 (declaracao_variavel -> declaracao_variavel declaracao_variavel .) ]
+  ! STRING          [ reduce using rule 12 (declaracao_variavel -> declaracao_variavel declaracao_variavel .) ]
+  ! BOOLEAN         [ reduce using rule 12 (declaracao_variavel -> declaracao_variavel declaracao_variavel .) ]
+  ! DOUBLE          [ reduce using rule 12 (declaracao_variavel -> declaracao_variavel declaracao_variavel .) ]
+  ! CHAR            [ reduce using rule 12 (declaracao_variavel -> declaracao_variavel declaracao_variavel .) ]
+  ! FLOAT           [ reduce using rule 12 (declaracao_variavel -> declaracao_variavel declaracao_variavel .) ]
+
+    declaracao_variavel            shift and go to state 17
+    tipo                           shift and go to state 18
 
 state 18
 
-    (10) declaracao_variavel -> ID PLUS . PLUS PONTO_VIRGULA
+    (8) declaracao_variavel -> tipo . ID PONTO_VIRGULA
+    (9) declaracao_variavel -> tipo . ID EQUAL expressao PONTO_VIRGULA
 
-    PLUS            shift and go to state 24
+    ID              shift and go to state 25
 
 
 state 19
 
-    (11) declaracao_variavel -> ID MINUS . MINUS PONTO_VIRGULA
+    (10) declaracao_variavel -> ID . PLUS PLUS PONTO_VIRGULA
+    (11) declaracao_variavel -> ID . MINUS MINUS PONTO_VIRGULA
 
-    MINUS           shift and go to state 25
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
 
 
 state 20
 
-    (13) declaracao_funcao -> VOID ID . PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (8) declaracao_variavel -> tipo ID . PONTO_VIRGULA
+    (9) declaracao_variavel -> tipo ID . EQUAL expressao PONTO_VIRGULA
+    (13) declaracao_funcao -> tipo ID . PAREN_ABERTO parametros PAREN_FECHADO bloco
 
-    PAREN_ABERTO    shift and go to state 26
+    PONTO_VIRGULA   shift and go to state 26
+    EQUAL           shift and go to state 27
+    PAREN_ABERTO    shift and go to state 28
 
 
 state 21
 
+    (10) declaracao_variavel -> ID PLUS . PLUS PONTO_VIRGULA
+
+    PLUS            shift and go to state 29
+
+
+state 22
+
+    (11) declaracao_variavel -> ID MINUS . MINUS PONTO_VIRGULA
+
+    MINUS           shift and go to state 30
+
+
+state 23
+
+    (15) declaracao_estrutura -> ID COLCHETE_ABERTO . declaracao_variavel COLCHETE_FECHADO
+    (8) declaracao_variavel -> . tipo ID PONTO_VIRGULA
+    (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
+    (10) declaracao_variavel -> . ID PLUS PLUS PONTO_VIRGULA
+    (11) declaracao_variavel -> . ID MINUS MINUS PONTO_VIRGULA
+    (12) declaracao_variavel -> . declaracao_variavel declaracao_variavel
+    (16) tipo -> . INT
+    (17) tipo -> . STRING
+    (18) tipo -> . BOOLEAN
+    (19) tipo -> . DOUBLE
+    (20) tipo -> . CHAR
+    (21) tipo -> . FLOAT
+
+    ID              shift and go to state 19
+    INT             shift and go to state 10
+    STRING          shift and go to state 11
+    BOOLEAN         shift and go to state 12
+    DOUBLE          shift and go to state 13
+    CHAR            shift and go to state 14
+    FLOAT           shift and go to state 15
+
+    declaracao_variavel            shift and go to state 31
+    tipo                           shift and go to state 18
+
+state 24
+
+    (14) declaracao_funcao -> VOID ID . PAREN_ABERTO parametros PAREN_FECHADO bloco
+
+    PAREN_ABERTO    shift and go to state 32
+
+
+state 25
+
+    (8) declaracao_variavel -> tipo ID . PONTO_VIRGULA
+    (9) declaracao_variavel -> tipo ID . EQUAL expressao PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 26
+    EQUAL           shift and go to state 27
+
+
+state 26
+
     (8) declaracao_variavel -> tipo ID PONTO_VIRGULA .
 
-    COMMENT         reduce using rule 8 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
     ID              reduce using rule 8 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
-    VOID            reduce using rule 8 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
     INT             reduce using rule 8 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
     STRING          reduce using rule 8 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
     BOOLEAN         reduce using rule 8 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
     DOUBLE          reduce using rule 8 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
     CHAR            reduce using rule 8 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
     FLOAT           reduce using rule 8 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
+    COMMENT         reduce using rule 8 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
+    VOID            reduce using rule 8 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
     $end            reduce using rule 8 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
     COLCHETE_FECHADO reduce using rule 8 (declaracao_variavel -> tipo ID PONTO_VIRGULA .)
 
 
-state 22
-
-    (9) declaracao_variavel -> tipo ID EQUAL . expressao PONTO_VIRGULA
-    (21) expressao -> . atribuicao
-    (22) atribuicao -> . NUMBER_DEC
-    (23) atribuicao -> . NUMBER_INT
-    (24) atribuicao -> . TYPE_STRING
-    (25) atribuicao -> . TYPE_BOOLEAN
-    (26) atribuicao -> . ID
-    (27) atribuicao -> . ID EQUAL expressao
-    (28) atribuicao -> . ID PLUS_EQUAL expressao
-    (29) atribuicao -> . ID MINUS_EQUAL expressao
-    (30) atribuicao -> . ID TIMES_EQUAL expressao
-    (31) atribuicao -> . ID DIVIDE_EQUAL expressao
-    (32) atribuicao -> . ID REST_EQUAL expressao
-    (33) atribuicao -> . ID AND EQUAL expressao
-    (34) atribuicao -> . ID OR EQUAL expressao
-
-    NUMBER_DEC      shift and go to state 30
-    NUMBER_INT      shift and go to state 31
-    TYPE_STRING     shift and go to state 32
-    TYPE_BOOLEAN    shift and go to state 33
-    ID              shift and go to state 27
-
-    expressao                      shift and go to state 28
-    atribuicao                     shift and go to state 29
-
-state 23
-
-    (12) declaracao_funcao -> tipo ID PAREN_ABERTO . parametros PAREN_FECHADO bloco
-    (35) parametros -> . parametro
-    (36) parametros -> . parametro VIRGULA parametros
-    (37) parametros -> .
-    (38) parametro -> . tipo ID
-    (39) parametro -> . tipo ID CHAVE_ABERTA CHAVE_FECHADA
-    (15) tipo -> . INT
-    (16) tipo -> . STRING
-    (17) tipo -> . BOOLEAN
-    (18) tipo -> . DOUBLE
-    (19) tipo -> . CHAR
-    (20) tipo -> . FLOAT
-
-    PAREN_FECHADO   reduce using rule 37 (parametros -> .)
-    INT             shift and go to state 10
-    STRING          shift and go to state 11
-    BOOLEAN         shift and go to state 12
-    DOUBLE          shift and go to state 13
-    CHAR            shift and go to state 14
-    FLOAT           shift and go to state 15
-
-    tipo                           shift and go to state 34
-    parametros                     shift and go to state 35
-    parametro                      shift and go to state 36
-
-state 24
-
-    (10) declaracao_variavel -> ID PLUS PLUS . PONTO_VIRGULA
-
-    PONTO_VIRGULA   shift and go to state 37
-
-
-state 25
-
-    (11) declaracao_variavel -> ID MINUS MINUS . PONTO_VIRGULA
-
-    PONTO_VIRGULA   shift and go to state 38
-
-
-state 26
-
-    (13) declaracao_funcao -> VOID ID PAREN_ABERTO . parametros PAREN_FECHADO bloco
-    (35) parametros -> . parametro
-    (36) parametros -> . parametro VIRGULA parametros
-    (37) parametros -> .
-    (38) parametro -> . tipo ID
-    (39) parametro -> . tipo ID CHAVE_ABERTA CHAVE_FECHADA
-    (15) tipo -> . INT
-    (16) tipo -> . STRING
-    (17) tipo -> . BOOLEAN
-    (18) tipo -> . DOUBLE
-    (19) tipo -> . CHAR
-    (20) tipo -> . FLOAT
-
-    PAREN_FECHADO   reduce using rule 37 (parametros -> .)
-    INT             shift and go to state 10
-    STRING          shift and go to state 11
-    BOOLEAN         shift and go to state 12
-    DOUBLE          shift and go to state 13
-    CHAR            shift and go to state 14
-    FLOAT           shift and go to state 15
-
-    parametros                     shift and go to state 39
-    parametro                      shift and go to state 36
-    tipo                           shift and go to state 34
-
 state 27
 
-    (26) atribuicao -> ID .
-    (27) atribuicao -> ID . EQUAL expressao
-    (28) atribuicao -> ID . PLUS_EQUAL expressao
-    (29) atribuicao -> ID . MINUS_EQUAL expressao
-    (30) atribuicao -> ID . TIMES_EQUAL expressao
-    (31) atribuicao -> ID . DIVIDE_EQUAL expressao
-    (32) atribuicao -> ID . REST_EQUAL expressao
-    (33) atribuicao -> ID . AND EQUAL expressao
-    (34) atribuicao -> ID . OR EQUAL expressao
+    (9) declaracao_variavel -> tipo ID EQUAL . expressao PONTO_VIRGULA
+    (22) expressao -> . atribuicao
+    (23) atribuicao -> . NUMBER_DEC
+    (24) atribuicao -> . NUMBER_INT
+    (25) atribuicao -> . TYPE_STRING
+    (26) atribuicao -> . TYPE_BOOLEAN
+    (27) atribuicao -> . ID
+    (28) atribuicao -> . ID EQUAL expressao
+    (29) atribuicao -> . ID PLUS_EQUAL expressao
+    (30) atribuicao -> . ID MINUS_EQUAL expressao
+    (31) atribuicao -> . ID TIMES_EQUAL expressao
+    (32) atribuicao -> . ID DIVIDE_EQUAL expressao
+    (33) atribuicao -> . ID REST_EQUAL expressao
+    (34) atribuicao -> . ID AND EQUAL expressao
+    (35) atribuicao -> . ID OR EQUAL expressao
+    (36) atribuicao -> . ID comparador expressao
 
-    PONTO_VIRGULA   reduce using rule 26 (atribuicao -> ID .)
-    EQUAL           shift and go to state 40
-    PLUS_EQUAL      shift and go to state 41
-    MINUS_EQUAL     shift and go to state 42
-    TIMES_EQUAL     shift and go to state 43
-    DIVIDE_EQUAL    shift and go to state 44
-    REST_EQUAL      shift and go to state 45
-    AND             shift and go to state 46
-    OR              shift and go to state 47
+    NUMBER_DEC      shift and go to state 36
+    NUMBER_INT      shift and go to state 37
+    TYPE_STRING     shift and go to state 38
+    TYPE_BOOLEAN    shift and go to state 39
+    ID              shift and go to state 33
 
+    expressao                      shift and go to state 34
+    atribuicao                     shift and go to state 35
 
 state 28
 
-    (9) declaracao_variavel -> tipo ID EQUAL expressao . PONTO_VIRGULA
+    (13) declaracao_funcao -> tipo ID PAREN_ABERTO . parametros PAREN_FECHADO bloco
+    (37) parametros -> . parametro
+    (38) parametros -> . parametro VIRGULA parametros
+    (39) parametros -> .
+    (40) parametro -> . tipo ID
+    (41) parametro -> . tipo ID CHAVE_ABERTA CHAVE_FECHADA
+    (16) tipo -> . INT
+    (17) tipo -> . STRING
+    (18) tipo -> . BOOLEAN
+    (19) tipo -> . DOUBLE
+    (20) tipo -> . CHAR
+    (21) tipo -> . FLOAT
 
-    PONTO_VIRGULA   shift and go to state 48
+    PAREN_FECHADO   reduce using rule 39 (parametros -> .)
+    INT             shift and go to state 10
+    STRING          shift and go to state 11
+    BOOLEAN         shift and go to state 12
+    DOUBLE          shift and go to state 13
+    CHAR            shift and go to state 14
+    FLOAT           shift and go to state 15
 
+    tipo                           shift and go to state 40
+    parametros                     shift and go to state 41
+    parametro                      shift and go to state 42
 
 state 29
 
-    (21) expressao -> atribuicao .
+    (10) declaracao_variavel -> ID PLUS PLUS . PONTO_VIRGULA
 
-    PONTO_VIRGULA   reduce using rule 21 (expressao -> atribuicao .)
+    PONTO_VIRGULA   shift and go to state 43
 
 
 state 30
 
-    (22) atribuicao -> NUMBER_DEC .
+    (11) declaracao_variavel -> ID MINUS MINUS . PONTO_VIRGULA
 
-    PONTO_VIRGULA   reduce using rule 22 (atribuicao -> NUMBER_DEC .)
+    PONTO_VIRGULA   shift and go to state 44
 
 
 state 31
 
-    (23) atribuicao -> NUMBER_INT .
+    (15) declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel . COLCHETE_FECHADO
+    (12) declaracao_variavel -> declaracao_variavel . declaracao_variavel
+    (8) declaracao_variavel -> . tipo ID PONTO_VIRGULA
+    (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
+    (10) declaracao_variavel -> . ID PLUS PLUS PONTO_VIRGULA
+    (11) declaracao_variavel -> . ID MINUS MINUS PONTO_VIRGULA
+    (12) declaracao_variavel -> . declaracao_variavel declaracao_variavel
+    (16) tipo -> . INT
+    (17) tipo -> . STRING
+    (18) tipo -> . BOOLEAN
+    (19) tipo -> . DOUBLE
+    (20) tipo -> . CHAR
+    (21) tipo -> . FLOAT
 
-    PONTO_VIRGULA   reduce using rule 23 (atribuicao -> NUMBER_INT .)
+    COLCHETE_FECHADO shift and go to state 45
+    ID              shift and go to state 19
+    INT             shift and go to state 10
+    STRING          shift and go to state 11
+    BOOLEAN         shift and go to state 12
+    DOUBLE          shift and go to state 13
+    CHAR            shift and go to state 14
+    FLOAT           shift and go to state 15
 
+    declaracao_variavel            shift and go to state 17
+    tipo                           shift and go to state 18
 
 state 32
 
-    (24) atribuicao -> TYPE_STRING .
+    (14) declaracao_funcao -> VOID ID PAREN_ABERTO . parametros PAREN_FECHADO bloco
+    (37) parametros -> . parametro
+    (38) parametros -> . parametro VIRGULA parametros
+    (39) parametros -> .
+    (40) parametro -> . tipo ID
+    (41) parametro -> . tipo ID CHAVE_ABERTA CHAVE_FECHADA
+    (16) tipo -> . INT
+    (17) tipo -> . STRING
+    (18) tipo -> . BOOLEAN
+    (19) tipo -> . DOUBLE
+    (20) tipo -> . CHAR
+    (21) tipo -> . FLOAT
 
-    PONTO_VIRGULA   reduce using rule 24 (atribuicao -> TYPE_STRING .)
+    PAREN_FECHADO   reduce using rule 39 (parametros -> .)
+    INT             shift and go to state 10
+    STRING          shift and go to state 11
+    BOOLEAN         shift and go to state 12
+    DOUBLE          shift and go to state 13
+    CHAR            shift and go to state 14
+    FLOAT           shift and go to state 15
 
+    parametros                     shift and go to state 46
+    parametro                      shift and go to state 42
+    tipo                           shift and go to state 40
 
 state 33
 
-    (25) atribuicao -> TYPE_BOOLEAN .
+    (27) atribuicao -> ID .
+    (28) atribuicao -> ID . EQUAL expressao
+    (29) atribuicao -> ID . PLUS_EQUAL expressao
+    (30) atribuicao -> ID . MINUS_EQUAL expressao
+    (31) atribuicao -> ID . TIMES_EQUAL expressao
+    (32) atribuicao -> ID . DIVIDE_EQUAL expressao
+    (33) atribuicao -> ID . REST_EQUAL expressao
+    (34) atribuicao -> ID . AND EQUAL expressao
+    (35) atribuicao -> ID . OR EQUAL expressao
+    (36) atribuicao -> ID . comparador expressao
+    (43) comparador -> . LESS_THAN
+    (44) comparador -> . IS_EQUALS
+    (45) comparador -> . LESS_THAN_OR_EQUALS
+    (46) comparador -> . GREATER_THAN
+    (47) comparador -> . GREATER_THAN_OR_EQUALS
+    (48) comparador -> . IS_DIFFERENT
 
-    PONTO_VIRGULA   reduce using rule 25 (atribuicao -> TYPE_BOOLEAN .)
+    PONTO_VIRGULA   reduce using rule 27 (atribuicao -> ID .)
+    EQUAL           shift and go to state 47
+    PLUS_EQUAL      shift and go to state 48
+    MINUS_EQUAL     shift and go to state 49
+    TIMES_EQUAL     shift and go to state 50
+    DIVIDE_EQUAL    shift and go to state 51
+    REST_EQUAL      shift and go to state 52
+    AND             shift and go to state 53
+    OR              shift and go to state 54
+    LESS_THAN       shift and go to state 56
+    IS_EQUALS       shift and go to state 57
+    LESS_THAN_OR_EQUALS shift and go to state 58
+    GREATER_THAN    shift and go to state 59
+    GREATER_THAN_OR_EQUALS shift and go to state 60
+    IS_DIFFERENT    shift and go to state 61
 
+    comparador                     shift and go to state 55
 
 state 34
 
-    (38) parametro -> tipo . ID
-    (39) parametro -> tipo . ID CHAVE_ABERTA CHAVE_FECHADA
+    (9) declaracao_variavel -> tipo ID EQUAL expressao . PONTO_VIRGULA
 
-    ID              shift and go to state 49
+    PONTO_VIRGULA   shift and go to state 62
 
 
 state 35
 
-    (12) declaracao_funcao -> tipo ID PAREN_ABERTO parametros . PAREN_FECHADO bloco
+    (22) expressao -> atribuicao .
 
-    PAREN_FECHADO   shift and go to state 50
+    PONTO_VIRGULA   reduce using rule 22 (expressao -> atribuicao .)
 
 
 state 36
 
-    (35) parametros -> parametro .
-    (36) parametros -> parametro . VIRGULA parametros
+    (23) atribuicao -> NUMBER_DEC .
 
-    PAREN_FECHADO   reduce using rule 35 (parametros -> parametro .)
-    VIRGULA         shift and go to state 51
+    PONTO_VIRGULA   reduce using rule 23 (atribuicao -> NUMBER_DEC .)
 
 
 state 37
 
+    (24) atribuicao -> NUMBER_INT .
+
+    PONTO_VIRGULA   reduce using rule 24 (atribuicao -> NUMBER_INT .)
+
+
+state 38
+
+    (25) atribuicao -> TYPE_STRING .
+
+    PONTO_VIRGULA   reduce using rule 25 (atribuicao -> TYPE_STRING .)
+
+
+state 39
+
+    (26) atribuicao -> TYPE_BOOLEAN .
+
+    PONTO_VIRGULA   reduce using rule 26 (atribuicao -> TYPE_BOOLEAN .)
+
+
+state 40
+
+    (40) parametro -> tipo . ID
+    (41) parametro -> tipo . ID CHAVE_ABERTA CHAVE_FECHADA
+
+    ID              shift and go to state 63
+
+
+state 41
+
+    (13) declaracao_funcao -> tipo ID PAREN_ABERTO parametros . PAREN_FECHADO bloco
+
+    PAREN_FECHADO   shift and go to state 64
+
+
+state 42
+
+    (37) parametros -> parametro .
+    (38) parametros -> parametro . VIRGULA parametros
+
+    PAREN_FECHADO   reduce using rule 37 (parametros -> parametro .)
+    VIRGULA         shift and go to state 65
+
+
+state 43
+
     (10) declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .
 
-    COMMENT         reduce using rule 10 (declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .)
     ID              reduce using rule 10 (declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .)
-    VOID            reduce using rule 10 (declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .)
     INT             reduce using rule 10 (declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .)
     STRING          reduce using rule 10 (declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .)
     BOOLEAN         reduce using rule 10 (declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .)
     DOUBLE          reduce using rule 10 (declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .)
     CHAR            reduce using rule 10 (declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .)
     FLOAT           reduce using rule 10 (declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .)
+    COMMENT         reduce using rule 10 (declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .)
+    VOID            reduce using rule 10 (declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .)
     $end            reduce using rule 10 (declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .)
     COLCHETE_FECHADO reduce using rule 10 (declaracao_variavel -> ID PLUS PLUS PONTO_VIRGULA .)
 
 
-state 38
+state 44
 
     (11) declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .
 
-    COMMENT         reduce using rule 11 (declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .)
     ID              reduce using rule 11 (declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .)
-    VOID            reduce using rule 11 (declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .)
     INT             reduce using rule 11 (declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .)
     STRING          reduce using rule 11 (declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .)
     BOOLEAN         reduce using rule 11 (declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .)
     DOUBLE          reduce using rule 11 (declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .)
     CHAR            reduce using rule 11 (declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .)
     FLOAT           reduce using rule 11 (declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .)
+    COMMENT         reduce using rule 11 (declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .)
+    VOID            reduce using rule 11 (declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .)
     $end            reduce using rule 11 (declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .)
     COLCHETE_FECHADO reduce using rule 11 (declaracao_variavel -> ID MINUS MINUS PONTO_VIRGULA .)
 
 
-state 39
-
-    (13) declaracao_funcao -> VOID ID PAREN_ABERTO parametros . PAREN_FECHADO bloco
-
-    PAREN_FECHADO   shift and go to state 52
-
-
-state 40
-
-    (27) atribuicao -> ID EQUAL . expressao
-    (21) expressao -> . atribuicao
-    (22) atribuicao -> . NUMBER_DEC
-    (23) atribuicao -> . NUMBER_INT
-    (24) atribuicao -> . TYPE_STRING
-    (25) atribuicao -> . TYPE_BOOLEAN
-    (26) atribuicao -> . ID
-    (27) atribuicao -> . ID EQUAL expressao
-    (28) atribuicao -> . ID PLUS_EQUAL expressao
-    (29) atribuicao -> . ID MINUS_EQUAL expressao
-    (30) atribuicao -> . ID TIMES_EQUAL expressao
-    (31) atribuicao -> . ID DIVIDE_EQUAL expressao
-    (32) atribuicao -> . ID REST_EQUAL expressao
-    (33) atribuicao -> . ID AND EQUAL expressao
-    (34) atribuicao -> . ID OR EQUAL expressao
-
-    NUMBER_DEC      shift and go to state 30
-    NUMBER_INT      shift and go to state 31
-    TYPE_STRING     shift and go to state 32
-    TYPE_BOOLEAN    shift and go to state 33
-    ID              shift and go to state 27
-
-    expressao                      shift and go to state 53
-    atribuicao                     shift and go to state 29
-
-state 41
-
-    (28) atribuicao -> ID PLUS_EQUAL . expressao
-    (21) expressao -> . atribuicao
-    (22) atribuicao -> . NUMBER_DEC
-    (23) atribuicao -> . NUMBER_INT
-    (24) atribuicao -> . TYPE_STRING
-    (25) atribuicao -> . TYPE_BOOLEAN
-    (26) atribuicao -> . ID
-    (27) atribuicao -> . ID EQUAL expressao
-    (28) atribuicao -> . ID PLUS_EQUAL expressao
-    (29) atribuicao -> . ID MINUS_EQUAL expressao
-    (30) atribuicao -> . ID TIMES_EQUAL expressao
-    (31) atribuicao -> . ID DIVIDE_EQUAL expressao
-    (32) atribuicao -> . ID REST_EQUAL expressao
-    (33) atribuicao -> . ID AND EQUAL expressao
-    (34) atribuicao -> . ID OR EQUAL expressao
-
-    NUMBER_DEC      shift and go to state 30
-    NUMBER_INT      shift and go to state 31
-    TYPE_STRING     shift and go to state 32
-    TYPE_BOOLEAN    shift and go to state 33
-    ID              shift and go to state 27
-
-    expressao                      shift and go to state 54
-    atribuicao                     shift and go to state 29
-
-state 42
-
-    (29) atribuicao -> ID MINUS_EQUAL . expressao
-    (21) expressao -> . atribuicao
-    (22) atribuicao -> . NUMBER_DEC
-    (23) atribuicao -> . NUMBER_INT
-    (24) atribuicao -> . TYPE_STRING
-    (25) atribuicao -> . TYPE_BOOLEAN
-    (26) atribuicao -> . ID
-    (27) atribuicao -> . ID EQUAL expressao
-    (28) atribuicao -> . ID PLUS_EQUAL expressao
-    (29) atribuicao -> . ID MINUS_EQUAL expressao
-    (30) atribuicao -> . ID TIMES_EQUAL expressao
-    (31) atribuicao -> . ID DIVIDE_EQUAL expressao
-    (32) atribuicao -> . ID REST_EQUAL expressao
-    (33) atribuicao -> . ID AND EQUAL expressao
-    (34) atribuicao -> . ID OR EQUAL expressao
-
-    NUMBER_DEC      shift and go to state 30
-    NUMBER_INT      shift and go to state 31
-    TYPE_STRING     shift and go to state 32
-    TYPE_BOOLEAN    shift and go to state 33
-    ID              shift and go to state 27
-
-    expressao                      shift and go to state 55
-    atribuicao                     shift and go to state 29
-
-state 43
-
-    (30) atribuicao -> ID TIMES_EQUAL . expressao
-    (21) expressao -> . atribuicao
-    (22) atribuicao -> . NUMBER_DEC
-    (23) atribuicao -> . NUMBER_INT
-    (24) atribuicao -> . TYPE_STRING
-    (25) atribuicao -> . TYPE_BOOLEAN
-    (26) atribuicao -> . ID
-    (27) atribuicao -> . ID EQUAL expressao
-    (28) atribuicao -> . ID PLUS_EQUAL expressao
-    (29) atribuicao -> . ID MINUS_EQUAL expressao
-    (30) atribuicao -> . ID TIMES_EQUAL expressao
-    (31) atribuicao -> . ID DIVIDE_EQUAL expressao
-    (32) atribuicao -> . ID REST_EQUAL expressao
-    (33) atribuicao -> . ID AND EQUAL expressao
-    (34) atribuicao -> . ID OR EQUAL expressao
-
-    NUMBER_DEC      shift and go to state 30
-    NUMBER_INT      shift and go to state 31
-    TYPE_STRING     shift and go to state 32
-    TYPE_BOOLEAN    shift and go to state 33
-    ID              shift and go to state 27
-
-    expressao                      shift and go to state 56
-    atribuicao                     shift and go to state 29
-
-state 44
-
-    (31) atribuicao -> ID DIVIDE_EQUAL . expressao
-    (21) expressao -> . atribuicao
-    (22) atribuicao -> . NUMBER_DEC
-    (23) atribuicao -> . NUMBER_INT
-    (24) atribuicao -> . TYPE_STRING
-    (25) atribuicao -> . TYPE_BOOLEAN
-    (26) atribuicao -> . ID
-    (27) atribuicao -> . ID EQUAL expressao
-    (28) atribuicao -> . ID PLUS_EQUAL expressao
-    (29) atribuicao -> . ID MINUS_EQUAL expressao
-    (30) atribuicao -> . ID TIMES_EQUAL expressao
-    (31) atribuicao -> . ID DIVIDE_EQUAL expressao
-    (32) atribuicao -> . ID REST_EQUAL expressao
-    (33) atribuicao -> . ID AND EQUAL expressao
-    (34) atribuicao -> . ID OR EQUAL expressao
-
-    NUMBER_DEC      shift and go to state 30
-    NUMBER_INT      shift and go to state 31
-    TYPE_STRING     shift and go to state 32
-    TYPE_BOOLEAN    shift and go to state 33
-    ID              shift and go to state 27
-
-    expressao                      shift and go to state 57
-    atribuicao                     shift and go to state 29
-
 state 45
 
-    (32) atribuicao -> ID REST_EQUAL . expressao
-    (21) expressao -> . atribuicao
-    (22) atribuicao -> . NUMBER_DEC
-    (23) atribuicao -> . NUMBER_INT
-    (24) atribuicao -> . TYPE_STRING
-    (25) atribuicao -> . TYPE_BOOLEAN
-    (26) atribuicao -> . ID
-    (27) atribuicao -> . ID EQUAL expressao
-    (28) atribuicao -> . ID PLUS_EQUAL expressao
-    (29) atribuicao -> . ID MINUS_EQUAL expressao
-    (30) atribuicao -> . ID TIMES_EQUAL expressao
-    (31) atribuicao -> . ID DIVIDE_EQUAL expressao
-    (32) atribuicao -> . ID REST_EQUAL expressao
-    (33) atribuicao -> . ID AND EQUAL expressao
-    (34) atribuicao -> . ID OR EQUAL expressao
+    (15) declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO .
 
-    NUMBER_DEC      shift and go to state 30
-    NUMBER_INT      shift and go to state 31
-    TYPE_STRING     shift and go to state 32
-    TYPE_BOOLEAN    shift and go to state 33
-    ID              shift and go to state 27
+    COMMENT         reduce using rule 15 (declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO .)
+    ID              reduce using rule 15 (declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO .)
+    VOID            reduce using rule 15 (declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO .)
+    INT             reduce using rule 15 (declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO .)
+    STRING          reduce using rule 15 (declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO .)
+    BOOLEAN         reduce using rule 15 (declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO .)
+    DOUBLE          reduce using rule 15 (declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO .)
+    CHAR            reduce using rule 15 (declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO .)
+    FLOAT           reduce using rule 15 (declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO .)
+    $end            reduce using rule 15 (declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO .)
+    COLCHETE_FECHADO reduce using rule 15 (declaracao_estrutura -> ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO .)
 
-    expressao                      shift and go to state 58
-    atribuicao                     shift and go to state 29
 
 state 46
 
-    (33) atribuicao -> ID AND . EQUAL expressao
+    (14) declaracao_funcao -> VOID ID PAREN_ABERTO parametros . PAREN_FECHADO bloco
 
-    EQUAL           shift and go to state 59
+    PAREN_FECHADO   shift and go to state 66
 
 
 state 47
 
-    (34) atribuicao -> ID OR . EQUAL expressao
+    (28) atribuicao -> ID EQUAL . expressao
+    (22) expressao -> . atribuicao
+    (23) atribuicao -> . NUMBER_DEC
+    (24) atribuicao -> . NUMBER_INT
+    (25) atribuicao -> . TYPE_STRING
+    (26) atribuicao -> . TYPE_BOOLEAN
+    (27) atribuicao -> . ID
+    (28) atribuicao -> . ID EQUAL expressao
+    (29) atribuicao -> . ID PLUS_EQUAL expressao
+    (30) atribuicao -> . ID MINUS_EQUAL expressao
+    (31) atribuicao -> . ID TIMES_EQUAL expressao
+    (32) atribuicao -> . ID DIVIDE_EQUAL expressao
+    (33) atribuicao -> . ID REST_EQUAL expressao
+    (34) atribuicao -> . ID AND EQUAL expressao
+    (35) atribuicao -> . ID OR EQUAL expressao
+    (36) atribuicao -> . ID comparador expressao
 
-    EQUAL           shift and go to state 60
+    NUMBER_DEC      shift and go to state 36
+    NUMBER_INT      shift and go to state 37
+    TYPE_STRING     shift and go to state 38
+    TYPE_BOOLEAN    shift and go to state 39
+    ID              shift and go to state 33
 
+    expressao                      shift and go to state 67
+    atribuicao                     shift and go to state 35
 
 state 48
 
+    (29) atribuicao -> ID PLUS_EQUAL . expressao
+    (22) expressao -> . atribuicao
+    (23) atribuicao -> . NUMBER_DEC
+    (24) atribuicao -> . NUMBER_INT
+    (25) atribuicao -> . TYPE_STRING
+    (26) atribuicao -> . TYPE_BOOLEAN
+    (27) atribuicao -> . ID
+    (28) atribuicao -> . ID EQUAL expressao
+    (29) atribuicao -> . ID PLUS_EQUAL expressao
+    (30) atribuicao -> . ID MINUS_EQUAL expressao
+    (31) atribuicao -> . ID TIMES_EQUAL expressao
+    (32) atribuicao -> . ID DIVIDE_EQUAL expressao
+    (33) atribuicao -> . ID REST_EQUAL expressao
+    (34) atribuicao -> . ID AND EQUAL expressao
+    (35) atribuicao -> . ID OR EQUAL expressao
+    (36) atribuicao -> . ID comparador expressao
+
+    NUMBER_DEC      shift and go to state 36
+    NUMBER_INT      shift and go to state 37
+    TYPE_STRING     shift and go to state 38
+    TYPE_BOOLEAN    shift and go to state 39
+    ID              shift and go to state 33
+
+    expressao                      shift and go to state 68
+    atribuicao                     shift and go to state 35
+
+state 49
+
+    (30) atribuicao -> ID MINUS_EQUAL . expressao
+    (22) expressao -> . atribuicao
+    (23) atribuicao -> . NUMBER_DEC
+    (24) atribuicao -> . NUMBER_INT
+    (25) atribuicao -> . TYPE_STRING
+    (26) atribuicao -> . TYPE_BOOLEAN
+    (27) atribuicao -> . ID
+    (28) atribuicao -> . ID EQUAL expressao
+    (29) atribuicao -> . ID PLUS_EQUAL expressao
+    (30) atribuicao -> . ID MINUS_EQUAL expressao
+    (31) atribuicao -> . ID TIMES_EQUAL expressao
+    (32) atribuicao -> . ID DIVIDE_EQUAL expressao
+    (33) atribuicao -> . ID REST_EQUAL expressao
+    (34) atribuicao -> . ID AND EQUAL expressao
+    (35) atribuicao -> . ID OR EQUAL expressao
+    (36) atribuicao -> . ID comparador expressao
+
+    NUMBER_DEC      shift and go to state 36
+    NUMBER_INT      shift and go to state 37
+    TYPE_STRING     shift and go to state 38
+    TYPE_BOOLEAN    shift and go to state 39
+    ID              shift and go to state 33
+
+    expressao                      shift and go to state 69
+    atribuicao                     shift and go to state 35
+
+state 50
+
+    (31) atribuicao -> ID TIMES_EQUAL . expressao
+    (22) expressao -> . atribuicao
+    (23) atribuicao -> . NUMBER_DEC
+    (24) atribuicao -> . NUMBER_INT
+    (25) atribuicao -> . TYPE_STRING
+    (26) atribuicao -> . TYPE_BOOLEAN
+    (27) atribuicao -> . ID
+    (28) atribuicao -> . ID EQUAL expressao
+    (29) atribuicao -> . ID PLUS_EQUAL expressao
+    (30) atribuicao -> . ID MINUS_EQUAL expressao
+    (31) atribuicao -> . ID TIMES_EQUAL expressao
+    (32) atribuicao -> . ID DIVIDE_EQUAL expressao
+    (33) atribuicao -> . ID REST_EQUAL expressao
+    (34) atribuicao -> . ID AND EQUAL expressao
+    (35) atribuicao -> . ID OR EQUAL expressao
+    (36) atribuicao -> . ID comparador expressao
+
+    NUMBER_DEC      shift and go to state 36
+    NUMBER_INT      shift and go to state 37
+    TYPE_STRING     shift and go to state 38
+    TYPE_BOOLEAN    shift and go to state 39
+    ID              shift and go to state 33
+
+    expressao                      shift and go to state 70
+    atribuicao                     shift and go to state 35
+
+state 51
+
+    (32) atribuicao -> ID DIVIDE_EQUAL . expressao
+    (22) expressao -> . atribuicao
+    (23) atribuicao -> . NUMBER_DEC
+    (24) atribuicao -> . NUMBER_INT
+    (25) atribuicao -> . TYPE_STRING
+    (26) atribuicao -> . TYPE_BOOLEAN
+    (27) atribuicao -> . ID
+    (28) atribuicao -> . ID EQUAL expressao
+    (29) atribuicao -> . ID PLUS_EQUAL expressao
+    (30) atribuicao -> . ID MINUS_EQUAL expressao
+    (31) atribuicao -> . ID TIMES_EQUAL expressao
+    (32) atribuicao -> . ID DIVIDE_EQUAL expressao
+    (33) atribuicao -> . ID REST_EQUAL expressao
+    (34) atribuicao -> . ID AND EQUAL expressao
+    (35) atribuicao -> . ID OR EQUAL expressao
+    (36) atribuicao -> . ID comparador expressao
+
+    NUMBER_DEC      shift and go to state 36
+    NUMBER_INT      shift and go to state 37
+    TYPE_STRING     shift and go to state 38
+    TYPE_BOOLEAN    shift and go to state 39
+    ID              shift and go to state 33
+
+    expressao                      shift and go to state 71
+    atribuicao                     shift and go to state 35
+
+state 52
+
+    (33) atribuicao -> ID REST_EQUAL . expressao
+    (22) expressao -> . atribuicao
+    (23) atribuicao -> . NUMBER_DEC
+    (24) atribuicao -> . NUMBER_INT
+    (25) atribuicao -> . TYPE_STRING
+    (26) atribuicao -> . TYPE_BOOLEAN
+    (27) atribuicao -> . ID
+    (28) atribuicao -> . ID EQUAL expressao
+    (29) atribuicao -> . ID PLUS_EQUAL expressao
+    (30) atribuicao -> . ID MINUS_EQUAL expressao
+    (31) atribuicao -> . ID TIMES_EQUAL expressao
+    (32) atribuicao -> . ID DIVIDE_EQUAL expressao
+    (33) atribuicao -> . ID REST_EQUAL expressao
+    (34) atribuicao -> . ID AND EQUAL expressao
+    (35) atribuicao -> . ID OR EQUAL expressao
+    (36) atribuicao -> . ID comparador expressao
+
+    NUMBER_DEC      shift and go to state 36
+    NUMBER_INT      shift and go to state 37
+    TYPE_STRING     shift and go to state 38
+    TYPE_BOOLEAN    shift and go to state 39
+    ID              shift and go to state 33
+
+    expressao                      shift and go to state 72
+    atribuicao                     shift and go to state 35
+
+state 53
+
+    (34) atribuicao -> ID AND . EQUAL expressao
+
+    EQUAL           shift and go to state 73
+
+
+state 54
+
+    (35) atribuicao -> ID OR . EQUAL expressao
+
+    EQUAL           shift and go to state 74
+
+
+state 55
+
+    (36) atribuicao -> ID comparador . expressao
+    (22) expressao -> . atribuicao
+    (23) atribuicao -> . NUMBER_DEC
+    (24) atribuicao -> . NUMBER_INT
+    (25) atribuicao -> . TYPE_STRING
+    (26) atribuicao -> . TYPE_BOOLEAN
+    (27) atribuicao -> . ID
+    (28) atribuicao -> . ID EQUAL expressao
+    (29) atribuicao -> . ID PLUS_EQUAL expressao
+    (30) atribuicao -> . ID MINUS_EQUAL expressao
+    (31) atribuicao -> . ID TIMES_EQUAL expressao
+    (32) atribuicao -> . ID DIVIDE_EQUAL expressao
+    (33) atribuicao -> . ID REST_EQUAL expressao
+    (34) atribuicao -> . ID AND EQUAL expressao
+    (35) atribuicao -> . ID OR EQUAL expressao
+    (36) atribuicao -> . ID comparador expressao
+
+    NUMBER_DEC      shift and go to state 36
+    NUMBER_INT      shift and go to state 37
+    TYPE_STRING     shift and go to state 38
+    TYPE_BOOLEAN    shift and go to state 39
+    ID              shift and go to state 33
+
+    expressao                      shift and go to state 75
+    atribuicao                     shift and go to state 35
+
+state 56
+
+    (43) comparador -> LESS_THAN .
+
+    NUMBER_DEC      reduce using rule 43 (comparador -> LESS_THAN .)
+    NUMBER_INT      reduce using rule 43 (comparador -> LESS_THAN .)
+    TYPE_STRING     reduce using rule 43 (comparador -> LESS_THAN .)
+    TYPE_BOOLEAN    reduce using rule 43 (comparador -> LESS_THAN .)
+    ID              reduce using rule 43 (comparador -> LESS_THAN .)
+
+
+state 57
+
+    (44) comparador -> IS_EQUALS .
+
+    NUMBER_DEC      reduce using rule 44 (comparador -> IS_EQUALS .)
+    NUMBER_INT      reduce using rule 44 (comparador -> IS_EQUALS .)
+    TYPE_STRING     reduce using rule 44 (comparador -> IS_EQUALS .)
+    TYPE_BOOLEAN    reduce using rule 44 (comparador -> IS_EQUALS .)
+    ID              reduce using rule 44 (comparador -> IS_EQUALS .)
+
+
+state 58
+
+    (45) comparador -> LESS_THAN_OR_EQUALS .
+
+    NUMBER_DEC      reduce using rule 45 (comparador -> LESS_THAN_OR_EQUALS .)
+    NUMBER_INT      reduce using rule 45 (comparador -> LESS_THAN_OR_EQUALS .)
+    TYPE_STRING     reduce using rule 45 (comparador -> LESS_THAN_OR_EQUALS .)
+    TYPE_BOOLEAN    reduce using rule 45 (comparador -> LESS_THAN_OR_EQUALS .)
+    ID              reduce using rule 45 (comparador -> LESS_THAN_OR_EQUALS .)
+
+
+state 59
+
+    (46) comparador -> GREATER_THAN .
+
+    NUMBER_DEC      reduce using rule 46 (comparador -> GREATER_THAN .)
+    NUMBER_INT      reduce using rule 46 (comparador -> GREATER_THAN .)
+    TYPE_STRING     reduce using rule 46 (comparador -> GREATER_THAN .)
+    TYPE_BOOLEAN    reduce using rule 46 (comparador -> GREATER_THAN .)
+    ID              reduce using rule 46 (comparador -> GREATER_THAN .)
+
+
+state 60
+
+    (47) comparador -> GREATER_THAN_OR_EQUALS .
+
+    NUMBER_DEC      reduce using rule 47 (comparador -> GREATER_THAN_OR_EQUALS .)
+    NUMBER_INT      reduce using rule 47 (comparador -> GREATER_THAN_OR_EQUALS .)
+    TYPE_STRING     reduce using rule 47 (comparador -> GREATER_THAN_OR_EQUALS .)
+    TYPE_BOOLEAN    reduce using rule 47 (comparador -> GREATER_THAN_OR_EQUALS .)
+    ID              reduce using rule 47 (comparador -> GREATER_THAN_OR_EQUALS .)
+
+
+state 61
+
+    (48) comparador -> IS_DIFFERENT .
+
+    NUMBER_DEC      reduce using rule 48 (comparador -> IS_DIFFERENT .)
+    NUMBER_INT      reduce using rule 48 (comparador -> IS_DIFFERENT .)
+    TYPE_STRING     reduce using rule 48 (comparador -> IS_DIFFERENT .)
+    TYPE_BOOLEAN    reduce using rule 48 (comparador -> IS_DIFFERENT .)
+    ID              reduce using rule 48 (comparador -> IS_DIFFERENT .)
+
+
+state 62
+
     (9) declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .
 
-    COMMENT         reduce using rule 9 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
     ID              reduce using rule 9 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
-    VOID            reduce using rule 9 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
     INT             reduce using rule 9 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
     STRING          reduce using rule 9 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
     BOOLEAN         reduce using rule 9 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
     DOUBLE          reduce using rule 9 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
     CHAR            reduce using rule 9 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
     FLOAT           reduce using rule 9 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
+    COMMENT         reduce using rule 9 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
+    VOID            reduce using rule 9 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
     $end            reduce using rule 9 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
     COLCHETE_FECHADO reduce using rule 9 (declaracao_variavel -> tipo ID EQUAL expressao PONTO_VIRGULA .)
 
 
-state 49
+state 63
 
-    (38) parametro -> tipo ID .
-    (39) parametro -> tipo ID . CHAVE_ABERTA CHAVE_FECHADA
+    (40) parametro -> tipo ID .
+    (41) parametro -> tipo ID . CHAVE_ABERTA CHAVE_FECHADA
 
-    VIRGULA         reduce using rule 38 (parametro -> tipo ID .)
-    PAREN_FECHADO   reduce using rule 38 (parametro -> tipo ID .)
-    CHAVE_ABERTA    shift and go to state 61
+    VIRGULA         reduce using rule 40 (parametro -> tipo ID .)
+    PAREN_FECHADO   reduce using rule 40 (parametro -> tipo ID .)
+    CHAVE_ABERTA    shift and go to state 76
 
 
-state 50
+state 64
 
-    (12) declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO . bloco
-    (40) bloco -> . COLCHETE_ABERTO declaracao COLCHETE_FECHADO
+    (13) declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO . bloco
+    (42) bloco -> . COLCHETE_ABERTO declaracao COLCHETE_FECHADO
 
-    COLCHETE_ABERTO shift and go to state 63
+    COLCHETE_ABERTO shift and go to state 78
 
-    bloco                          shift and go to state 62
+    bloco                          shift and go to state 77
 
-state 51
+state 65
 
-    (36) parametros -> parametro VIRGULA . parametros
-    (35) parametros -> . parametro
-    (36) parametros -> . parametro VIRGULA parametros
-    (37) parametros -> .
-    (38) parametro -> . tipo ID
-    (39) parametro -> . tipo ID CHAVE_ABERTA CHAVE_FECHADA
-    (15) tipo -> . INT
-    (16) tipo -> . STRING
-    (17) tipo -> . BOOLEAN
-    (18) tipo -> . DOUBLE
-    (19) tipo -> . CHAR
-    (20) tipo -> . FLOAT
+    (38) parametros -> parametro VIRGULA . parametros
+    (37) parametros -> . parametro
+    (38) parametros -> . parametro VIRGULA parametros
+    (39) parametros -> .
+    (40) parametro -> . tipo ID
+    (41) parametro -> . tipo ID CHAVE_ABERTA CHAVE_FECHADA
+    (16) tipo -> . INT
+    (17) tipo -> . STRING
+    (18) tipo -> . BOOLEAN
+    (19) tipo -> . DOUBLE
+    (20) tipo -> . CHAR
+    (21) tipo -> . FLOAT
 
-    PAREN_FECHADO   reduce using rule 37 (parametros -> .)
+    PAREN_FECHADO   reduce using rule 39 (parametros -> .)
     INT             shift and go to state 10
     STRING          shift and go to state 11
     BOOLEAN         shift and go to state 12
@@ -1058,142 +1291,151 @@ state 51
     CHAR            shift and go to state 14
     FLOAT           shift and go to state 15
 
-    parametro                      shift and go to state 36
-    parametros                     shift and go to state 64
-    tipo                           shift and go to state 34
+    parametro                      shift and go to state 42
+    parametros                     shift and go to state 79
+    tipo                           shift and go to state 40
 
-state 52
+state 66
 
-    (13) declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO . bloco
-    (40) bloco -> . COLCHETE_ABERTO declaracao COLCHETE_FECHADO
+    (14) declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO . bloco
+    (42) bloco -> . COLCHETE_ABERTO declaracao COLCHETE_FECHADO
 
-    COLCHETE_ABERTO shift and go to state 63
+    COLCHETE_ABERTO shift and go to state 78
 
-    bloco                          shift and go to state 65
+    bloco                          shift and go to state 80
 
-state 53
+state 67
 
-    (27) atribuicao -> ID EQUAL expressao .
+    (28) atribuicao -> ID EQUAL expressao .
 
-    PONTO_VIRGULA   reduce using rule 27 (atribuicao -> ID EQUAL expressao .)
-
-
-state 54
-
-    (28) atribuicao -> ID PLUS_EQUAL expressao .
-
-    PONTO_VIRGULA   reduce using rule 28 (atribuicao -> ID PLUS_EQUAL expressao .)
+    PONTO_VIRGULA   reduce using rule 28 (atribuicao -> ID EQUAL expressao .)
 
 
-state 55
+state 68
 
-    (29) atribuicao -> ID MINUS_EQUAL expressao .
+    (29) atribuicao -> ID PLUS_EQUAL expressao .
 
-    PONTO_VIRGULA   reduce using rule 29 (atribuicao -> ID MINUS_EQUAL expressao .)
-
-
-state 56
-
-    (30) atribuicao -> ID TIMES_EQUAL expressao .
-
-    PONTO_VIRGULA   reduce using rule 30 (atribuicao -> ID TIMES_EQUAL expressao .)
+    PONTO_VIRGULA   reduce using rule 29 (atribuicao -> ID PLUS_EQUAL expressao .)
 
 
-state 57
+state 69
 
-    (31) atribuicao -> ID DIVIDE_EQUAL expressao .
+    (30) atribuicao -> ID MINUS_EQUAL expressao .
 
-    PONTO_VIRGULA   reduce using rule 31 (atribuicao -> ID DIVIDE_EQUAL expressao .)
-
-
-state 58
-
-    (32) atribuicao -> ID REST_EQUAL expressao .
-
-    PONTO_VIRGULA   reduce using rule 32 (atribuicao -> ID REST_EQUAL expressao .)
+    PONTO_VIRGULA   reduce using rule 30 (atribuicao -> ID MINUS_EQUAL expressao .)
 
 
-state 59
+state 70
 
-    (33) atribuicao -> ID AND EQUAL . expressao
-    (21) expressao -> . atribuicao
-    (22) atribuicao -> . NUMBER_DEC
-    (23) atribuicao -> . NUMBER_INT
-    (24) atribuicao -> . TYPE_STRING
-    (25) atribuicao -> . TYPE_BOOLEAN
-    (26) atribuicao -> . ID
-    (27) atribuicao -> . ID EQUAL expressao
-    (28) atribuicao -> . ID PLUS_EQUAL expressao
-    (29) atribuicao -> . ID MINUS_EQUAL expressao
-    (30) atribuicao -> . ID TIMES_EQUAL expressao
-    (31) atribuicao -> . ID DIVIDE_EQUAL expressao
-    (32) atribuicao -> . ID REST_EQUAL expressao
-    (33) atribuicao -> . ID AND EQUAL expressao
-    (34) atribuicao -> . ID OR EQUAL expressao
+    (31) atribuicao -> ID TIMES_EQUAL expressao .
 
-    NUMBER_DEC      shift and go to state 30
-    NUMBER_INT      shift and go to state 31
-    TYPE_STRING     shift and go to state 32
-    TYPE_BOOLEAN    shift and go to state 33
-    ID              shift and go to state 27
-
-    expressao                      shift and go to state 66
-    atribuicao                     shift and go to state 29
-
-state 60
-
-    (34) atribuicao -> ID OR EQUAL . expressao
-    (21) expressao -> . atribuicao
-    (22) atribuicao -> . NUMBER_DEC
-    (23) atribuicao -> . NUMBER_INT
-    (24) atribuicao -> . TYPE_STRING
-    (25) atribuicao -> . TYPE_BOOLEAN
-    (26) atribuicao -> . ID
-    (27) atribuicao -> . ID EQUAL expressao
-    (28) atribuicao -> . ID PLUS_EQUAL expressao
-    (29) atribuicao -> . ID MINUS_EQUAL expressao
-    (30) atribuicao -> . ID TIMES_EQUAL expressao
-    (31) atribuicao -> . ID DIVIDE_EQUAL expressao
-    (32) atribuicao -> . ID REST_EQUAL expressao
-    (33) atribuicao -> . ID AND EQUAL expressao
-    (34) atribuicao -> . ID OR EQUAL expressao
-
-    NUMBER_DEC      shift and go to state 30
-    NUMBER_INT      shift and go to state 31
-    TYPE_STRING     shift and go to state 32
-    TYPE_BOOLEAN    shift and go to state 33
-    ID              shift and go to state 27
-
-    expressao                      shift and go to state 67
-    atribuicao                     shift and go to state 29
-
-state 61
-
-    (39) parametro -> tipo ID CHAVE_ABERTA . CHAVE_FECHADA
-
-    CHAVE_FECHADA   shift and go to state 68
+    PONTO_VIRGULA   reduce using rule 31 (atribuicao -> ID TIMES_EQUAL expressao .)
 
 
-state 62
+state 71
 
-    (12) declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .
+    (32) atribuicao -> ID DIVIDE_EQUAL expressao .
 
-    COMMENT         reduce using rule 12 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    ID              reduce using rule 12 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    VOID            reduce using rule 12 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    INT             reduce using rule 12 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    STRING          reduce using rule 12 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    BOOLEAN         reduce using rule 12 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    DOUBLE          reduce using rule 12 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    CHAR            reduce using rule 12 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    FLOAT           reduce using rule 12 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    $end            reduce using rule 12 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    COLCHETE_FECHADO reduce using rule 12 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    PONTO_VIRGULA   reduce using rule 32 (atribuicao -> ID DIVIDE_EQUAL expressao .)
 
 
-state 63
+state 72
 
-    (40) bloco -> COLCHETE_ABERTO . declaracao COLCHETE_FECHADO
+    (33) atribuicao -> ID REST_EQUAL expressao .
+
+    PONTO_VIRGULA   reduce using rule 33 (atribuicao -> ID REST_EQUAL expressao .)
+
+
+state 73
+
+    (34) atribuicao -> ID AND EQUAL . expressao
+    (22) expressao -> . atribuicao
+    (23) atribuicao -> . NUMBER_DEC
+    (24) atribuicao -> . NUMBER_INT
+    (25) atribuicao -> . TYPE_STRING
+    (26) atribuicao -> . TYPE_BOOLEAN
+    (27) atribuicao -> . ID
+    (28) atribuicao -> . ID EQUAL expressao
+    (29) atribuicao -> . ID PLUS_EQUAL expressao
+    (30) atribuicao -> . ID MINUS_EQUAL expressao
+    (31) atribuicao -> . ID TIMES_EQUAL expressao
+    (32) atribuicao -> . ID DIVIDE_EQUAL expressao
+    (33) atribuicao -> . ID REST_EQUAL expressao
+    (34) atribuicao -> . ID AND EQUAL expressao
+    (35) atribuicao -> . ID OR EQUAL expressao
+    (36) atribuicao -> . ID comparador expressao
+
+    NUMBER_DEC      shift and go to state 36
+    NUMBER_INT      shift and go to state 37
+    TYPE_STRING     shift and go to state 38
+    TYPE_BOOLEAN    shift and go to state 39
+    ID              shift and go to state 33
+
+    expressao                      shift and go to state 81
+    atribuicao                     shift and go to state 35
+
+state 74
+
+    (35) atribuicao -> ID OR EQUAL . expressao
+    (22) expressao -> . atribuicao
+    (23) atribuicao -> . NUMBER_DEC
+    (24) atribuicao -> . NUMBER_INT
+    (25) atribuicao -> . TYPE_STRING
+    (26) atribuicao -> . TYPE_BOOLEAN
+    (27) atribuicao -> . ID
+    (28) atribuicao -> . ID EQUAL expressao
+    (29) atribuicao -> . ID PLUS_EQUAL expressao
+    (30) atribuicao -> . ID MINUS_EQUAL expressao
+    (31) atribuicao -> . ID TIMES_EQUAL expressao
+    (32) atribuicao -> . ID DIVIDE_EQUAL expressao
+    (33) atribuicao -> . ID REST_EQUAL expressao
+    (34) atribuicao -> . ID AND EQUAL expressao
+    (35) atribuicao -> . ID OR EQUAL expressao
+    (36) atribuicao -> . ID comparador expressao
+
+    NUMBER_DEC      shift and go to state 36
+    NUMBER_INT      shift and go to state 37
+    TYPE_STRING     shift and go to state 38
+    TYPE_BOOLEAN    shift and go to state 39
+    ID              shift and go to state 33
+
+    expressao                      shift and go to state 82
+    atribuicao                     shift and go to state 35
+
+state 75
+
+    (36) atribuicao -> ID comparador expressao .
+
+    PONTO_VIRGULA   reduce using rule 36 (atribuicao -> ID comparador expressao .)
+
+
+state 76
+
+    (41) parametro -> tipo ID CHAVE_ABERTA . CHAVE_FECHADA
+
+    CHAVE_FECHADA   shift and go to state 83
+
+
+state 77
+
+    (13) declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .
+
+    COMMENT         reduce using rule 13 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    ID              reduce using rule 13 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    VOID            reduce using rule 13 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    INT             reduce using rule 13 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    STRING          reduce using rule 13 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    BOOLEAN         reduce using rule 13 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    DOUBLE          reduce using rule 13 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    CHAR            reduce using rule 13 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    FLOAT           reduce using rule 13 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    $end            reduce using rule 13 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    COLCHETE_FECHADO reduce using rule 13 (declaracao_funcao -> tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+
+
+state 78
+
+    (42) bloco -> COLCHETE_ABERTO . declaracao COLCHETE_FECHADO
     (2) declaracao -> . declaracao_variavel
     (3) declaracao -> . declaracao_funcao
     (4) declaracao -> . declaracao_estrutura
@@ -1204,29 +1446,20 @@ state 63
     (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
     (10) declaracao_variavel -> . ID PLUS PLUS PONTO_VIRGULA
     (11) declaracao_variavel -> . ID MINUS MINUS PONTO_VIRGULA
-    (12) declaracao_funcao -> . tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
-    (13) declaracao_funcao -> . VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
-    (14) declaracao_estrutura -> .
-    (15) tipo -> . INT
-    (16) tipo -> . STRING
-    (17) tipo -> . BOOLEAN
-    (18) tipo -> . DOUBLE
-    (19) tipo -> . CHAR
-    (20) tipo -> . FLOAT
+    (12) declaracao_variavel -> . declaracao_variavel declaracao_variavel
+    (13) declaracao_funcao -> . tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (14) declaracao_funcao -> . VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (15) declaracao_estrutura -> . ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO
+    (16) tipo -> . INT
+    (17) tipo -> . STRING
+    (18) tipo -> . BOOLEAN
+    (19) tipo -> . DOUBLE
+    (20) tipo -> . CHAR
+    (21) tipo -> . FLOAT
 
   ! shift/reduce conflict for COMMENT resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for VOID resolved as shift
-  ! reduce/reduce conflict for COLCHETE_FECHADO resolved using rule 7 (declaracao -> .)
-  ! shift/reduce conflict for COMMENT resolved as shift
-  ! shift/reduce conflict for ID resolved as shift
-  ! shift/reduce conflict for VOID resolved as shift
-  ! reduce/reduce conflict for INT resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for STRING resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for BOOLEAN resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for DOUBLE resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for CHAR resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for FLOAT resolved using rule 7 (declaracao -> .)
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for BOOLEAN resolved as shift
@@ -1253,72 +1486,62 @@ state 63
   ! DOUBLE          [ reduce using rule 7 (declaracao -> .) ]
   ! CHAR            [ reduce using rule 7 (declaracao -> .) ]
   ! FLOAT           [ reduce using rule 7 (declaracao -> .) ]
-  ! COLCHETE_FECHADO [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! COMMENT         [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! ID              [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! VOID            [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! INT             [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! STRING          [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! BOOLEAN         [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! DOUBLE          [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! CHAR            [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! FLOAT           [ reduce using rule 14 (declaracao_estrutura -> .) ]
 
-    declaracao                     shift and go to state 69
+    declaracao                     shift and go to state 84
     declaracao_variavel            shift and go to state 3
     declaracao_funcao              shift and go to state 4
     declaracao_estrutura           shift and go to state 5
     tipo                           shift and go to state 7
 
-state 64
+state 79
 
-    (36) parametros -> parametro VIRGULA parametros .
+    (38) parametros -> parametro VIRGULA parametros .
 
-    PAREN_FECHADO   reduce using rule 36 (parametros -> parametro VIRGULA parametros .)
-
-
-state 65
-
-    (13) declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .
-
-    COMMENT         reduce using rule 13 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    ID              reduce using rule 13 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    VOID            reduce using rule 13 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    INT             reduce using rule 13 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    STRING          reduce using rule 13 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    BOOLEAN         reduce using rule 13 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    DOUBLE          reduce using rule 13 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    CHAR            reduce using rule 13 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    FLOAT           reduce using rule 13 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    $end            reduce using rule 13 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
-    COLCHETE_FECHADO reduce using rule 13 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    PAREN_FECHADO   reduce using rule 38 (parametros -> parametro VIRGULA parametros .)
 
 
-state 66
+state 80
 
-    (33) atribuicao -> ID AND EQUAL expressao .
+    (14) declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .
 
-    PONTO_VIRGULA   reduce using rule 33 (atribuicao -> ID AND EQUAL expressao .)
-
-
-state 67
-
-    (34) atribuicao -> ID OR EQUAL expressao .
-
-    PONTO_VIRGULA   reduce using rule 34 (atribuicao -> ID OR EQUAL expressao .)
-
-
-state 68
-
-    (39) parametro -> tipo ID CHAVE_ABERTA CHAVE_FECHADA .
-
-    VIRGULA         reduce using rule 39 (parametro -> tipo ID CHAVE_ABERTA CHAVE_FECHADA .)
-    PAREN_FECHADO   reduce using rule 39 (parametro -> tipo ID CHAVE_ABERTA CHAVE_FECHADA .)
+    COMMENT         reduce using rule 14 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    ID              reduce using rule 14 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    VOID            reduce using rule 14 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    INT             reduce using rule 14 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    STRING          reduce using rule 14 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    BOOLEAN         reduce using rule 14 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    DOUBLE          reduce using rule 14 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    CHAR            reduce using rule 14 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    FLOAT           reduce using rule 14 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    $end            reduce using rule 14 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
+    COLCHETE_FECHADO reduce using rule 14 (declaracao_funcao -> VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco .)
 
 
-state 69
+state 81
 
-    (40) bloco -> COLCHETE_ABERTO declaracao . COLCHETE_FECHADO
+    (34) atribuicao -> ID AND EQUAL expressao .
+
+    PONTO_VIRGULA   reduce using rule 34 (atribuicao -> ID AND EQUAL expressao .)
+
+
+state 82
+
+    (35) atribuicao -> ID OR EQUAL expressao .
+
+    PONTO_VIRGULA   reduce using rule 35 (atribuicao -> ID OR EQUAL expressao .)
+
+
+state 83
+
+    (41) parametro -> tipo ID CHAVE_ABERTA CHAVE_FECHADA .
+
+    VIRGULA         reduce using rule 41 (parametro -> tipo ID CHAVE_ABERTA CHAVE_FECHADA .)
+    PAREN_FECHADO   reduce using rule 41 (parametro -> tipo ID CHAVE_ABERTA CHAVE_FECHADA .)
+
+
+state 84
+
+    (42) bloco -> COLCHETE_ABERTO declaracao . COLCHETE_FECHADO
     (5) declaracao -> declaracao . declaracao
     (2) declaracao -> . declaracao_variavel
     (3) declaracao -> . declaracao_funcao
@@ -1330,37 +1553,28 @@ state 69
     (9) declaracao_variavel -> . tipo ID EQUAL expressao PONTO_VIRGULA
     (10) declaracao_variavel -> . ID PLUS PLUS PONTO_VIRGULA
     (11) declaracao_variavel -> . ID MINUS MINUS PONTO_VIRGULA
-    (12) declaracao_funcao -> . tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
-    (13) declaracao_funcao -> . VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
-    (14) declaracao_estrutura -> .
-    (15) tipo -> . INT
-    (16) tipo -> . STRING
-    (17) tipo -> . BOOLEAN
-    (18) tipo -> . DOUBLE
-    (19) tipo -> . CHAR
-    (20) tipo -> . FLOAT
+    (12) declaracao_variavel -> . declaracao_variavel declaracao_variavel
+    (13) declaracao_funcao -> . tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (14) declaracao_funcao -> . VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    (15) declaracao_estrutura -> . ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO
+    (16) tipo -> . INT
+    (17) tipo -> . STRING
+    (18) tipo -> . BOOLEAN
+    (19) tipo -> . DOUBLE
+    (20) tipo -> . CHAR
+    (21) tipo -> . FLOAT
 
   ! shift/reduce conflict for COMMENT resolved as shift
   ! shift/reduce conflict for COLCHETE_FECHADO resolved as shift
   ! shift/reduce conflict for ID resolved as shift
   ! shift/reduce conflict for VOID resolved as shift
-  ! shift/reduce conflict for COMMENT resolved as shift
-  ! shift/reduce conflict for ID resolved as shift
-  ! shift/reduce conflict for VOID resolved as shift
-  ! reduce/reduce conflict for INT resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for STRING resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for BOOLEAN resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for DOUBLE resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for CHAR resolved using rule 7 (declaracao -> .)
-  ! reduce/reduce conflict for FLOAT resolved using rule 7 (declaracao -> .)
-  ! shift/reduce conflict for COLCHETE_FECHADO resolved as shift
   ! shift/reduce conflict for INT resolved as shift
   ! shift/reduce conflict for STRING resolved as shift
   ! shift/reduce conflict for BOOLEAN resolved as shift
   ! shift/reduce conflict for DOUBLE resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
-    COLCHETE_FECHADO shift and go to state 70
+    COLCHETE_FECHADO shift and go to state 85
     COMMENT         shift and go to state 6
     ID              shift and go to state 8
     VOID            shift and go to state 9
@@ -1381,16 +1595,6 @@ state 69
   ! CHAR            [ reduce using rule 7 (declaracao -> .) ]
   ! FLOAT           [ reduce using rule 7 (declaracao -> .) ]
   ! COLCHETE_FECHADO [ reduce using rule 7 (declaracao -> .) ]
-  ! COMMENT         [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! ID              [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! VOID            [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! INT             [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! STRING          [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! BOOLEAN         [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! DOUBLE          [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! CHAR            [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! FLOAT           [ reduce using rule 14 (declaracao_estrutura -> .) ]
-  ! COLCHETE_FECHADO [ reduce using rule 14 (declaracao_estrutura -> .) ]
 
     declaracao                     shift and go to state 16
     declaracao_variavel            shift and go to state 3
@@ -1398,28 +1602,25 @@ state 69
     declaracao_estrutura           shift and go to state 5
     tipo                           shift and go to state 7
 
-state 70
+state 85
 
-    (40) bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .
+    (42) bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .
 
-    COMMENT         reduce using rule 40 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
-    ID              reduce using rule 40 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
-    VOID            reduce using rule 40 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
-    INT             reduce using rule 40 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
-    STRING          reduce using rule 40 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
-    BOOLEAN         reduce using rule 40 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
-    DOUBLE          reduce using rule 40 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
-    CHAR            reduce using rule 40 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
-    FLOAT           reduce using rule 40 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
-    $end            reduce using rule 40 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
-    COLCHETE_FECHADO reduce using rule 40 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
+    COMMENT         reduce using rule 42 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
+    ID              reduce using rule 42 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
+    VOID            reduce using rule 42 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
+    INT             reduce using rule 42 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
+    STRING          reduce using rule 42 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
+    BOOLEAN         reduce using rule 42 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
+    DOUBLE          reduce using rule 42 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
+    CHAR            reduce using rule 42 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
+    FLOAT           reduce using rule 42 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
+    $end            reduce using rule 42 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
+    COLCHETE_FECHADO reduce using rule 42 (bloco -> COLCHETE_ABERTO declaracao COLCHETE_FECHADO .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for COMMENT in state 0 resolved as shift
-WARNING: shift/reduce conflict for ID in state 0 resolved as shift
-WARNING: shift/reduce conflict for VOID in state 0 resolved as shift
 WARNING: shift/reduce conflict for COMMENT in state 0 resolved as shift
 WARNING: shift/reduce conflict for ID in state 0 resolved as shift
 WARNING: shift/reduce conflict for VOID in state 0 resolved as shift
@@ -1432,19 +1633,20 @@ WARNING: shift/reduce conflict for FLOAT in state 0 resolved as shift
 WARNING: shift/reduce conflict for COMMENT in state 2 resolved as shift
 WARNING: shift/reduce conflict for ID in state 2 resolved as shift
 WARNING: shift/reduce conflict for VOID in state 2 resolved as shift
-WARNING: shift/reduce conflict for COMMENT in state 2 resolved as shift
-WARNING: shift/reduce conflict for ID in state 2 resolved as shift
-WARNING: shift/reduce conflict for VOID in state 2 resolved as shift
 WARNING: shift/reduce conflict for INT in state 2 resolved as shift
 WARNING: shift/reduce conflict for STRING in state 2 resolved as shift
 WARNING: shift/reduce conflict for BOOLEAN in state 2 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 2 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 2 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 2 resolved as shift
+WARNING: shift/reduce conflict for ID in state 3 resolved as shift
+WARNING: shift/reduce conflict for INT in state 3 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 3 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 3 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 3 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 3 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 3 resolved as shift
 WARNING: shift/reduce conflict for COMMENT in state 16 resolved as shift
-WARNING: shift/reduce conflict for COMMENT in state 16 resolved as shift
-WARNING: shift/reduce conflict for ID in state 16 resolved as shift
-WARNING: shift/reduce conflict for VOID in state 16 resolved as shift
 WARNING: shift/reduce conflict for COMMENT in state 16 resolved as shift
 WARNING: shift/reduce conflict for ID in state 16 resolved as shift
 WARNING: shift/reduce conflict for VOID in state 16 resolved as shift
@@ -1454,46 +1656,33 @@ WARNING: shift/reduce conflict for BOOLEAN in state 16 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 16 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 16 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 16 resolved as shift
-WARNING: shift/reduce conflict for COMMENT in state 63 resolved as shift
-WARNING: shift/reduce conflict for ID in state 63 resolved as shift
-WARNING: shift/reduce conflict for VOID in state 63 resolved as shift
-WARNING: shift/reduce conflict for COMMENT in state 63 resolved as shift
-WARNING: shift/reduce conflict for ID in state 63 resolved as shift
-WARNING: shift/reduce conflict for VOID in state 63 resolved as shift
-WARNING: shift/reduce conflict for INT in state 63 resolved as shift
-WARNING: shift/reduce conflict for STRING in state 63 resolved as shift
-WARNING: shift/reduce conflict for BOOLEAN in state 63 resolved as shift
-WARNING: shift/reduce conflict for DOUBLE in state 63 resolved as shift
-WARNING: shift/reduce conflict for CHAR in state 63 resolved as shift
-WARNING: shift/reduce conflict for FLOAT in state 63 resolved as shift
-WARNING: shift/reduce conflict for COMMENT in state 69 resolved as shift
-WARNING: shift/reduce conflict for COLCHETE_FECHADO in state 69 resolved as shift
-WARNING: shift/reduce conflict for ID in state 69 resolved as shift
-WARNING: shift/reduce conflict for VOID in state 69 resolved as shift
-WARNING: shift/reduce conflict for COMMENT in state 69 resolved as shift
-WARNING: shift/reduce conflict for ID in state 69 resolved as shift
-WARNING: shift/reduce conflict for VOID in state 69 resolved as shift
-WARNING: shift/reduce conflict for COLCHETE_FECHADO in state 69 resolved as shift
-WARNING: shift/reduce conflict for INT in state 69 resolved as shift
-WARNING: shift/reduce conflict for STRING in state 69 resolved as shift
-WARNING: shift/reduce conflict for BOOLEAN in state 69 resolved as shift
-WARNING: shift/reduce conflict for DOUBLE in state 69 resolved as shift
-WARNING: shift/reduce conflict for CHAR in state 69 resolved as shift
-WARNING: shift/reduce conflict for FLOAT in state 69 resolved as shift
-WARNING: reduce/reduce conflict in state 0 resolved using rule (declaracao -> <empty>)
-WARNING: rejected rule (declaracao_estrutura -> <empty>) in state 0
+WARNING: shift/reduce conflict for ID in state 17 resolved as shift
+WARNING: shift/reduce conflict for INT in state 17 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 17 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 17 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 17 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 17 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 17 resolved as shift
+WARNING: shift/reduce conflict for COMMENT in state 78 resolved as shift
+WARNING: shift/reduce conflict for ID in state 78 resolved as shift
+WARNING: shift/reduce conflict for VOID in state 78 resolved as shift
+WARNING: shift/reduce conflict for INT in state 78 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 78 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 78 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 78 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 78 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 78 resolved as shift
+WARNING: shift/reduce conflict for COMMENT in state 84 resolved as shift
+WARNING: shift/reduce conflict for COLCHETE_FECHADO in state 84 resolved as shift
+WARNING: shift/reduce conflict for ID in state 84 resolved as shift
+WARNING: shift/reduce conflict for VOID in state 84 resolved as shift
+WARNING: shift/reduce conflict for INT in state 84 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 84 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 84 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 84 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 84 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 84 resolved as shift
 WARNING: reduce/reduce conflict in state 2 resolved using rule (programa -> declaracao)
 WARNING: rejected rule (declaracao -> <empty>) in state 2
-WARNING: reduce/reduce conflict in state 2 resolved using rule (declaracao -> <empty>)
-WARNING: rejected rule (declaracao_estrutura -> <empty>) in state 2
-WARNING: reduce/reduce conflict in state 2 resolved using rule (programa -> declaracao)
-WARNING: rejected rule (declaracao_estrutura -> <empty>) in state 2
 WARNING: reduce/reduce conflict in state 16 resolved using rule (declaracao -> declaracao declaracao)
 WARNING: rejected rule (declaracao -> <empty>) in state 16
-WARNING: reduce/reduce conflict in state 16 resolved using rule (declaracao -> declaracao declaracao)
-WARNING: rejected rule (declaracao_estrutura -> <empty>) in state 16
-WARNING: reduce/reduce conflict in state 63 resolved using rule (declaracao -> <empty>)
-WARNING: rejected rule (declaracao_estrutura -> <empty>) in state 63
-WARNING: reduce/reduce conflict in state 69 resolved using rule (declaracao -> <empty>)
-WARNING: rejected rule (declaracao_estrutura -> <empty>) in state 69
-WARNING: Rule (declaracao_estrutura -> <empty>) is never reduced

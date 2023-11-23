@@ -118,11 +118,12 @@ def p_declaracao(p):
     | tipo ID EQUAL expressao PONTO_VIRGULA
     | ID PLUS PLUS PONTO_VIRGULA
     | ID MINUS MINUS PONTO_VIRGULA
+    | declaracao_variavel declaracao_variavel
     
     declaracao_funcao : tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
     | VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
     
-    declaracao_estrutura : '''
+    declaracao_estrutura : ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO'''
 
 def p_tipo(p):
     '''tipo : INT
@@ -148,7 +149,8 @@ def p_atribuicao(p):
     | ID DIVIDE_EQUAL expressao
     | ID REST_EQUAL expressao
     | ID AND EQUAL expressao
-    | ID OR EQUAL expressao'''
+    | ID OR EQUAL expressao
+    | ID comparador expressao'''
 
 def p_parametros(p):
     '''parametros : parametro
@@ -160,6 +162,21 @@ def p_parametros(p):
 
 def p_bloco(p):
     '''bloco : COLCHETE_ABERTO declaracao COLCHETE_FECHADO'''
+
+def p_comparador(p):
+    '''comparador : LESS_THAN
+    | IS_EQUALS
+    | LESS_THAN_OR_EQUALS
+    | GREATER_THAN
+    | GREATER_THAN_OR_EQUALS
+    | IS_DIFFERENT'''
+
+def p_array(p):
+    '''array : ID CHAVE_ABERTA expressao CHAVE_FECHADA
+    | ID CHAVE_ABERTA CHAVE_FECHADA
+    | array_inicializacao
+    
+    array_inicializacao : COLCHETE_ABERTO expressao COLCHETE_FECHADO'''
 
 def p_error(p):
     raise Exception("Syntax error")
@@ -178,7 +195,8 @@ def sintatico():
     #    print(result)
     s = Complemento.getCode()
     result = parser.parse(s)
-    print(result)
+    #print(result)
+    print('\nSINTATICO APROVADO!')
 
 
 #lexico()
