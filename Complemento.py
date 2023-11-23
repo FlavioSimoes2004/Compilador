@@ -18,8 +18,10 @@ def getCode():
 TIPOS = [
    'NUMBER_INT',
    'NUMBER_DEC',
+   'TYPE_FLOAT',
    'TYPE_BOOLEAN',
    'TYPE_STRING',
+   'TYPE_CHAR',
    'ID',
    'OPERATOR',
    'COMPARE_OPERATOR',
@@ -43,7 +45,8 @@ RESERVED_WORD_LIST = {
     'scanf': 'SCANF',
     'main': 'MAIN',
     'return': 'RETURN',
-    'println': 'PRINTLN'
+    'println': 'PRINTLN',
+    'struct' : 'STRUCT'
 }
 
 OP_LIST = {

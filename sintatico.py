@@ -112,7 +112,6 @@ def p_declaracao(p):
     | declaracao_estrutura
     | declaracao declaracao
     | COMMENT
-    | retorno
     | 
     
     declaracao_variavel : tipo ID PONTO_VIRGULA
@@ -124,7 +123,7 @@ def p_declaracao(p):
     declaracao_funcao : tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
     | VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
     
-    declaracao_estrutura : ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO'''
+    declaracao_estrutura : STRUCT ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO'''
 
 def p_tipo(p):
     '''tipo : INT
@@ -135,13 +134,14 @@ def p_tipo(p):
     | FLOAT'''
 
 def p_expressao(p):
-    '''expressao : atribuicao'''
-
-def p_atribuicao(p):
-    '''atribuicao : NUMBER_DEC
+    '''expressao : atribuicao
+    
+    atribuicao : NUMBER_DEC
     | NUMBER_INT
+    | TYPE_FLOAT
     | TYPE_STRING
     | TYPE_BOOLEAN
+    | TYPE_CHAR
     | ID
     | ID EQUAL expressao
     | ID PLUS_EQUAL expressao
@@ -162,7 +162,36 @@ def p_parametros(p):
     | tipo ID CHAVE_ABERTA CHAVE_FECHADA'''
 
 def p_bloco(p):
-    '''bloco : COLCHETE_ABERTO declaracao COLCHETE_FECHADO'''
+    '''bloco : COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO'''
+
+def p_declaracao_ou_coisas(p):
+    '''declaracao_ou_coisas : declaracao_ou_coisas declaracao_ou_coisas
+    | retorno
+    | declaracao_variavel
+    | if
+    | '''
+
+def p_retorno(p):
+    '''retorno : RETURN PONTO_VIRGULA
+    | RETURN ID PONTO_VIRGULA
+    | RETURN expressao PONTO_VIRGULA
+    | RETURN ID PAREN_ABERTO parametros_dado PAREN_FECHADO PONTO_VIRGULA
+    
+    parametros_dado : variavel_ou_valor VIRGULA parametros_dado
+    | variavel_ou_valor'''
+
+def p_if(p):
+    '''if : IF PAREN_ABERTO statement PAREN_FECHADO bloco
+    
+    statement : variavel_ou_valor comparador variavel_ou_valor operador_logico
+    
+    variavel_ou_valor : ID
+    | NUMBER_DEC
+    | NUMBER_INT
+    | TYPE_STRING
+    | TYPE_BOOLEAN
+    | TYPE_CHAR
+    | TYPE_FLOAT'''
 
 def p_comparador(p):
     '''comparador : LESS_THAN
@@ -172,17 +201,17 @@ def p_comparador(p):
     | GREATER_THAN_OR_EQUALS
     | IS_DIFFERENT'''
 
+def p_operador_logico(p):
+    '''operador_logico : AND statement
+    | OR statement
+    | '''
+
 def p_array(p):
     '''array : ID CHAVE_ABERTA expressao CHAVE_FECHADA
     | ID CHAVE_ABERTA CHAVE_FECHADA
     | array_inicializacao
     
     array_inicializacao : COLCHETE_ABERTO expressao COLCHETE_FECHADO'''
-
-def p_retorno(p):
-    '''retorno : RETURN ID PONTO_VIRGULA
-    | RETURN expressao PONTO_VIRGULA
-    | RETURN ID PAREN_ABERTO parametros PAREN_FECHADO PONTO_VIRGULA'''
 
 def p_error(p):
     raise Exception("Syntax error")

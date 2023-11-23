@@ -1,6 +1,14 @@
-boolean procedimento(int teste1, int teste2)
-{
-    return 10;
+struct seila{
     int b;
-    return 10;
+}
+
+int teste(){
+    return a;
+    int a = 100.0;
+    if(a < b || b > a){
+        if(a < b)
+        {
+            return a(100.0);
+        }
+    }
 }
