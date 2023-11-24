@@ -1,5 +1,5 @@
 int funcao(){
-    if(a < b)
+    if(a < b && joaoGay == 1)
     {
 
     }

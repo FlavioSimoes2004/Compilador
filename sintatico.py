@@ -225,11 +225,13 @@ def p_operador_logico(p):
     | '''
 
 def p_array(p):
-    '''array : ID CHAVE_ABERTA expressao CHAVE_FECHADA
-    | ID CHAVE_ABERTA CHAVE_FECHADA
+    '''array : ID chaves_array
     | array_inicializacao
     
-    array_inicializacao : COLCHETE_ABERTO expressao COLCHETE_FECHADO'''
+    array_inicializacao : COLCHETE_ABERTO expressao COLCHETE_FECHADO
+    
+    chaves_array : CHAVE_ABERTA expressao CHAVE_FECHADA chaves_array
+    | '''
 
 def p_error(p):
     raise Exception("Syntax error")

@@ -100,20 +100,21 @@ Rule 82    comparador -> IS_DIFFERENT
 Rule 83    operador_logico -> AND statement
 Rule 84    operador_logico -> OR statement
 Rule 85    operador_logico -> <empty>
-Rule 86    array -> ID CHAVE_ABERTA expressao CHAVE_FECHADA
-Rule 87    array -> ID CHAVE_ABERTA CHAVE_FECHADA
-Rule 88    array -> array_inicializacao
-Rule 89    array_inicializacao -> COLCHETE_ABERTO expressao COLCHETE_FECHADO
+Rule 86    array -> ID chaves_array
+Rule 87    array -> array_inicializacao
+Rule 88    array_inicializacao -> COLCHETE_ABERTO expressao COLCHETE_FECHADO
+Rule 89    chaves_array -> CHAVE_ABERTA expressao CHAVE_FECHADA chaves_array
+Rule 90    chaves_array -> <empty>
 
 Terminals, with rules where they appear
 
 AND                  : 39 83
 BOOLEAN              : 21
 CHAR                 : 23
-CHAVE_ABERTA         : 48 86 87
-CHAVE_FECHADA        : 48 86 87
-COLCHETE_ABERTO      : 18 49 89
-COLCHETE_FECHADO     : 18 49 89
+CHAVE_ABERTA         : 48 89
+CHAVE_FECHADA        : 48 89
+COLCHETE_ABERTO      : 18 49 88
+COLCHETE_FECHADO     : 18 49 88
 COMMENT              : 6
 COMPARE_OPERATOR     : 
 DIVIDE               : 
@@ -126,7 +127,7 @@ FLOAT                : 24
 FOR                  : 76
 GREATER_THAN         : 80
 GREATER_THAN_OR_EQUALS : 81
-ID                   : 9 10 11 12 14 15 18 32 33 34 35 36 37 38 39 40 41 47 48 58 60 68 76 86 87
+ID                   : 9 10 11 12 14 15 18 32 33 34 35 36 37 38 39 40 41 47 48 58 60 68 76 86
 IF                   : 63 64
 INT                  : 19
 IS_DIFFERENT         : 82
@@ -170,9 +171,10 @@ error                :
 Nonterminals, with rules where they appear
 
 array                : 
-array_inicializacao  : 88
+array_inicializacao  : 87
 atribuicao           : 25
 bloco                : 14 15 16 17 63 63 64 64 65 75 76
+chaves_array         : 86 89
 comparador           : 41 67 76
 declaracao           : 1 5 5
 declaracao_estrutura : 4
@@ -180,7 +182,7 @@ declaracao_funcao    : 3
 declaracao_ou_coisas : 7 49 50 50
 declaracao_variavel  : 2 13 13 18 52
 elseif               : 64 65
-expressao            : 10 33 34 35 36 37 38 39 40 41 59 76 86 89
+expressao            : 10 33 34 35 36 37 38 39 40 41 59 76 88 89
 for                  : 55
 if                   : 53
 operador_logico      : 67
