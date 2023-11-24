@@ -190,7 +190,11 @@ def p_retorno(p):
     | variavel_ou_valor'''
 
 def p_if(p):
-    '''if : IF PAREN_ABERTO statement PAREN_FECHADO bloco
+    '''if : IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco
+    | IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco
+
+    elseif : ELSEIF PAREN_ABERTO statement PAREN_FECHADO bloco elseif
+    | 
     
     statement : variavel_ou_valor comparador variavel_ou_valor operador_logico
     

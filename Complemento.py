@@ -36,6 +36,8 @@ RESERVED_WORD_LIST = {
     'boolean': 'BOOLEAN',
     'double': 'DOUBLE',
     'if': 'IF',
+    'else': 'ELSE',
+    'elseif': 'ELSEIF',
     'float': 'FLOAT',
     'while': 'WHILE',
     'for': 'FOR',

@@ -4,7 +4,6 @@ Unused terminals:
 
     COMPARE_OPERATOR
     DIVIDE
-    ELSE
     NOT
     OPERATOR
     PRINTLN
@@ -78,73 +77,77 @@ Rule 59    retorno -> RETURN expressao PONTO_VIRGULA
 Rule 60    retorno -> RETURN ID PAREN_ABERTO parametros_dado PAREN_FECHADO PONTO_VIRGULA
 Rule 61    parametros_dado -> variavel_ou_valor VIRGULA parametros_dado
 Rule 62    parametros_dado -> variavel_ou_valor
-Rule 63    if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco
-Rule 64    statement -> variavel_ou_valor comparador variavel_ou_valor operador_logico
-Rule 65    variavel_ou_valor -> ID
-Rule 66    variavel_ou_valor -> NUMBER_DEC
-Rule 67    variavel_ou_valor -> NUMBER_INT
-Rule 68    variavel_ou_valor -> TYPE_STRING
-Rule 69    variavel_ou_valor -> TYPE_BOOLEAN
-Rule 70    variavel_ou_valor -> TYPE_CHAR
-Rule 71    variavel_ou_valor -> TYPE_FLOAT
-Rule 72    while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
-Rule 73    for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
-Rule 74    comparador -> LESS_THAN
-Rule 75    comparador -> IS_EQUALS
-Rule 76    comparador -> LESS_THAN_OR_EQUALS
-Rule 77    comparador -> GREATER_THAN
-Rule 78    comparador -> GREATER_THAN_OR_EQUALS
-Rule 79    comparador -> IS_DIFFERENT
-Rule 80    operador_logico -> AND statement
-Rule 81    operador_logico -> OR statement
-Rule 82    operador_logico -> <empty>
-Rule 83    array -> ID CHAVE_ABERTA expressao CHAVE_FECHADA
-Rule 84    array -> ID CHAVE_ABERTA CHAVE_FECHADA
-Rule 85    array -> array_inicializacao
-Rule 86    array_inicializacao -> COLCHETE_ABERTO expressao COLCHETE_FECHADO
+Rule 63    if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco
+Rule 64    if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco
+Rule 65    elseif -> ELSEIF PAREN_ABERTO statement PAREN_FECHADO bloco elseif
+Rule 66    elseif -> <empty>
+Rule 67    statement -> variavel_ou_valor comparador variavel_ou_valor operador_logico
+Rule 68    variavel_ou_valor -> ID
+Rule 69    variavel_ou_valor -> NUMBER_DEC
+Rule 70    variavel_ou_valor -> NUMBER_INT
+Rule 71    variavel_ou_valor -> TYPE_STRING
+Rule 72    variavel_ou_valor -> TYPE_BOOLEAN
+Rule 73    variavel_ou_valor -> TYPE_CHAR
+Rule 74    variavel_ou_valor -> TYPE_FLOAT
+Rule 75    while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
+Rule 76    for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+Rule 77    comparador -> LESS_THAN
+Rule 78    comparador -> IS_EQUALS
+Rule 79    comparador -> LESS_THAN_OR_EQUALS
+Rule 80    comparador -> GREATER_THAN
+Rule 81    comparador -> GREATER_THAN_OR_EQUALS
+Rule 82    comparador -> IS_DIFFERENT
+Rule 83    operador_logico -> AND statement
+Rule 84    operador_logico -> OR statement
+Rule 85    operador_logico -> <empty>
+Rule 86    array -> ID CHAVE_ABERTA expressao CHAVE_FECHADA
+Rule 87    array -> ID CHAVE_ABERTA CHAVE_FECHADA
+Rule 88    array -> array_inicializacao
+Rule 89    array_inicializacao -> COLCHETE_ABERTO expressao COLCHETE_FECHADO
 
 Terminals, with rules where they appear
 
-AND                  : 39 80
+AND                  : 39 83
 BOOLEAN              : 21
 CHAR                 : 23
-CHAVE_ABERTA         : 48 83 84
-CHAVE_FECHADA        : 48 83 84
-COLCHETE_ABERTO      : 18 49 86
-COLCHETE_FECHADO     : 18 49 86
+CHAVE_ABERTA         : 48 86 87
+CHAVE_FECHADA        : 48 86 87
+COLCHETE_ABERTO      : 18 49 89
+COLCHETE_FECHADO     : 18 49 89
 COMMENT              : 6
 COMPARE_OPERATOR     : 
 DIVIDE               : 
 DIVIDE_EQUAL         : 37
 DOUBLE               : 22
-ELSE                 : 
-EQUAL                : 10 33 39 40 73
+ELSE                 : 63 64
+ELSEIF               : 65
+EQUAL                : 10 33 39 40 76
 FLOAT                : 24
-FOR                  : 73
-GREATER_THAN         : 77
-GREATER_THAN_OR_EQUALS : 78
-ID                   : 9 10 11 12 14 15 18 32 33 34 35 36 37 38 39 40 41 47 48 58 60 65 73 83 84
-IF                   : 63
+FOR                  : 76
+GREATER_THAN         : 80
+GREATER_THAN_OR_EQUALS : 81
+ID                   : 9 10 11 12 14 15 18 32 33 34 35 36 37 38 39 40 41 47 48 58 60 68 76 86 87
+IF                   : 63 64
 INT                  : 19
-IS_DIFFERENT         : 79
-IS_EQUALS            : 75
-LESS_THAN            : 74
-LESS_THAN_OR_EQUALS  : 76
+IS_DIFFERENT         : 82
+IS_EQUALS            : 78
+LESS_THAN            : 77
+LESS_THAN_OR_EQUALS  : 79
 MAIN                 : 16 17
 MINUS                : 12 12
 MINUS_EQUAL          : 35
 MINUS_MINUS          : 43
 NOT                  : 
-NUMBER_DEC           : 26 66
-NUMBER_INT           : 27 67
+NUMBER_DEC           : 26 69
+NUMBER_INT           : 27 70
 OPERATOR             : 
-OR                   : 40 81
-PAREN_ABERTO         : 14 15 16 17 60 63 72 73
-PAREN_FECHADO        : 14 15 16 17 60 63 72 73
+OR                   : 40 84
+PAREN_ABERTO         : 14 15 16 17 60 63 64 65 75 76
+PAREN_FECHADO        : 14 15 16 17 60 63 64 65 75 76
 PLUS                 : 11 11
 PLUS_EQUAL           : 34
 PLUS_PLUS            : 42
-PONTO_VIRGULA        : 9 10 11 12 57 58 59 60 73 73
+PONTO_VIRGULA        : 9 10 11 12 57 58 59 60 76 76
 PRINTLN              : 
 REST                 : 
 REST_EQUAL           : 38
@@ -155,39 +158,40 @@ STRING               : 20
 STRUCT               : 18
 TIMES                : 
 TIMES_EQUAL          : 36
-TYPE_BOOLEAN         : 30 69
-TYPE_CHAR            : 31 70
-TYPE_FLOAT           : 28 71
-TYPE_STRING          : 29 68
+TYPE_BOOLEAN         : 30 72
+TYPE_CHAR            : 31 73
+TYPE_FLOAT           : 28 74
+TYPE_STRING          : 29 71
 VIRGULA              : 45 61
 VOID                 : 15 17
-WHILE                : 72
+WHILE                : 75
 error                : 
 
 Nonterminals, with rules where they appear
 
 array                : 
-array_inicializacao  : 85
+array_inicializacao  : 88
 atribuicao           : 25
-bloco                : 14 15 16 17 63 72 73
-comparador           : 41 64 73
+bloco                : 14 15 16 17 63 63 64 64 65 75 76
+comparador           : 41 67 76
 declaracao           : 1 5 5
 declaracao_estrutura : 4
 declaracao_funcao    : 3
 declaracao_ou_coisas : 7 49 50 50
 declaracao_variavel  : 2 13 13 18 52
-expressao            : 10 33 34 35 36 37 38 39 40 41 59 73 83 86
+elseif               : 64 65
+expressao            : 10 33 34 35 36 37 38 39 40 41 59 76 86 89
 for                  : 55
 if                   : 53
-operador_logico      : 64
+operador_logico      : 67
 parametro            : 44 45
 parametros           : 14 15 16 17 45
 parametros_dado      : 60 61
 programa             : 0
 retorno              : 51
-statement            : 63 72 80 81
-tipo                 : 9 10 14 16 47 48 73
-variavel_ou_valor    : 42 43 61 62 64 64 73 73 73
+statement            : 63 64 65 75 83 84
+tipo                 : 9 10 14 16 47 48 76
+variavel_ou_valor    : 42 43 61 62 67 67 76 76 76
 while                : 54
 
 Parsing method: LALR
@@ -230,9 +234,10 @@ state 0
     (58) retorno -> . RETURN ID PONTO_VIRGULA
     (59) retorno -> . RETURN expressao PONTO_VIRGULA
     (60) retorno -> . RETURN ID PAREN_ABERTO parametros_dado PAREN_FECHADO PONTO_VIRGULA
-    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco
-    (72) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
-    (73) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco
+    (64) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco
+    (75) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
+    (76) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
 
   ! shift/reduce conflict for COMMENT resolved as shift
   ! shift/reduce conflict for ID resolved as shift
@@ -365,9 +370,10 @@ state 2
     (58) retorno -> . RETURN ID PONTO_VIRGULA
     (59) retorno -> . RETURN expressao PONTO_VIRGULA
     (60) retorno -> . RETURN ID PAREN_ABERTO parametros_dado PAREN_FECHADO PONTO_VIRGULA
-    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco
-    (72) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
-    (73) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco
+    (64) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco
+    (75) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
+    (76) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
 
   ! shift/reduce conflict for COMMENT resolved as shift
   ! reduce/reduce conflict for $end resolved using rule 1 (programa -> declaracao .)
@@ -621,9 +627,10 @@ state 7
     (11) declaracao_variavel -> . ID PLUS PLUS PONTO_VIRGULA
     (12) declaracao_variavel -> . ID MINUS MINUS PONTO_VIRGULA
     (13) declaracao_variavel -> . declaracao_variavel declaracao_variavel
-    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco
-    (72) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
-    (73) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco
+    (64) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco
+    (75) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
+    (76) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
     (19) tipo -> . INT
     (20) tipo -> . STRING
     (21) tipo -> . BOOLEAN
@@ -905,13 +912,13 @@ state 22
     (41) atribuicao -> . ID comparador expressao
     (42) atribuicao -> . variavel_ou_valor PLUS_PLUS
     (43) atribuicao -> . variavel_ou_valor MINUS_MINUS
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     PONTO_VIRGULA   shift and go to state 38
     ID              shift and go to state 39
@@ -928,21 +935,22 @@ state 22
 
 state 23
 
-    (63) if -> IF . PAREN_ABERTO statement PAREN_FECHADO bloco
+    (63) if -> IF . PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco
+    (64) if -> IF . PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco
 
     PAREN_ABERTO    shift and go to state 49
 
 
 state 24
 
-    (72) while -> WHILE . PAREN_ABERTO statement PAREN_FECHADO bloco
+    (75) while -> WHILE . PAREN_ABERTO statement PAREN_FECHADO bloco
 
     PAREN_ABERTO    shift and go to state 50
 
 
 state 25
 
-    (73) for -> FOR . PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (76) for -> FOR . PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
 
     PAREN_ABERTO    shift and go to state 51
 
@@ -985,9 +993,10 @@ state 26
     (58) retorno -> . RETURN ID PONTO_VIRGULA
     (59) retorno -> . RETURN expressao PONTO_VIRGULA
     (60) retorno -> . RETURN ID PAREN_ABERTO parametros_dado PAREN_FECHADO PONTO_VIRGULA
-    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco
-    (72) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
-    (73) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco
+    (64) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco
+    (75) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
+    (76) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
 
   ! shift/reduce conflict for COMMENT resolved as shift
   ! shift/reduce conflict for COMMENT resolved as shift
@@ -1184,9 +1193,10 @@ state 29
     (11) declaracao_variavel -> . ID PLUS PLUS PONTO_VIRGULA
     (12) declaracao_variavel -> . ID MINUS MINUS PONTO_VIRGULA
     (13) declaracao_variavel -> . declaracao_variavel declaracao_variavel
-    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco
-    (72) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
-    (73) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco
+    (64) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco
+    (75) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
+    (76) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
     (19) tipo -> . INT
     (20) tipo -> . STRING
     (21) tipo -> . BOOLEAN
@@ -1414,13 +1424,13 @@ state 39
     (39) atribuicao -> ID . AND EQUAL expressao
     (40) atribuicao -> ID . OR EQUAL expressao
     (41) atribuicao -> ID . comparador expressao
-    (65) variavel_ou_valor -> ID .
-    (74) comparador -> . LESS_THAN
-    (75) comparador -> . IS_EQUALS
-    (76) comparador -> . LESS_THAN_OR_EQUALS
-    (77) comparador -> . GREATER_THAN
-    (78) comparador -> . GREATER_THAN_OR_EQUALS
-    (79) comparador -> . IS_DIFFERENT
+    (68) variavel_ou_valor -> ID .
+    (77) comparador -> . LESS_THAN
+    (78) comparador -> . IS_EQUALS
+    (79) comparador -> . LESS_THAN_OR_EQUALS
+    (80) comparador -> . GREATER_THAN
+    (81) comparador -> . GREATER_THAN_OR_EQUALS
+    (82) comparador -> . IS_DIFFERENT
 
   ! shift/reduce conflict for PONTO_VIRGULA resolved as shift
     PONTO_VIRGULA   shift and go to state 62
@@ -1433,8 +1443,8 @@ state 39
     REST_EQUAL      shift and go to state 69
     AND             shift and go to state 70
     OR              shift and go to state 71
-    PLUS_PLUS       reduce using rule 65 (variavel_ou_valor -> ID .)
-    MINUS_MINUS     reduce using rule 65 (variavel_ou_valor -> ID .)
+    PLUS_PLUS       reduce using rule 68 (variavel_ou_valor -> ID .)
+    MINUS_MINUS     reduce using rule 68 (variavel_ou_valor -> ID .)
     LESS_THAN       shift and go to state 73
     IS_EQUALS       shift and go to state 74
     LESS_THAN_OR_EQUALS shift and go to state 75
@@ -1464,67 +1474,67 @@ state 41
 state 42
 
     (26) atribuicao -> NUMBER_DEC .
-    (66) variavel_ou_valor -> NUMBER_DEC .
+    (69) variavel_ou_valor -> NUMBER_DEC .
 
     PONTO_VIRGULA   reduce using rule 26 (atribuicao -> NUMBER_DEC .)
     PAREN_FECHADO   reduce using rule 26 (atribuicao -> NUMBER_DEC .)
-    PLUS_PLUS       reduce using rule 66 (variavel_ou_valor -> NUMBER_DEC .)
-    MINUS_MINUS     reduce using rule 66 (variavel_ou_valor -> NUMBER_DEC .)
+    PLUS_PLUS       reduce using rule 69 (variavel_ou_valor -> NUMBER_DEC .)
+    MINUS_MINUS     reduce using rule 69 (variavel_ou_valor -> NUMBER_DEC .)
 
 
 state 43
 
     (27) atribuicao -> NUMBER_INT .
-    (67) variavel_ou_valor -> NUMBER_INT .
+    (70) variavel_ou_valor -> NUMBER_INT .
 
     PONTO_VIRGULA   reduce using rule 27 (atribuicao -> NUMBER_INT .)
     PAREN_FECHADO   reduce using rule 27 (atribuicao -> NUMBER_INT .)
-    PLUS_PLUS       reduce using rule 67 (variavel_ou_valor -> NUMBER_INT .)
-    MINUS_MINUS     reduce using rule 67 (variavel_ou_valor -> NUMBER_INT .)
+    PLUS_PLUS       reduce using rule 70 (variavel_ou_valor -> NUMBER_INT .)
+    MINUS_MINUS     reduce using rule 70 (variavel_ou_valor -> NUMBER_INT .)
 
 
 state 44
 
     (28) atribuicao -> TYPE_FLOAT .
-    (71) variavel_ou_valor -> TYPE_FLOAT .
+    (74) variavel_ou_valor -> TYPE_FLOAT .
 
     PONTO_VIRGULA   reduce using rule 28 (atribuicao -> TYPE_FLOAT .)
     PAREN_FECHADO   reduce using rule 28 (atribuicao -> TYPE_FLOAT .)
-    PLUS_PLUS       reduce using rule 71 (variavel_ou_valor -> TYPE_FLOAT .)
-    MINUS_MINUS     reduce using rule 71 (variavel_ou_valor -> TYPE_FLOAT .)
+    PLUS_PLUS       reduce using rule 74 (variavel_ou_valor -> TYPE_FLOAT .)
+    MINUS_MINUS     reduce using rule 74 (variavel_ou_valor -> TYPE_FLOAT .)
 
 
 state 45
 
     (29) atribuicao -> TYPE_STRING .
-    (68) variavel_ou_valor -> TYPE_STRING .
+    (71) variavel_ou_valor -> TYPE_STRING .
 
     PONTO_VIRGULA   reduce using rule 29 (atribuicao -> TYPE_STRING .)
     PAREN_FECHADO   reduce using rule 29 (atribuicao -> TYPE_STRING .)
-    PLUS_PLUS       reduce using rule 68 (variavel_ou_valor -> TYPE_STRING .)
-    MINUS_MINUS     reduce using rule 68 (variavel_ou_valor -> TYPE_STRING .)
+    PLUS_PLUS       reduce using rule 71 (variavel_ou_valor -> TYPE_STRING .)
+    MINUS_MINUS     reduce using rule 71 (variavel_ou_valor -> TYPE_STRING .)
 
 
 state 46
 
     (30) atribuicao -> TYPE_BOOLEAN .
-    (69) variavel_ou_valor -> TYPE_BOOLEAN .
+    (72) variavel_ou_valor -> TYPE_BOOLEAN .
 
     PONTO_VIRGULA   reduce using rule 30 (atribuicao -> TYPE_BOOLEAN .)
     PAREN_FECHADO   reduce using rule 30 (atribuicao -> TYPE_BOOLEAN .)
-    PLUS_PLUS       reduce using rule 69 (variavel_ou_valor -> TYPE_BOOLEAN .)
-    MINUS_MINUS     reduce using rule 69 (variavel_ou_valor -> TYPE_BOOLEAN .)
+    PLUS_PLUS       reduce using rule 72 (variavel_ou_valor -> TYPE_BOOLEAN .)
+    MINUS_MINUS     reduce using rule 72 (variavel_ou_valor -> TYPE_BOOLEAN .)
 
 
 state 47
 
     (31) atribuicao -> TYPE_CHAR .
-    (70) variavel_ou_valor -> TYPE_CHAR .
+    (73) variavel_ou_valor -> TYPE_CHAR .
 
     PONTO_VIRGULA   reduce using rule 31 (atribuicao -> TYPE_CHAR .)
     PAREN_FECHADO   reduce using rule 31 (atribuicao -> TYPE_CHAR .)
-    PLUS_PLUS       reduce using rule 70 (variavel_ou_valor -> TYPE_CHAR .)
-    MINUS_MINUS     reduce using rule 70 (variavel_ou_valor -> TYPE_CHAR .)
+    PLUS_PLUS       reduce using rule 73 (variavel_ou_valor -> TYPE_CHAR .)
+    MINUS_MINUS     reduce using rule 73 (variavel_ou_valor -> TYPE_CHAR .)
 
 
 state 48
@@ -1538,15 +1548,16 @@ state 48
 
 state 49
 
-    (63) if -> IF PAREN_ABERTO . statement PAREN_FECHADO bloco
-    (64) statement -> . variavel_ou_valor comparador variavel_ou_valor operador_logico
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (63) if -> IF PAREN_ABERTO . statement PAREN_FECHADO bloco ELSE bloco
+    (64) if -> IF PAREN_ABERTO . statement PAREN_FECHADO bloco elseif ELSE bloco
+    (67) statement -> . variavel_ou_valor comparador variavel_ou_valor operador_logico
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     ID              shift and go to state 84
     NUMBER_DEC      shift and go to state 85
@@ -1561,15 +1572,15 @@ state 49
 
 state 50
 
-    (72) while -> WHILE PAREN_ABERTO . statement PAREN_FECHADO bloco
-    (64) statement -> . variavel_ou_valor comparador variavel_ou_valor operador_logico
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (75) while -> WHILE PAREN_ABERTO . statement PAREN_FECHADO bloco
+    (67) statement -> . variavel_ou_valor comparador variavel_ou_valor operador_logico
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     ID              shift and go to state 84
     NUMBER_DEC      shift and go to state 85
@@ -1584,7 +1595,7 @@ state 50
 
 state 51
 
-    (73) for -> FOR PAREN_ABERTO . tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (76) for -> FOR PAREN_ABERTO . tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
     (19) tipo -> . INT
     (20) tipo -> . STRING
     (21) tipo -> . BOOLEAN
@@ -1654,13 +1665,13 @@ state 54
     (41) atribuicao -> . ID comparador expressao
     (42) atribuicao -> . variavel_ou_valor PLUS_PLUS
     (43) atribuicao -> . variavel_ou_valor MINUS_MINUS
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     NUMBER_DEC      shift and go to state 42
     NUMBER_INT      shift and go to state 43
@@ -1849,13 +1860,13 @@ state 63
     (60) retorno -> RETURN ID PAREN_ABERTO . parametros_dado PAREN_FECHADO PONTO_VIRGULA
     (61) parametros_dado -> . variavel_ou_valor VIRGULA parametros_dado
     (62) parametros_dado -> . variavel_ou_valor
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     ID              shift and go to state 84
     NUMBER_DEC      shift and go to state 85
@@ -1890,13 +1901,13 @@ state 64
     (41) atribuicao -> . ID comparador expressao
     (42) atribuicao -> . variavel_ou_valor PLUS_PLUS
     (43) atribuicao -> . variavel_ou_valor MINUS_MINUS
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     NUMBER_DEC      shift and go to state 42
     NUMBER_INT      shift and go to state 43
@@ -1932,13 +1943,13 @@ state 65
     (41) atribuicao -> . ID comparador expressao
     (42) atribuicao -> . variavel_ou_valor PLUS_PLUS
     (43) atribuicao -> . variavel_ou_valor MINUS_MINUS
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     NUMBER_DEC      shift and go to state 42
     NUMBER_INT      shift and go to state 43
@@ -1974,13 +1985,13 @@ state 66
     (41) atribuicao -> . ID comparador expressao
     (42) atribuicao -> . variavel_ou_valor PLUS_PLUS
     (43) atribuicao -> . variavel_ou_valor MINUS_MINUS
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     NUMBER_DEC      shift and go to state 42
     NUMBER_INT      shift and go to state 43
@@ -2016,13 +2027,13 @@ state 67
     (41) atribuicao -> . ID comparador expressao
     (42) atribuicao -> . variavel_ou_valor PLUS_PLUS
     (43) atribuicao -> . variavel_ou_valor MINUS_MINUS
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     NUMBER_DEC      shift and go to state 42
     NUMBER_INT      shift and go to state 43
@@ -2058,13 +2069,13 @@ state 68
     (41) atribuicao -> . ID comparador expressao
     (42) atribuicao -> . variavel_ou_valor PLUS_PLUS
     (43) atribuicao -> . variavel_ou_valor MINUS_MINUS
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     NUMBER_DEC      shift and go to state 42
     NUMBER_INT      shift and go to state 43
@@ -2100,13 +2111,13 @@ state 69
     (41) atribuicao -> . ID comparador expressao
     (42) atribuicao -> . variavel_ou_valor PLUS_PLUS
     (43) atribuicao -> . variavel_ou_valor MINUS_MINUS
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     NUMBER_DEC      shift and go to state 42
     NUMBER_INT      shift and go to state 43
@@ -2156,13 +2167,13 @@ state 72
     (41) atribuicao -> . ID comparador expressao
     (42) atribuicao -> . variavel_ou_valor PLUS_PLUS
     (43) atribuicao -> . variavel_ou_valor MINUS_MINUS
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     NUMBER_DEC      shift and go to state 42
     NUMBER_INT      shift and go to state 43
@@ -2178,80 +2189,80 @@ state 72
 
 state 73
 
-    (74) comparador -> LESS_THAN .
+    (77) comparador -> LESS_THAN .
 
-    NUMBER_DEC      reduce using rule 74 (comparador -> LESS_THAN .)
-    NUMBER_INT      reduce using rule 74 (comparador -> LESS_THAN .)
-    TYPE_FLOAT      reduce using rule 74 (comparador -> LESS_THAN .)
-    TYPE_STRING     reduce using rule 74 (comparador -> LESS_THAN .)
-    TYPE_BOOLEAN    reduce using rule 74 (comparador -> LESS_THAN .)
-    TYPE_CHAR       reduce using rule 74 (comparador -> LESS_THAN .)
-    ID              reduce using rule 74 (comparador -> LESS_THAN .)
+    NUMBER_DEC      reduce using rule 77 (comparador -> LESS_THAN .)
+    NUMBER_INT      reduce using rule 77 (comparador -> LESS_THAN .)
+    TYPE_FLOAT      reduce using rule 77 (comparador -> LESS_THAN .)
+    TYPE_STRING     reduce using rule 77 (comparador -> LESS_THAN .)
+    TYPE_BOOLEAN    reduce using rule 77 (comparador -> LESS_THAN .)
+    TYPE_CHAR       reduce using rule 77 (comparador -> LESS_THAN .)
+    ID              reduce using rule 77 (comparador -> LESS_THAN .)
 
 
 state 74
 
-    (75) comparador -> IS_EQUALS .
+    (78) comparador -> IS_EQUALS .
 
-    NUMBER_DEC      reduce using rule 75 (comparador -> IS_EQUALS .)
-    NUMBER_INT      reduce using rule 75 (comparador -> IS_EQUALS .)
-    TYPE_FLOAT      reduce using rule 75 (comparador -> IS_EQUALS .)
-    TYPE_STRING     reduce using rule 75 (comparador -> IS_EQUALS .)
-    TYPE_BOOLEAN    reduce using rule 75 (comparador -> IS_EQUALS .)
-    TYPE_CHAR       reduce using rule 75 (comparador -> IS_EQUALS .)
-    ID              reduce using rule 75 (comparador -> IS_EQUALS .)
+    NUMBER_DEC      reduce using rule 78 (comparador -> IS_EQUALS .)
+    NUMBER_INT      reduce using rule 78 (comparador -> IS_EQUALS .)
+    TYPE_FLOAT      reduce using rule 78 (comparador -> IS_EQUALS .)
+    TYPE_STRING     reduce using rule 78 (comparador -> IS_EQUALS .)
+    TYPE_BOOLEAN    reduce using rule 78 (comparador -> IS_EQUALS .)
+    TYPE_CHAR       reduce using rule 78 (comparador -> IS_EQUALS .)
+    ID              reduce using rule 78 (comparador -> IS_EQUALS .)
 
 
 state 75
 
-    (76) comparador -> LESS_THAN_OR_EQUALS .
+    (79) comparador -> LESS_THAN_OR_EQUALS .
 
-    NUMBER_DEC      reduce using rule 76 (comparador -> LESS_THAN_OR_EQUALS .)
-    NUMBER_INT      reduce using rule 76 (comparador -> LESS_THAN_OR_EQUALS .)
-    TYPE_FLOAT      reduce using rule 76 (comparador -> LESS_THAN_OR_EQUALS .)
-    TYPE_STRING     reduce using rule 76 (comparador -> LESS_THAN_OR_EQUALS .)
-    TYPE_BOOLEAN    reduce using rule 76 (comparador -> LESS_THAN_OR_EQUALS .)
-    TYPE_CHAR       reduce using rule 76 (comparador -> LESS_THAN_OR_EQUALS .)
-    ID              reduce using rule 76 (comparador -> LESS_THAN_OR_EQUALS .)
+    NUMBER_DEC      reduce using rule 79 (comparador -> LESS_THAN_OR_EQUALS .)
+    NUMBER_INT      reduce using rule 79 (comparador -> LESS_THAN_OR_EQUALS .)
+    TYPE_FLOAT      reduce using rule 79 (comparador -> LESS_THAN_OR_EQUALS .)
+    TYPE_STRING     reduce using rule 79 (comparador -> LESS_THAN_OR_EQUALS .)
+    TYPE_BOOLEAN    reduce using rule 79 (comparador -> LESS_THAN_OR_EQUALS .)
+    TYPE_CHAR       reduce using rule 79 (comparador -> LESS_THAN_OR_EQUALS .)
+    ID              reduce using rule 79 (comparador -> LESS_THAN_OR_EQUALS .)
 
 
 state 76
 
-    (77) comparador -> GREATER_THAN .
+    (80) comparador -> GREATER_THAN .
 
-    NUMBER_DEC      reduce using rule 77 (comparador -> GREATER_THAN .)
-    NUMBER_INT      reduce using rule 77 (comparador -> GREATER_THAN .)
-    TYPE_FLOAT      reduce using rule 77 (comparador -> GREATER_THAN .)
-    TYPE_STRING     reduce using rule 77 (comparador -> GREATER_THAN .)
-    TYPE_BOOLEAN    reduce using rule 77 (comparador -> GREATER_THAN .)
-    TYPE_CHAR       reduce using rule 77 (comparador -> GREATER_THAN .)
-    ID              reduce using rule 77 (comparador -> GREATER_THAN .)
+    NUMBER_DEC      reduce using rule 80 (comparador -> GREATER_THAN .)
+    NUMBER_INT      reduce using rule 80 (comparador -> GREATER_THAN .)
+    TYPE_FLOAT      reduce using rule 80 (comparador -> GREATER_THAN .)
+    TYPE_STRING     reduce using rule 80 (comparador -> GREATER_THAN .)
+    TYPE_BOOLEAN    reduce using rule 80 (comparador -> GREATER_THAN .)
+    TYPE_CHAR       reduce using rule 80 (comparador -> GREATER_THAN .)
+    ID              reduce using rule 80 (comparador -> GREATER_THAN .)
 
 
 state 77
 
-    (78) comparador -> GREATER_THAN_OR_EQUALS .
+    (81) comparador -> GREATER_THAN_OR_EQUALS .
 
-    NUMBER_DEC      reduce using rule 78 (comparador -> GREATER_THAN_OR_EQUALS .)
-    NUMBER_INT      reduce using rule 78 (comparador -> GREATER_THAN_OR_EQUALS .)
-    TYPE_FLOAT      reduce using rule 78 (comparador -> GREATER_THAN_OR_EQUALS .)
-    TYPE_STRING     reduce using rule 78 (comparador -> GREATER_THAN_OR_EQUALS .)
-    TYPE_BOOLEAN    reduce using rule 78 (comparador -> GREATER_THAN_OR_EQUALS .)
-    TYPE_CHAR       reduce using rule 78 (comparador -> GREATER_THAN_OR_EQUALS .)
-    ID              reduce using rule 78 (comparador -> GREATER_THAN_OR_EQUALS .)
+    NUMBER_DEC      reduce using rule 81 (comparador -> GREATER_THAN_OR_EQUALS .)
+    NUMBER_INT      reduce using rule 81 (comparador -> GREATER_THAN_OR_EQUALS .)
+    TYPE_FLOAT      reduce using rule 81 (comparador -> GREATER_THAN_OR_EQUALS .)
+    TYPE_STRING     reduce using rule 81 (comparador -> GREATER_THAN_OR_EQUALS .)
+    TYPE_BOOLEAN    reduce using rule 81 (comparador -> GREATER_THAN_OR_EQUALS .)
+    TYPE_CHAR       reduce using rule 81 (comparador -> GREATER_THAN_OR_EQUALS .)
+    ID              reduce using rule 81 (comparador -> GREATER_THAN_OR_EQUALS .)
 
 
 state 78
 
-    (79) comparador -> IS_DIFFERENT .
+    (82) comparador -> IS_DIFFERENT .
 
-    NUMBER_DEC      reduce using rule 79 (comparador -> IS_DIFFERENT .)
-    NUMBER_INT      reduce using rule 79 (comparador -> IS_DIFFERENT .)
-    TYPE_FLOAT      reduce using rule 79 (comparador -> IS_DIFFERENT .)
-    TYPE_STRING     reduce using rule 79 (comparador -> IS_DIFFERENT .)
-    TYPE_BOOLEAN    reduce using rule 79 (comparador -> IS_DIFFERENT .)
-    TYPE_CHAR       reduce using rule 79 (comparador -> IS_DIFFERENT .)
-    ID              reduce using rule 79 (comparador -> IS_DIFFERENT .)
+    NUMBER_DEC      reduce using rule 82 (comparador -> IS_DIFFERENT .)
+    NUMBER_INT      reduce using rule 82 (comparador -> IS_DIFFERENT .)
+    TYPE_FLOAT      reduce using rule 82 (comparador -> IS_DIFFERENT .)
+    TYPE_STRING     reduce using rule 82 (comparador -> IS_DIFFERENT .)
+    TYPE_BOOLEAN    reduce using rule 82 (comparador -> IS_DIFFERENT .)
+    TYPE_CHAR       reduce using rule 82 (comparador -> IS_DIFFERENT .)
+    ID              reduce using rule 82 (comparador -> IS_DIFFERENT .)
 
 
 state 79
@@ -2294,20 +2305,21 @@ state 81
 
 state 82
 
-    (63) if -> IF PAREN_ABERTO statement . PAREN_FECHADO bloco
+    (63) if -> IF PAREN_ABERTO statement . PAREN_FECHADO bloco ELSE bloco
+    (64) if -> IF PAREN_ABERTO statement . PAREN_FECHADO bloco elseif ELSE bloco
 
     PAREN_FECHADO   shift and go to state 115
 
 
 state 83
 
-    (64) statement -> variavel_ou_valor . comparador variavel_ou_valor operador_logico
-    (74) comparador -> . LESS_THAN
-    (75) comparador -> . IS_EQUALS
-    (76) comparador -> . LESS_THAN_OR_EQUALS
-    (77) comparador -> . GREATER_THAN
-    (78) comparador -> . GREATER_THAN_OR_EQUALS
-    (79) comparador -> . IS_DIFFERENT
+    (67) statement -> variavel_ou_valor . comparador variavel_ou_valor operador_logico
+    (77) comparador -> . LESS_THAN
+    (78) comparador -> . IS_EQUALS
+    (79) comparador -> . LESS_THAN_OR_EQUALS
+    (80) comparador -> . GREATER_THAN
+    (81) comparador -> . GREATER_THAN_OR_EQUALS
+    (82) comparador -> . IS_DIFFERENT
 
     LESS_THAN       shift and go to state 73
     IS_EQUALS       shift and go to state 74
@@ -2320,133 +2332,133 @@ state 83
 
 state 84
 
-    (65) variavel_ou_valor -> ID .
+    (68) variavel_ou_valor -> ID .
 
-    LESS_THAN       reduce using rule 65 (variavel_ou_valor -> ID .)
-    IS_EQUALS       reduce using rule 65 (variavel_ou_valor -> ID .)
-    LESS_THAN_OR_EQUALS reduce using rule 65 (variavel_ou_valor -> ID .)
-    GREATER_THAN    reduce using rule 65 (variavel_ou_valor -> ID .)
-    GREATER_THAN_OR_EQUALS reduce using rule 65 (variavel_ou_valor -> ID .)
-    IS_DIFFERENT    reduce using rule 65 (variavel_ou_valor -> ID .)
-    VIRGULA         reduce using rule 65 (variavel_ou_valor -> ID .)
-    PAREN_FECHADO   reduce using rule 65 (variavel_ou_valor -> ID .)
-    AND             reduce using rule 65 (variavel_ou_valor -> ID .)
-    OR              reduce using rule 65 (variavel_ou_valor -> ID .)
-    PONTO_VIRGULA   reduce using rule 65 (variavel_ou_valor -> ID .)
+    LESS_THAN       reduce using rule 68 (variavel_ou_valor -> ID .)
+    IS_EQUALS       reduce using rule 68 (variavel_ou_valor -> ID .)
+    LESS_THAN_OR_EQUALS reduce using rule 68 (variavel_ou_valor -> ID .)
+    GREATER_THAN    reduce using rule 68 (variavel_ou_valor -> ID .)
+    GREATER_THAN_OR_EQUALS reduce using rule 68 (variavel_ou_valor -> ID .)
+    IS_DIFFERENT    reduce using rule 68 (variavel_ou_valor -> ID .)
+    VIRGULA         reduce using rule 68 (variavel_ou_valor -> ID .)
+    PAREN_FECHADO   reduce using rule 68 (variavel_ou_valor -> ID .)
+    AND             reduce using rule 68 (variavel_ou_valor -> ID .)
+    OR              reduce using rule 68 (variavel_ou_valor -> ID .)
+    PONTO_VIRGULA   reduce using rule 68 (variavel_ou_valor -> ID .)
 
 
 state 85
 
-    (66) variavel_ou_valor -> NUMBER_DEC .
+    (69) variavel_ou_valor -> NUMBER_DEC .
 
-    LESS_THAN       reduce using rule 66 (variavel_ou_valor -> NUMBER_DEC .)
-    IS_EQUALS       reduce using rule 66 (variavel_ou_valor -> NUMBER_DEC .)
-    LESS_THAN_OR_EQUALS reduce using rule 66 (variavel_ou_valor -> NUMBER_DEC .)
-    GREATER_THAN    reduce using rule 66 (variavel_ou_valor -> NUMBER_DEC .)
-    GREATER_THAN_OR_EQUALS reduce using rule 66 (variavel_ou_valor -> NUMBER_DEC .)
-    IS_DIFFERENT    reduce using rule 66 (variavel_ou_valor -> NUMBER_DEC .)
-    VIRGULA         reduce using rule 66 (variavel_ou_valor -> NUMBER_DEC .)
-    PAREN_FECHADO   reduce using rule 66 (variavel_ou_valor -> NUMBER_DEC .)
-    AND             reduce using rule 66 (variavel_ou_valor -> NUMBER_DEC .)
-    OR              reduce using rule 66 (variavel_ou_valor -> NUMBER_DEC .)
-    PONTO_VIRGULA   reduce using rule 66 (variavel_ou_valor -> NUMBER_DEC .)
+    LESS_THAN       reduce using rule 69 (variavel_ou_valor -> NUMBER_DEC .)
+    IS_EQUALS       reduce using rule 69 (variavel_ou_valor -> NUMBER_DEC .)
+    LESS_THAN_OR_EQUALS reduce using rule 69 (variavel_ou_valor -> NUMBER_DEC .)
+    GREATER_THAN    reduce using rule 69 (variavel_ou_valor -> NUMBER_DEC .)
+    GREATER_THAN_OR_EQUALS reduce using rule 69 (variavel_ou_valor -> NUMBER_DEC .)
+    IS_DIFFERENT    reduce using rule 69 (variavel_ou_valor -> NUMBER_DEC .)
+    VIRGULA         reduce using rule 69 (variavel_ou_valor -> NUMBER_DEC .)
+    PAREN_FECHADO   reduce using rule 69 (variavel_ou_valor -> NUMBER_DEC .)
+    AND             reduce using rule 69 (variavel_ou_valor -> NUMBER_DEC .)
+    OR              reduce using rule 69 (variavel_ou_valor -> NUMBER_DEC .)
+    PONTO_VIRGULA   reduce using rule 69 (variavel_ou_valor -> NUMBER_DEC .)
 
 
 state 86
 
-    (67) variavel_ou_valor -> NUMBER_INT .
+    (70) variavel_ou_valor -> NUMBER_INT .
 
-    LESS_THAN       reduce using rule 67 (variavel_ou_valor -> NUMBER_INT .)
-    IS_EQUALS       reduce using rule 67 (variavel_ou_valor -> NUMBER_INT .)
-    LESS_THAN_OR_EQUALS reduce using rule 67 (variavel_ou_valor -> NUMBER_INT .)
-    GREATER_THAN    reduce using rule 67 (variavel_ou_valor -> NUMBER_INT .)
-    GREATER_THAN_OR_EQUALS reduce using rule 67 (variavel_ou_valor -> NUMBER_INT .)
-    IS_DIFFERENT    reduce using rule 67 (variavel_ou_valor -> NUMBER_INT .)
-    VIRGULA         reduce using rule 67 (variavel_ou_valor -> NUMBER_INT .)
-    PAREN_FECHADO   reduce using rule 67 (variavel_ou_valor -> NUMBER_INT .)
-    AND             reduce using rule 67 (variavel_ou_valor -> NUMBER_INT .)
-    OR              reduce using rule 67 (variavel_ou_valor -> NUMBER_INT .)
-    PONTO_VIRGULA   reduce using rule 67 (variavel_ou_valor -> NUMBER_INT .)
+    LESS_THAN       reduce using rule 70 (variavel_ou_valor -> NUMBER_INT .)
+    IS_EQUALS       reduce using rule 70 (variavel_ou_valor -> NUMBER_INT .)
+    LESS_THAN_OR_EQUALS reduce using rule 70 (variavel_ou_valor -> NUMBER_INT .)
+    GREATER_THAN    reduce using rule 70 (variavel_ou_valor -> NUMBER_INT .)
+    GREATER_THAN_OR_EQUALS reduce using rule 70 (variavel_ou_valor -> NUMBER_INT .)
+    IS_DIFFERENT    reduce using rule 70 (variavel_ou_valor -> NUMBER_INT .)
+    VIRGULA         reduce using rule 70 (variavel_ou_valor -> NUMBER_INT .)
+    PAREN_FECHADO   reduce using rule 70 (variavel_ou_valor -> NUMBER_INT .)
+    AND             reduce using rule 70 (variavel_ou_valor -> NUMBER_INT .)
+    OR              reduce using rule 70 (variavel_ou_valor -> NUMBER_INT .)
+    PONTO_VIRGULA   reduce using rule 70 (variavel_ou_valor -> NUMBER_INT .)
 
 
 state 87
 
-    (68) variavel_ou_valor -> TYPE_STRING .
+    (71) variavel_ou_valor -> TYPE_STRING .
 
-    LESS_THAN       reduce using rule 68 (variavel_ou_valor -> TYPE_STRING .)
-    IS_EQUALS       reduce using rule 68 (variavel_ou_valor -> TYPE_STRING .)
-    LESS_THAN_OR_EQUALS reduce using rule 68 (variavel_ou_valor -> TYPE_STRING .)
-    GREATER_THAN    reduce using rule 68 (variavel_ou_valor -> TYPE_STRING .)
-    GREATER_THAN_OR_EQUALS reduce using rule 68 (variavel_ou_valor -> TYPE_STRING .)
-    IS_DIFFERENT    reduce using rule 68 (variavel_ou_valor -> TYPE_STRING .)
-    VIRGULA         reduce using rule 68 (variavel_ou_valor -> TYPE_STRING .)
-    PAREN_FECHADO   reduce using rule 68 (variavel_ou_valor -> TYPE_STRING .)
-    AND             reduce using rule 68 (variavel_ou_valor -> TYPE_STRING .)
-    OR              reduce using rule 68 (variavel_ou_valor -> TYPE_STRING .)
-    PONTO_VIRGULA   reduce using rule 68 (variavel_ou_valor -> TYPE_STRING .)
+    LESS_THAN       reduce using rule 71 (variavel_ou_valor -> TYPE_STRING .)
+    IS_EQUALS       reduce using rule 71 (variavel_ou_valor -> TYPE_STRING .)
+    LESS_THAN_OR_EQUALS reduce using rule 71 (variavel_ou_valor -> TYPE_STRING .)
+    GREATER_THAN    reduce using rule 71 (variavel_ou_valor -> TYPE_STRING .)
+    GREATER_THAN_OR_EQUALS reduce using rule 71 (variavel_ou_valor -> TYPE_STRING .)
+    IS_DIFFERENT    reduce using rule 71 (variavel_ou_valor -> TYPE_STRING .)
+    VIRGULA         reduce using rule 71 (variavel_ou_valor -> TYPE_STRING .)
+    PAREN_FECHADO   reduce using rule 71 (variavel_ou_valor -> TYPE_STRING .)
+    AND             reduce using rule 71 (variavel_ou_valor -> TYPE_STRING .)
+    OR              reduce using rule 71 (variavel_ou_valor -> TYPE_STRING .)
+    PONTO_VIRGULA   reduce using rule 71 (variavel_ou_valor -> TYPE_STRING .)
 
 
 state 88
 
-    (69) variavel_ou_valor -> TYPE_BOOLEAN .
+    (72) variavel_ou_valor -> TYPE_BOOLEAN .
 
-    LESS_THAN       reduce using rule 69 (variavel_ou_valor -> TYPE_BOOLEAN .)
-    IS_EQUALS       reduce using rule 69 (variavel_ou_valor -> TYPE_BOOLEAN .)
-    LESS_THAN_OR_EQUALS reduce using rule 69 (variavel_ou_valor -> TYPE_BOOLEAN .)
-    GREATER_THAN    reduce using rule 69 (variavel_ou_valor -> TYPE_BOOLEAN .)
-    GREATER_THAN_OR_EQUALS reduce using rule 69 (variavel_ou_valor -> TYPE_BOOLEAN .)
-    IS_DIFFERENT    reduce using rule 69 (variavel_ou_valor -> TYPE_BOOLEAN .)
-    VIRGULA         reduce using rule 69 (variavel_ou_valor -> TYPE_BOOLEAN .)
-    PAREN_FECHADO   reduce using rule 69 (variavel_ou_valor -> TYPE_BOOLEAN .)
-    AND             reduce using rule 69 (variavel_ou_valor -> TYPE_BOOLEAN .)
-    OR              reduce using rule 69 (variavel_ou_valor -> TYPE_BOOLEAN .)
-    PONTO_VIRGULA   reduce using rule 69 (variavel_ou_valor -> TYPE_BOOLEAN .)
+    LESS_THAN       reduce using rule 72 (variavel_ou_valor -> TYPE_BOOLEAN .)
+    IS_EQUALS       reduce using rule 72 (variavel_ou_valor -> TYPE_BOOLEAN .)
+    LESS_THAN_OR_EQUALS reduce using rule 72 (variavel_ou_valor -> TYPE_BOOLEAN .)
+    GREATER_THAN    reduce using rule 72 (variavel_ou_valor -> TYPE_BOOLEAN .)
+    GREATER_THAN_OR_EQUALS reduce using rule 72 (variavel_ou_valor -> TYPE_BOOLEAN .)
+    IS_DIFFERENT    reduce using rule 72 (variavel_ou_valor -> TYPE_BOOLEAN .)
+    VIRGULA         reduce using rule 72 (variavel_ou_valor -> TYPE_BOOLEAN .)
+    PAREN_FECHADO   reduce using rule 72 (variavel_ou_valor -> TYPE_BOOLEAN .)
+    AND             reduce using rule 72 (variavel_ou_valor -> TYPE_BOOLEAN .)
+    OR              reduce using rule 72 (variavel_ou_valor -> TYPE_BOOLEAN .)
+    PONTO_VIRGULA   reduce using rule 72 (variavel_ou_valor -> TYPE_BOOLEAN .)
 
 
 state 89
 
-    (70) variavel_ou_valor -> TYPE_CHAR .
+    (73) variavel_ou_valor -> TYPE_CHAR .
 
-    LESS_THAN       reduce using rule 70 (variavel_ou_valor -> TYPE_CHAR .)
-    IS_EQUALS       reduce using rule 70 (variavel_ou_valor -> TYPE_CHAR .)
-    LESS_THAN_OR_EQUALS reduce using rule 70 (variavel_ou_valor -> TYPE_CHAR .)
-    GREATER_THAN    reduce using rule 70 (variavel_ou_valor -> TYPE_CHAR .)
-    GREATER_THAN_OR_EQUALS reduce using rule 70 (variavel_ou_valor -> TYPE_CHAR .)
-    IS_DIFFERENT    reduce using rule 70 (variavel_ou_valor -> TYPE_CHAR .)
-    VIRGULA         reduce using rule 70 (variavel_ou_valor -> TYPE_CHAR .)
-    PAREN_FECHADO   reduce using rule 70 (variavel_ou_valor -> TYPE_CHAR .)
-    AND             reduce using rule 70 (variavel_ou_valor -> TYPE_CHAR .)
-    OR              reduce using rule 70 (variavel_ou_valor -> TYPE_CHAR .)
-    PONTO_VIRGULA   reduce using rule 70 (variavel_ou_valor -> TYPE_CHAR .)
+    LESS_THAN       reduce using rule 73 (variavel_ou_valor -> TYPE_CHAR .)
+    IS_EQUALS       reduce using rule 73 (variavel_ou_valor -> TYPE_CHAR .)
+    LESS_THAN_OR_EQUALS reduce using rule 73 (variavel_ou_valor -> TYPE_CHAR .)
+    GREATER_THAN    reduce using rule 73 (variavel_ou_valor -> TYPE_CHAR .)
+    GREATER_THAN_OR_EQUALS reduce using rule 73 (variavel_ou_valor -> TYPE_CHAR .)
+    IS_DIFFERENT    reduce using rule 73 (variavel_ou_valor -> TYPE_CHAR .)
+    VIRGULA         reduce using rule 73 (variavel_ou_valor -> TYPE_CHAR .)
+    PAREN_FECHADO   reduce using rule 73 (variavel_ou_valor -> TYPE_CHAR .)
+    AND             reduce using rule 73 (variavel_ou_valor -> TYPE_CHAR .)
+    OR              reduce using rule 73 (variavel_ou_valor -> TYPE_CHAR .)
+    PONTO_VIRGULA   reduce using rule 73 (variavel_ou_valor -> TYPE_CHAR .)
 
 
 state 90
 
-    (71) variavel_ou_valor -> TYPE_FLOAT .
+    (74) variavel_ou_valor -> TYPE_FLOAT .
 
-    LESS_THAN       reduce using rule 71 (variavel_ou_valor -> TYPE_FLOAT .)
-    IS_EQUALS       reduce using rule 71 (variavel_ou_valor -> TYPE_FLOAT .)
-    LESS_THAN_OR_EQUALS reduce using rule 71 (variavel_ou_valor -> TYPE_FLOAT .)
-    GREATER_THAN    reduce using rule 71 (variavel_ou_valor -> TYPE_FLOAT .)
-    GREATER_THAN_OR_EQUALS reduce using rule 71 (variavel_ou_valor -> TYPE_FLOAT .)
-    IS_DIFFERENT    reduce using rule 71 (variavel_ou_valor -> TYPE_FLOAT .)
-    VIRGULA         reduce using rule 71 (variavel_ou_valor -> TYPE_FLOAT .)
-    PAREN_FECHADO   reduce using rule 71 (variavel_ou_valor -> TYPE_FLOAT .)
-    AND             reduce using rule 71 (variavel_ou_valor -> TYPE_FLOAT .)
-    OR              reduce using rule 71 (variavel_ou_valor -> TYPE_FLOAT .)
-    PONTO_VIRGULA   reduce using rule 71 (variavel_ou_valor -> TYPE_FLOAT .)
+    LESS_THAN       reduce using rule 74 (variavel_ou_valor -> TYPE_FLOAT .)
+    IS_EQUALS       reduce using rule 74 (variavel_ou_valor -> TYPE_FLOAT .)
+    LESS_THAN_OR_EQUALS reduce using rule 74 (variavel_ou_valor -> TYPE_FLOAT .)
+    GREATER_THAN    reduce using rule 74 (variavel_ou_valor -> TYPE_FLOAT .)
+    GREATER_THAN_OR_EQUALS reduce using rule 74 (variavel_ou_valor -> TYPE_FLOAT .)
+    IS_DIFFERENT    reduce using rule 74 (variavel_ou_valor -> TYPE_FLOAT .)
+    VIRGULA         reduce using rule 74 (variavel_ou_valor -> TYPE_FLOAT .)
+    PAREN_FECHADO   reduce using rule 74 (variavel_ou_valor -> TYPE_FLOAT .)
+    AND             reduce using rule 74 (variavel_ou_valor -> TYPE_FLOAT .)
+    OR              reduce using rule 74 (variavel_ou_valor -> TYPE_FLOAT .)
+    PONTO_VIRGULA   reduce using rule 74 (variavel_ou_valor -> TYPE_FLOAT .)
 
 
 state 91
 
-    (72) while -> WHILE PAREN_ABERTO statement . PAREN_FECHADO bloco
+    (75) while -> WHILE PAREN_ABERTO statement . PAREN_FECHADO bloco
 
     PAREN_FECHADO   shift and go to state 117
 
 
 state 92
 
-    (73) for -> FOR PAREN_ABERTO tipo . ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (76) for -> FOR PAREN_ABERTO tipo . ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
 
     ID              shift and go to state 118
 
@@ -2463,13 +2475,13 @@ state 93
     (39) atribuicao -> ID . AND EQUAL expressao
     (40) atribuicao -> ID . OR EQUAL expressao
     (41) atribuicao -> ID . comparador expressao
-    (65) variavel_ou_valor -> ID .
-    (74) comparador -> . LESS_THAN
-    (75) comparador -> . IS_EQUALS
-    (76) comparador -> . LESS_THAN_OR_EQUALS
-    (77) comparador -> . GREATER_THAN
-    (78) comparador -> . GREATER_THAN_OR_EQUALS
-    (79) comparador -> . IS_DIFFERENT
+    (68) variavel_ou_valor -> ID .
+    (77) comparador -> . LESS_THAN
+    (78) comparador -> . IS_EQUALS
+    (79) comparador -> . LESS_THAN_OR_EQUALS
+    (80) comparador -> . GREATER_THAN
+    (81) comparador -> . GREATER_THAN_OR_EQUALS
+    (82) comparador -> . IS_DIFFERENT
 
     PONTO_VIRGULA   reduce using rule 32 (atribuicao -> ID .)
     PAREN_FECHADO   reduce using rule 32 (atribuicao -> ID .)
@@ -2481,8 +2493,8 @@ state 93
     REST_EQUAL      shift and go to state 69
     AND             shift and go to state 70
     OR              shift and go to state 71
-    PLUS_PLUS       reduce using rule 65 (variavel_ou_valor -> ID .)
-    MINUS_MINUS     reduce using rule 65 (variavel_ou_valor -> ID .)
+    PLUS_PLUS       reduce using rule 68 (variavel_ou_valor -> ID .)
+    MINUS_MINUS     reduce using rule 68 (variavel_ou_valor -> ID .)
     LESS_THAN       shift and go to state 73
     IS_EQUALS       shift and go to state 74
     LESS_THAN_OR_EQUALS shift and go to state 75
@@ -2702,13 +2714,13 @@ state 112
     (41) atribuicao -> . ID comparador expressao
     (42) atribuicao -> . variavel_ou_valor PLUS_PLUS
     (43) atribuicao -> . variavel_ou_valor MINUS_MINUS
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     NUMBER_DEC      shift and go to state 42
     NUMBER_INT      shift and go to state 43
@@ -2744,13 +2756,13 @@ state 113
     (41) atribuicao -> . ID comparador expressao
     (42) atribuicao -> . variavel_ou_valor PLUS_PLUS
     (43) atribuicao -> . variavel_ou_valor MINUS_MINUS
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     NUMBER_DEC      shift and go to state 42
     NUMBER_INT      shift and go to state 43
@@ -2774,7 +2786,8 @@ state 114
 
 state 115
 
-    (63) if -> IF PAREN_ABERTO statement PAREN_FECHADO . bloco
+    (63) if -> IF PAREN_ABERTO statement PAREN_FECHADO . bloco ELSE bloco
+    (64) if -> IF PAREN_ABERTO statement PAREN_FECHADO . bloco elseif ELSE bloco
     (49) bloco -> . COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO
 
     COLCHETE_ABERTO shift and go to state 132
@@ -2783,14 +2796,14 @@ state 115
 
 state 116
 
-    (64) statement -> variavel_ou_valor comparador . variavel_ou_valor operador_logico
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (67) statement -> variavel_ou_valor comparador . variavel_ou_valor operador_logico
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     ID              shift and go to state 84
     NUMBER_DEC      shift and go to state 85
@@ -2804,7 +2817,7 @@ state 116
 
 state 117
 
-    (72) while -> WHILE PAREN_ABERTO statement PAREN_FECHADO . bloco
+    (75) while -> WHILE PAREN_ABERTO statement PAREN_FECHADO . bloco
     (49) bloco -> . COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO
 
     COLCHETE_ABERTO shift and go to state 132
@@ -2813,7 +2826,7 @@ state 117
 
 state 118
 
-    (73) for -> FOR PAREN_ABERTO tipo ID . EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (76) for -> FOR PAREN_ABERTO tipo ID . EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
 
     EQUAL           shift and go to state 135
 
@@ -2946,13 +2959,13 @@ state 128
     (61) parametros_dado -> variavel_ou_valor VIRGULA . parametros_dado
     (61) parametros_dado -> . variavel_ou_valor VIRGULA parametros_dado
     (62) parametros_dado -> . variavel_ou_valor
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     ID              shift and go to state 84
     NUMBER_DEC      shift and go to state 85
@@ -2983,25 +2996,18 @@ state 130
 
 state 131
 
-    (63) if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .
+    (63) if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco . ELSE bloco
+    (64) if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco . elseif ELSE bloco
+    (65) elseif -> . ELSEIF PAREN_ABERTO statement PAREN_FECHADO bloco elseif
+    (66) elseif -> .
 
-    RETURN          reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    ID              reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    IF              reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    WHILE           reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    FOR             reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    INT             reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    STRING          reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    BOOLEAN         reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    DOUBLE          reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    CHAR            reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    FLOAT           reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    COMMENT         reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    VOID            reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    STRUCT          reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    $end            reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    COLCHETE_FECHADO reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco .)
+  ! shift/reduce conflict for ELSE resolved as shift
+    ELSE            shift and go to state 144
+    ELSEIF          shift and go to state 146
 
+  ! ELSE            [ reduce using rule 66 (elseif -> .) ]
+
+    elseif                         shift and go to state 145
 
 state 132
 
@@ -3022,9 +3028,10 @@ state 132
     (11) declaracao_variavel -> . ID PLUS PLUS PONTO_VIRGULA
     (12) declaracao_variavel -> . ID MINUS MINUS PONTO_VIRGULA
     (13) declaracao_variavel -> . declaracao_variavel declaracao_variavel
-    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco
-    (72) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
-    (73) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco
+    (64) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco
+    (75) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
+    (76) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
     (19) tipo -> . INT
     (20) tipo -> . STRING
     (21) tipo -> . BOOLEAN
@@ -3068,7 +3075,7 @@ state 132
   ! CHAR            [ reduce using rule 56 (declaracao_ou_coisas -> .) ]
   ! FLOAT           [ reduce using rule 56 (declaracao_ou_coisas -> .) ]
 
-    declaracao_ou_coisas           shift and go to state 144
+    declaracao_ou_coisas           shift and go to state 147
     retorno                        shift and go to state 12
     declaracao_variavel            shift and go to state 30
     if                             shift and go to state 13
@@ -3078,49 +3085,49 @@ state 132
 
 state 133
 
-    (64) statement -> variavel_ou_valor comparador variavel_ou_valor . operador_logico
-    (80) operador_logico -> . AND statement
-    (81) operador_logico -> . OR statement
-    (82) operador_logico -> .
+    (67) statement -> variavel_ou_valor comparador variavel_ou_valor . operador_logico
+    (83) operador_logico -> . AND statement
+    (84) operador_logico -> . OR statement
+    (85) operador_logico -> .
 
-    AND             shift and go to state 146
-    OR              shift and go to state 147
-    PAREN_FECHADO   reduce using rule 82 (operador_logico -> .)
+    AND             shift and go to state 149
+    OR              shift and go to state 150
+    PAREN_FECHADO   reduce using rule 85 (operador_logico -> .)
 
-    operador_logico                shift and go to state 145
+    operador_logico                shift and go to state 148
 
 state 134
 
-    (72) while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .
+    (75) while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .
 
-    RETURN          reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    ID              reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    IF              reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    WHILE           reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    FOR             reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    INT             reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    STRING          reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    BOOLEAN         reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    DOUBLE          reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    CHAR            reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    FLOAT           reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    COMMENT         reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    VOID            reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    STRUCT          reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    $end            reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
-    COLCHETE_FECHADO reduce using rule 72 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    RETURN          reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    ID              reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    IF              reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    WHILE           reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    FOR             reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    INT             reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    STRING          reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    BOOLEAN         reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    DOUBLE          reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    CHAR            reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    FLOAT           reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    COMMENT         reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    VOID            reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    STRUCT          reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    $end            reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
+    COLCHETE_FECHADO reduce using rule 75 (while -> WHILE PAREN_ABERTO statement PAREN_FECHADO bloco .)
 
 
 state 135
 
-    (73) for -> FOR PAREN_ABERTO tipo ID EQUAL . variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (76) for -> FOR PAREN_ABERTO tipo ID EQUAL . variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     ID              shift and go to state 84
     NUMBER_DEC      shift and go to state 85
@@ -3130,13 +3137,13 @@ state 135
     TYPE_CHAR       shift and go to state 89
     TYPE_FLOAT      shift and go to state 90
 
-    variavel_ou_valor              shift and go to state 148
+    variavel_ou_valor              shift and go to state 151
 
 state 136
 
     (48) parametro -> tipo ID CHAVE_ABERTA . CHAVE_FECHADA
 
-    CHAVE_FECHADA   shift and go to state 149
+    CHAVE_FECHADA   shift and go to state 152
 
 
 state 137
@@ -3261,6 +3268,29 @@ state 143
 
 state 144
 
+    (63) if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE . bloco
+    (49) bloco -> . COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO
+
+    COLCHETE_ABERTO shift and go to state 132
+
+    bloco                          shift and go to state 153
+
+state 145
+
+    (64) if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif . ELSE bloco
+
+    ELSE            shift and go to state 154
+
+
+state 146
+
+    (65) elseif -> ELSEIF . PAREN_ABERTO statement PAREN_FECHADO bloco elseif
+
+    PAREN_ABERTO    shift and go to state 155
+
+
+state 147
+
     (49) bloco -> COLCHETE_ABERTO declaracao_ou_coisas . COLCHETE_FECHADO
     (50) declaracao_ou_coisas -> declaracao_ou_coisas . declaracao_ou_coisas
     (50) declaracao_ou_coisas -> . declaracao_ou_coisas declaracao_ou_coisas
@@ -3279,9 +3309,10 @@ state 144
     (11) declaracao_variavel -> . ID PLUS PLUS PONTO_VIRGULA
     (12) declaracao_variavel -> . ID MINUS MINUS PONTO_VIRGULA
     (13) declaracao_variavel -> . declaracao_variavel declaracao_variavel
-    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco
-    (72) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
-    (73) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (63) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco
+    (64) if -> . IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco
+    (75) while -> . WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
+    (76) for -> . FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
     (19) tipo -> . INT
     (20) tipo -> . STRING
     (21) tipo -> . BOOLEAN
@@ -3301,7 +3332,7 @@ state 144
   ! shift/reduce conflict for DOUBLE resolved as shift
   ! shift/reduce conflict for CHAR resolved as shift
   ! shift/reduce conflict for FLOAT resolved as shift
-    COLCHETE_FECHADO shift and go to state 150
+    COLCHETE_FECHADO shift and go to state 156
     RETURN          shift and go to state 22
     ID              shift and go to state 9
     IF              shift and go to state 23
@@ -3335,67 +3366,67 @@ state 144
     for                            shift and go to state 15
     tipo                           shift and go to state 28
 
-state 145
-
-    (64) statement -> variavel_ou_valor comparador variavel_ou_valor operador_logico .
-
-    PAREN_FECHADO   reduce using rule 64 (statement -> variavel_ou_valor comparador variavel_ou_valor operador_logico .)
-
-
-state 146
-
-    (80) operador_logico -> AND . statement
-    (64) statement -> . variavel_ou_valor comparador variavel_ou_valor operador_logico
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
-
-    ID              shift and go to state 84
-    NUMBER_DEC      shift and go to state 85
-    NUMBER_INT      shift and go to state 86
-    TYPE_STRING     shift and go to state 87
-    TYPE_BOOLEAN    shift and go to state 88
-    TYPE_CHAR       shift and go to state 89
-    TYPE_FLOAT      shift and go to state 90
-
-    statement                      shift and go to state 151
-    variavel_ou_valor              shift and go to state 83
-
-state 147
-
-    (81) operador_logico -> OR . statement
-    (64) statement -> . variavel_ou_valor comparador variavel_ou_valor operador_logico
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
-
-    ID              shift and go to state 84
-    NUMBER_DEC      shift and go to state 85
-    NUMBER_INT      shift and go to state 86
-    TYPE_STRING     shift and go to state 87
-    TYPE_BOOLEAN    shift and go to state 88
-    TYPE_CHAR       shift and go to state 89
-    TYPE_FLOAT      shift and go to state 90
-
-    statement                      shift and go to state 152
-    variavel_ou_valor              shift and go to state 83
-
 state 148
 
-    (73) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor . PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (67) statement -> variavel_ou_valor comparador variavel_ou_valor operador_logico .
 
-    PONTO_VIRGULA   shift and go to state 153
+    PAREN_FECHADO   reduce using rule 67 (statement -> variavel_ou_valor comparador variavel_ou_valor operador_logico .)
 
 
 state 149
+
+    (83) operador_logico -> AND . statement
+    (67) statement -> . variavel_ou_valor comparador variavel_ou_valor operador_logico
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
+
+    ID              shift and go to state 84
+    NUMBER_DEC      shift and go to state 85
+    NUMBER_INT      shift and go to state 86
+    TYPE_STRING     shift and go to state 87
+    TYPE_BOOLEAN    shift and go to state 88
+    TYPE_CHAR       shift and go to state 89
+    TYPE_FLOAT      shift and go to state 90
+
+    statement                      shift and go to state 157
+    variavel_ou_valor              shift and go to state 83
+
+state 150
+
+    (84) operador_logico -> OR . statement
+    (67) statement -> . variavel_ou_valor comparador variavel_ou_valor operador_logico
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
+
+    ID              shift and go to state 84
+    NUMBER_DEC      shift and go to state 85
+    NUMBER_INT      shift and go to state 86
+    TYPE_STRING     shift and go to state 87
+    TYPE_BOOLEAN    shift and go to state 88
+    TYPE_CHAR       shift and go to state 89
+    TYPE_FLOAT      shift and go to state 90
+
+    statement                      shift and go to state 158
+    variavel_ou_valor              shift and go to state 83
+
+state 151
+
+    (76) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor . PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+
+    PONTO_VIRGULA   shift and go to state 159
+
+
+state 152
 
     (48) parametro -> tipo ID CHAVE_ABERTA CHAVE_FECHADA .
 
@@ -3403,10 +3434,66 @@ state 149
     PAREN_FECHADO   reduce using rule 48 (parametro -> tipo ID CHAVE_ABERTA CHAVE_FECHADA .)
 
 
-state 150
+state 153
+
+    (63) if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .
+
+    RETURN          reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    ID              reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    IF              reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    WHILE           reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    FOR             reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    INT             reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    STRING          reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    BOOLEAN         reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    DOUBLE          reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    CHAR            reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    FLOAT           reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    COMMENT         reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    VOID            reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    STRUCT          reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    $end            reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+    COLCHETE_FECHADO reduce using rule 63 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco .)
+
+
+state 154
+
+    (64) if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE . bloco
+    (49) bloco -> . COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO
+
+    COLCHETE_ABERTO shift and go to state 132
+
+    bloco                          shift and go to state 160
+
+state 155
+
+    (65) elseif -> ELSEIF PAREN_ABERTO . statement PAREN_FECHADO bloco elseif
+    (67) statement -> . variavel_ou_valor comparador variavel_ou_valor operador_logico
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
+
+    ID              shift and go to state 84
+    NUMBER_DEC      shift and go to state 85
+    NUMBER_INT      shift and go to state 86
+    TYPE_STRING     shift and go to state 87
+    TYPE_BOOLEAN    shift and go to state 88
+    TYPE_CHAR       shift and go to state 89
+    TYPE_FLOAT      shift and go to state 90
+
+    statement                      shift and go to state 161
+    variavel_ou_valor              shift and go to state 83
+
+state 156
 
     (49) bloco -> COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO .
 
+    ELSE            reduce using rule 49 (bloco -> COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO .)
+    ELSEIF          reduce using rule 49 (bloco -> COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO .)
     RETURN          reduce using rule 49 (bloco -> COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO .)
     ID              reduce using rule 49 (bloco -> COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO .)
     IF              reduce using rule 49 (bloco -> COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO .)
@@ -3425,30 +3512,30 @@ state 150
     COLCHETE_FECHADO reduce using rule 49 (bloco -> COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO .)
 
 
-state 151
+state 157
 
-    (80) operador_logico -> AND statement .
+    (83) operador_logico -> AND statement .
 
-    PAREN_FECHADO   reduce using rule 80 (operador_logico -> AND statement .)
-
-
-state 152
-
-    (81) operador_logico -> OR statement .
-
-    PAREN_FECHADO   reduce using rule 81 (operador_logico -> OR statement .)
+    PAREN_FECHADO   reduce using rule 83 (operador_logico -> AND statement .)
 
 
-state 153
+state 158
 
-    (73) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA . variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (84) operador_logico -> OR statement .
+
+    PAREN_FECHADO   reduce using rule 84 (operador_logico -> OR statement .)
+
+
+state 159
+
+    (76) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA . variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     ID              shift and go to state 84
     NUMBER_DEC      shift and go to state 85
@@ -3458,17 +3545,46 @@ state 153
     TYPE_CHAR       shift and go to state 89
     TYPE_FLOAT      shift and go to state 90
 
-    variavel_ou_valor              shift and go to state 154
+    variavel_ou_valor              shift and go to state 162
 
-state 154
+state 160
 
-    (73) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor . comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
-    (74) comparador -> . LESS_THAN
-    (75) comparador -> . IS_EQUALS
-    (76) comparador -> . LESS_THAN_OR_EQUALS
-    (77) comparador -> . GREATER_THAN
-    (78) comparador -> . GREATER_THAN_OR_EQUALS
-    (79) comparador -> . IS_DIFFERENT
+    (64) if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .
+
+    RETURN          reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    ID              reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    IF              reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    WHILE           reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    FOR             reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    INT             reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    STRING          reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    BOOLEAN         reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    DOUBLE          reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    CHAR            reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    FLOAT           reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    COMMENT         reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    VOID            reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    STRUCT          reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    $end            reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+    COLCHETE_FECHADO reduce using rule 64 (if -> IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco .)
+
+
+state 161
+
+    (65) elseif -> ELSEIF PAREN_ABERTO statement . PAREN_FECHADO bloco elseif
+
+    PAREN_FECHADO   shift and go to state 163
+
+
+state 162
+
+    (76) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor . comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (77) comparador -> . LESS_THAN
+    (78) comparador -> . IS_EQUALS
+    (79) comparador -> . LESS_THAN_OR_EQUALS
+    (80) comparador -> . GREATER_THAN
+    (81) comparador -> . GREATER_THAN_OR_EQUALS
+    (82) comparador -> . IS_DIFFERENT
 
     LESS_THAN       shift and go to state 73
     IS_EQUALS       shift and go to state 74
@@ -3477,18 +3593,27 @@ state 154
     GREATER_THAN_OR_EQUALS shift and go to state 77
     IS_DIFFERENT    shift and go to state 78
 
-    comparador                     shift and go to state 155
+    comparador                     shift and go to state 164
 
-state 155
+state 163
 
-    (73) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador . variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (65) elseif -> ELSEIF PAREN_ABERTO statement PAREN_FECHADO . bloco elseif
+    (49) bloco -> . COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO
+
+    COLCHETE_ABERTO shift and go to state 132
+
+    bloco                          shift and go to state 165
+
+state 164
+
+    (76) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador . variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     ID              shift and go to state 84
     NUMBER_DEC      shift and go to state 85
@@ -3498,18 +3623,36 @@ state 155
     TYPE_CHAR       shift and go to state 89
     TYPE_FLOAT      shift and go to state 90
 
-    variavel_ou_valor              shift and go to state 156
+    variavel_ou_valor              shift and go to state 166
 
-state 156
+state 165
 
-    (73) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor . PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    (65) elseif -> ELSEIF PAREN_ABERTO statement PAREN_FECHADO bloco . elseif
+    (65) elseif -> . ELSEIF PAREN_ABERTO statement PAREN_FECHADO bloco elseif
+    (66) elseif -> .
 
-    PONTO_VIRGULA   shift and go to state 157
+    ELSEIF          shift and go to state 146
+    ELSE            reduce using rule 66 (elseif -> .)
+
+    elseif                         shift and go to state 167
+
+state 166
+
+    (76) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor . PONTO_VIRGULA expressao PAREN_FECHADO bloco
+
+    PONTO_VIRGULA   shift and go to state 168
 
 
-state 157
+state 167
 
-    (73) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA . expressao PAREN_FECHADO bloco
+    (65) elseif -> ELSEIF PAREN_ABERTO statement PAREN_FECHADO bloco elseif .
+
+    ELSE            reduce using rule 65 (elseif -> ELSEIF PAREN_ABERTO statement PAREN_FECHADO bloco elseif .)
+
+
+state 168
+
+    (76) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA . expressao PAREN_FECHADO bloco
     (25) expressao -> . atribuicao
     (26) atribuicao -> . NUMBER_DEC
     (27) atribuicao -> . NUMBER_INT
@@ -3529,13 +3672,13 @@ state 157
     (41) atribuicao -> . ID comparador expressao
     (42) atribuicao -> . variavel_ou_valor PLUS_PLUS
     (43) atribuicao -> . variavel_ou_valor MINUS_MINUS
-    (65) variavel_ou_valor -> . ID
-    (66) variavel_ou_valor -> . NUMBER_DEC
-    (67) variavel_ou_valor -> . NUMBER_INT
-    (68) variavel_ou_valor -> . TYPE_STRING
-    (69) variavel_ou_valor -> . TYPE_BOOLEAN
-    (70) variavel_ou_valor -> . TYPE_CHAR
-    (71) variavel_ou_valor -> . TYPE_FLOAT
+    (68) variavel_ou_valor -> . ID
+    (69) variavel_ou_valor -> . NUMBER_DEC
+    (70) variavel_ou_valor -> . NUMBER_INT
+    (71) variavel_ou_valor -> . TYPE_STRING
+    (72) variavel_ou_valor -> . TYPE_BOOLEAN
+    (73) variavel_ou_valor -> . TYPE_CHAR
+    (74) variavel_ou_valor -> . TYPE_FLOAT
 
     NUMBER_DEC      shift and go to state 42
     NUMBER_INT      shift and go to state 43
@@ -3546,45 +3689,45 @@ state 157
     ID              shift and go to state 93
 
     variavel_ou_valor              shift and go to state 48
-    expressao                      shift and go to state 158
+    expressao                      shift and go to state 169
     atribuicao                     shift and go to state 41
 
-state 158
+state 169
 
-    (73) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao . PAREN_FECHADO bloco
+    (76) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao . PAREN_FECHADO bloco
 
-    PAREN_FECHADO   shift and go to state 159
+    PAREN_FECHADO   shift and go to state 170
 
 
-state 159
+state 170
 
-    (73) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO . bloco
+    (76) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO . bloco
     (49) bloco -> . COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO
 
     COLCHETE_ABERTO shift and go to state 132
 
-    bloco                          shift and go to state 160
+    bloco                          shift and go to state 171
 
-state 160
+state 171
 
-    (73) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .
+    (76) for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .
 
-    RETURN          reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    ID              reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    IF              reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    WHILE           reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    FOR             reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    INT             reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    STRING          reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    BOOLEAN         reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    DOUBLE          reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    CHAR            reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    FLOAT           reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    COMMENT         reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    VOID            reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    STRUCT          reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    $end            reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
-    COLCHETE_FECHADO reduce using rule 73 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    RETURN          reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    ID              reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    IF              reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    WHILE           reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    FOR             reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    INT             reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    STRING          reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    BOOLEAN         reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    DOUBLE          reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    CHAR            reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    FLOAT           reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    COMMENT         reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    VOID            reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    STRUCT          reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    $end            reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
+    COLCHETE_FECHADO reduce using rule 76 (for -> FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco .)
 
 WARNING: 
 WARNING: Conflicts:
@@ -3688,6 +3831,7 @@ WARNING: shift/reduce conflict for DOUBLE in state 30 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 30 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 30 resolved as shift
 WARNING: shift/reduce conflict for PONTO_VIRGULA in state 39 resolved as shift
+WARNING: shift/reduce conflict for ELSE in state 131 resolved as shift
 WARNING: shift/reduce conflict for RETURN in state 132 resolved as shift
 WARNING: shift/reduce conflict for ID in state 132 resolved as shift
 WARNING: shift/reduce conflict for IF in state 132 resolved as shift
@@ -3699,18 +3843,18 @@ WARNING: shift/reduce conflict for BOOLEAN in state 132 resolved as shift
 WARNING: shift/reduce conflict for DOUBLE in state 132 resolved as shift
 WARNING: shift/reduce conflict for CHAR in state 132 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 132 resolved as shift
-WARNING: shift/reduce conflict for COLCHETE_FECHADO in state 144 resolved as shift
-WARNING: shift/reduce conflict for RETURN in state 144 resolved as shift
-WARNING: shift/reduce conflict for ID in state 144 resolved as shift
-WARNING: shift/reduce conflict for IF in state 144 resolved as shift
-WARNING: shift/reduce conflict for WHILE in state 144 resolved as shift
-WARNING: shift/reduce conflict for FOR in state 144 resolved as shift
-WARNING: shift/reduce conflict for INT in state 144 resolved as shift
-WARNING: shift/reduce conflict for STRING in state 144 resolved as shift
-WARNING: shift/reduce conflict for BOOLEAN in state 144 resolved as shift
-WARNING: shift/reduce conflict for DOUBLE in state 144 resolved as shift
-WARNING: shift/reduce conflict for CHAR in state 144 resolved as shift
-WARNING: shift/reduce conflict for FLOAT in state 144 resolved as shift
+WARNING: shift/reduce conflict for COLCHETE_FECHADO in state 147 resolved as shift
+WARNING: shift/reduce conflict for RETURN in state 147 resolved as shift
+WARNING: shift/reduce conflict for ID in state 147 resolved as shift
+WARNING: shift/reduce conflict for IF in state 147 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 147 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 147 resolved as shift
+WARNING: shift/reduce conflict for INT in state 147 resolved as shift
+WARNING: shift/reduce conflict for STRING in state 147 resolved as shift
+WARNING: shift/reduce conflict for BOOLEAN in state 147 resolved as shift
+WARNING: shift/reduce conflict for DOUBLE in state 147 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 147 resolved as shift
+WARNING: shift/reduce conflict for FLOAT in state 147 resolved as shift
 WARNING: reduce/reduce conflict in state 0 resolved using rule (declaracao -> <empty>)
 WARNING: rejected rule (declaracao_ou_coisas -> <empty>) in state 0
 WARNING: reduce/reduce conflict in state 2 resolved using rule (programa -> declaracao)
