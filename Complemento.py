@@ -63,7 +63,9 @@ OP_LIST = {
     '-=': 'MINUS_EQUAL',
     '*=': 'TIMES_EQUAL',
     '/=': 'DIVIDE_EQUAL',
-    '%=': 'REST_EQUAL'
+    '%=': 'REST_EQUAL',
+    '++': 'PLUS_PLUS',
+    '--': 'MINUS_MINUS'
 }
 
 COMPARE_OP_LIST = {

@@ -21,6 +21,8 @@ t_MINUS_EQUAL = r'-='
 t_TIMES_EQUAL = r'\*='
 t_DIVIDE_EQUAL = '/='
 t_REST_EQUAL = '%='
+t_PLUS_PLUS = r'\+\+'
+t_MINUS_MINUS = r'--'
 
 t_LESS_THAN = r'<'
 t_GREATER_THAN = r'>'
@@ -112,6 +114,7 @@ def p_declaracao(p):
     | declaracao_estrutura
     | declaracao declaracao
     | COMMENT
+    | declaracao_ou_coisas
     | 
     
     declaracao_variavel : tipo ID PONTO_VIRGULA
@@ -122,6 +125,8 @@ def p_declaracao(p):
     
     declaracao_funcao : tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
     | VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
+    | tipo MAIN PAREN_ABERTO parametros PAREN_FECHADO bloco
+    | VOID MAIN PAREN_ABERTO parametros PAREN_FECHADO bloco
     
     declaracao_estrutura : STRUCT ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO'''
 
@@ -151,7 +156,9 @@ def p_expressao(p):
     | ID REST_EQUAL expressao
     | ID AND EQUAL expressao
     | ID OR EQUAL expressao
-    | ID comparador expressao'''
+    | ID comparador expressao
+    | variavel_ou_valor PLUS_PLUS
+    | variavel_ou_valor MINUS_MINUS'''
 
 def p_parametros(p):
     '''parametros : parametro
@@ -169,6 +176,8 @@ def p_declaracao_ou_coisas(p):
     | retorno
     | declaracao_variavel
     | if
+    | while
+    | for
     | '''
 
 def p_retorno(p):
@@ -192,6 +201,11 @@ def p_if(p):
     | TYPE_BOOLEAN
     | TYPE_CHAR
     | TYPE_FLOAT'''
+
+def p_loop(p):
+    '''while : WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
+    
+    for : FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco'''
 
 def p_comparador(p):
     '''comparador : LESS_THAN
