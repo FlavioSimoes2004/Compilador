@@ -86,6 +86,7 @@ def t_error(t):
 def lexico():
     global tokens
     tokens = Complemento.TIPOS + list(Complemento.RESERVED_WORD_LIST.values()) + list(Complemento.OP_LIST.values()) + list(Complemento.COMPARE_OP_LIST.values()) + list(Complemento.SPECIAL_SYMBOLS_LIST.values())
+    global lexer
     lexer = lex.lex()
 
     data = Complemento.getCode()
@@ -111,15 +112,16 @@ def p_programa(p):
     '''programa : declaracao'''
 
 def p_declaracao(p):
-    '''declaracao : declaracao_variavel
+    '''declaracao : declaracao declaracao
+    | declaracao_variavel
     | declaracao_funcao
     | declaracao_estrutura
-    | declaracao declaracao
+    | estrutura_de_controle
     | COMMENT
-    | declaracao_ou_coisas
     | 
     
-    declaracao_variavel : tipo ID PONTO_VIRGULA
+    declaracao_variavel : ID EQUAL expressao PONTO_VIRGULA
+    | tipo ID PONTO_VIRGULA
     | tipo ID EQUAL expressao PONTO_VIRGULA
     | ID PLUS PLUS PONTO_VIRGULA
     | ID MINUS MINUS PONTO_VIRGULA
@@ -130,7 +132,19 @@ def p_declaracao(p):
     | tipo MAIN PAREN_ABERTO parametros PAREN_FECHADO bloco
     | VOID MAIN PAREN_ABERTO parametros PAREN_FECHADO bloco
     
-    declaracao_estrutura : STRUCT ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO'''
+    declaracao_estrutura : STRUCT ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO
+    
+    declaracao_ou_coisas : declaracao_ou_coisas declaracao_ou_coisas
+    | retorno
+    | declaracao_variavel
+    | estrutura_de_controle
+    | COMMENT
+    | 
+    
+    estrutura_de_controle : if
+    | while
+    | for
+    | switch'''
 
 def p_tipo(p):
     '''tipo : INT
@@ -209,16 +223,6 @@ def p_parametros(p):
 def p_bloco(p):
     '''bloco : COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO'''
 
-def p_declaracao_ou_coisas(p):
-    '''declaracao_ou_coisas : declaracao_ou_coisas declaracao_ou_coisas
-    | retorno
-    | declaracao_variavel
-    | if
-    | while
-    | for
-    | switch
-    | '''
-
 def p_retorno(p):
     '''retorno : RETURN PONTO_VIRGULA
     | RETURN ID PONTO_VIRGULA
@@ -229,7 +233,8 @@ def p_retorno(p):
     | variavel_ou_valor'''
 
 def p_if_switch(p):
-    '''if : IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco
+    '''if : IF PAREN_ABERTO statement PAREN_FECHADO bloco
+    | IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco
     | IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco
 
     elseif : ELSEIF PAREN_ABERTO statement PAREN_FECHADO bloco elseif
@@ -283,7 +288,8 @@ def p_array(p):
     | '''
 
 def p_error(p):
-    raise Exception("Syntax error")
+    prev = p.lexer.lexdata[p.lexpos - 1]
+    raise Exception("Syntax error between {} and {} in line {}".format(prev, p.value, p.lexpos))
 
 def sintatico():
     lexico()
