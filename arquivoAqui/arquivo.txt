@@ -1,11 +1,13 @@
-int i = 100.47382;
-void funcao(){
-    int i = 0;
-    switch(i){
-        case 1:
-        break;
-        
-        default:
-        break;
+int multi(int a, int b){
+    if(a == 0)
+    {
+        return 0;
     }
+
+    int result = 1;
+    for(int i = 0; i < b; i++)
+    {
+        result = a;
+    }
+    return result;
 }
