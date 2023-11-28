@@ -48,7 +48,11 @@ RESERVED_WORD_LIST = {
     'main': 'MAIN',
     'return': 'RETURN',
     'println': 'PRINTLN',
-    'struct' : 'STRUCT'
+    'struct' : 'STRUCT',
+    'switch' : 'SWITCH',
+    'case' : 'CASE',
+    'default' : 'DEFAULT',
+    'break' : 'BREAK'
 }
 
 OP_LIST = {
@@ -81,13 +85,15 @@ COMPARE_OP_LIST = {
 
 SPECIAL_SYMBOLS_LIST = {
     ';': 'PONTO_VIRGULA',
+    ':': 'DOIS_PONTOS',
     '(': 'PAREN_ABERTO',
     ')': 'PAREN_FECHADO',
     '[': 'CHAVE_ABERTA',
     ']': 'CHAVE_FECHADA',
     '{': 'COLCHETE_ABERTO',
     '}': 'COLCHETE_FECHADO',
-    ',': 'VIRGULA'
+    ',': 'VIRGULA',
+    '.' : 'DOT'
 }
 
 reserved_word_table = []

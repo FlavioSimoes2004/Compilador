@@ -1,10 +1,11 @@
-int funcao(){
-    if(a < b && joaoGay == 1)
-    {
-
-    }
-    else
-    {
-
+int i = 100.47382;
+void funcao(){
+    int i = 0;
+    switch(i){
+        case 1:
+        break;
+        
+        default:
+        break;
     }
 }

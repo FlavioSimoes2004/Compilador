@@ -32,6 +32,7 @@ t_LESS_THAN_OR_EQUALS = r'<='
 t_GREATER_THAN_OR_EQUALS = r'>='
 
 t_PONTO_VIRGULA = r';'
+t_DOIS_PONTOS = r':'
 t_PAREN_ABERTO = r'\('
 t_PAREN_FECHADO = r'\)'
 t_CHAVE_ABERTA = r'\['
@@ -39,6 +40,7 @@ t_CHAVE_FECHADA = r'\]'
 t_COLCHETE_ABERTO = r'{'
 t_COLCHETE_FECHADO = r'}'
 t_VIRGULA = r','
+t_DOT = r'\.'
 
 
 def t_COMMENT(t):
@@ -158,7 +160,43 @@ def p_expressao(p):
     | ID OR EQUAL expressao
     | ID comparador expressao
     | variavel_ou_valor PLUS_PLUS
-    | variavel_ou_valor MINUS_MINUS'''
+    | variavel_ou_valor MINUS_MINUS
+    | expressao_logica
+    
+    expressao_logica : expressao_relacional
+    | expressao_logica AND expressao_relacional
+    | expressao_logica OR expressao_relacional
+    | NOT expressao_relacional
+    
+    expressao_relacional : expressao_aritmetica
+    | expressao_aritmetica comparador expressao_aritmetica
+    
+    expressao_aritmetica : expressao_multiplicativa
+    | expressao_aritmetica PLUS expressao_multiplicativa
+    | expressao_aritmetica MINUS expressao_multiplicativa
+    
+    expressao_multiplicativa : expressao_unaria
+    | expressao_multiplicativa TIMES expressao_unaria
+    | expressao_multiplicativa DIVIDE expressao_unaria
+    | expressao_multiplicativa REST expressao_unaria
+    
+    expressao_unaria : expressao_postfix
+    | MINUS expressao_unaria
+    | PLUS_PLUS expressao_postfix
+    | MINUS_MINUS expressao_postfix
+    
+    expressao_postfix : primaria
+    | primaria CHAVE_ABERTA expressao CHAVE_FECHADA
+    | primaria PAREN_ABERTO argumentos PAREN_FECHADO
+    | primaria DOT ID
+    
+    argumentos : expressao_lista
+    | 
+
+    expressao_lista : 
+    
+    primaria : variavel_ou_valor
+    | PAREN_ABERTO expressao PAREN_FECHADO'''
 
 def p_parametros(p):
     '''parametros : parametro
@@ -178,6 +216,7 @@ def p_declaracao_ou_coisas(p):
     | if
     | while
     | for
+    | switch
     | '''
 
 def p_retorno(p):
@@ -189,7 +228,7 @@ def p_retorno(p):
     parametros_dado : variavel_ou_valor VIRGULA parametros_dado
     | variavel_ou_valor'''
 
-def p_if(p):
+def p_if_switch(p):
     '''if : IF PAREN_ABERTO statement PAREN_FECHADO bloco ELSE bloco
     | IF PAREN_ABERTO statement PAREN_FECHADO bloco elseif ELSE bloco
 
@@ -204,12 +243,22 @@ def p_if(p):
     | TYPE_STRING
     | TYPE_BOOLEAN
     | TYPE_CHAR
-    | TYPE_FLOAT'''
+    | TYPE_FLOAT
+    
+    switch : SWITCH PAREN_ABERTO ID PAREN_FECHADO bloco_switch
+    
+    bloco_switch : COLCHETE_ABERTO cases COLCHETE_FECHADO
+    
+    cases : cases cases
+    | CASE expressao DOIS_PONTOS declaracao_ou_coisas BREAK PONTO_VIRGULA
+    | DEFAULT DOIS_PONTOS declaracao_ou_coisas BREAK PONTO_VIRGULA
+    | '''
 
 def p_loop(p):
     '''while : WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
     
-    for : FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco'''
+    for : FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
+    | FOR PAREN_ABERTO ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco'''
 
 def p_comparador(p):
     '''comparador : LESS_THAN
