@@ -123,6 +123,7 @@ def p_declaracao(p):
     declaracao_variavel : ID EQUAL expressao PONTO_VIRGULA
     | tipo ID PONTO_VIRGULA
     | tipo ID EQUAL expressao PONTO_VIRGULA
+    | tipo array EQUAL expressao PONTO_VIRGULA
     | ID PLUS PLUS PONTO_VIRGULA
     | ID MINUS MINUS PONTO_VIRGULA
     | declaracao_variavel declaracao_variavel
@@ -138,13 +139,28 @@ def p_declaracao(p):
     | retorno
     | declaracao_variavel
     | estrutura_de_controle
+    | print
     | COMMENT
     | 
     
     estrutura_de_controle : if
     | while
     | for
-    | switch'''
+    | switch
+    
+    print : PRINTLN PAREN_ABERTO print_statement PAREN_FECHADO PONTO_VIRGULA
+    | 
+    
+    print_statement : atribuicao operador
+    | atribuicao operador print_statement
+    | atribuicao'''
+
+def p_operador(p):
+    '''operador : PLUS
+    | MINUS
+    | TIMES
+    | DIVIDE
+    | REST'''
 
 def p_tipo(p):
     '''tipo : INT
@@ -164,6 +180,7 @@ def p_expressao(p):
     | TYPE_BOOLEAN
     | TYPE_CHAR
     | ID
+    | ID operador expressao
     | ID EQUAL expressao
     | ID PLUS_EQUAL expressao
     | ID MINUS_EQUAL expressao
@@ -284,12 +301,18 @@ def p_array(p):
     
     array_inicializacao : COLCHETE_ABERTO expressao COLCHETE_FECHADO
     
-    chaves_array : CHAVE_ABERTA expressao CHAVE_FECHADA chaves_array
-    | '''
+    chaves_array : CHAVE_ABERTA expressao CHAVE_FECHADA
+    | CHAVE_ABERTA CHAVE_FECHADA'''
 
 def p_error(p):
-    prev = p.lexer.lexdata[p.lexpos - 1]
-    raise Exception("Syntax error between {} and {} in line {}".format(prev, p.value, p.lexpos))
+    cont = 1
+    prev = p.lexer.lexdata[p.lexpos - cont]
+    while prev == '' or prev == ' ' or prev == '\n':
+        cont+=1
+        prev = p.lexer.lexdata[p.lexpos - cont]
+
+    errorTxt = '\nERRO SINTAXE\nPOSICAO DO ERRO EM RELACAO AO ARQUIVO: {}\nULTIMO TOKEN LIDO: {}\nTOKEN ANTERIOR AO LIDO: {}\n'.format(p.lexpos, p.value, prev)
+    raise Exception(errorTxt)
 
 def sintatico():
     lexico()
