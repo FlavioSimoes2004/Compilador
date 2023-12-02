@@ -117,6 +117,7 @@ def p_declaracao(p):
     | declaracao_funcao
     | declaracao_estrutura
     | estrutura_de_controle
+    | print
     | COMMENT
     | 
     
@@ -148,7 +149,7 @@ def p_declaracao(p):
     | for
     | switch
     
-    print : PRINTLN PAREN_ABERTO print_statement PAREN_FECHADO PONTO_VIRGULA
+    print : PRINTLN PAREN_ABERTO expressao PAREN_FECHADO PONTO_VIRGULA
     | 
     
     print_statement : atribuicao operador
@@ -305,6 +306,9 @@ def p_array(p):
     | CHAVE_ABERTA CHAVE_FECHADA'''
 
 def p_error(p):
+    if p == None:
+        raise Exception('Algum simbolo pode estar faltando ser inserido')
+
     cont = 1
     prev = p.lexer.lexdata[p.lexpos - cont]
     while prev == '' or prev == ' ' or prev == '\n':

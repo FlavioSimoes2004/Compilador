@@ -52,7 +52,8 @@ RESERVED_WORD_LIST = {
     'switch' : 'SWITCH',
     'case' : 'CASE',
     'default' : 'DEFAULT',
-    'break' : 'BREAK'
+    'break' : 'BREAK',
+    'continue': 'CONTINUE'
 }
 
 OP_LIST = {
