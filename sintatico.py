@@ -40,7 +40,6 @@ t_CHAVE_FECHADA = r'\]'
 t_COLCHETE_ABERTO = r'{'
 t_COLCHETE_FECHADO = r'}'
 t_VIRGULA = r','
-t_DOT = r'\.'
 
 
 def t_COMMENT(t):
@@ -107,7 +106,6 @@ def lexico():
 
 
 
-
 def p_programa(p):
     '''programa : declaracao'''
 
@@ -143,6 +141,16 @@ def p_declaracao(p):
     | print
     | COMMENT
     | 
+
+    coisas_bloco : coisas_bloco coisas_bloco
+    | declaracao_variavel
+    | BREAK PONTO_VIRGULA
+    | CONTINUE PONTO_VIRGULA
+    | retorno
+    | estrutura_de_controle
+    | print
+    | COMMENT
+    | 
     
     estrutura_de_controle : if
     | while
@@ -155,6 +163,8 @@ def p_declaracao(p):
     print_statement : atribuicao operador
     | atribuicao operador print_statement
     | atribuicao'''
+    global p_last
+    p_last = p
 
 def p_operador(p):
     '''operador : PLUS
@@ -220,7 +230,6 @@ def p_expressao(p):
     expressao_postfix : primaria
     | primaria CHAVE_ABERTA expressao CHAVE_FECHADA
     | primaria PAREN_ABERTO argumentos PAREN_FECHADO
-    | primaria DOT ID
     
     argumentos : expressao_lista
     | 
@@ -239,7 +248,7 @@ def p_parametros(p):
     | tipo ID CHAVE_ABERTA CHAVE_FECHADA'''
 
 def p_bloco(p):
-    '''bloco : COLCHETE_ABERTO declaracao_ou_coisas COLCHETE_FECHADO'''
+    '''bloco : COLCHETE_ABERTO coisas_bloco COLCHETE_FECHADO'''
 
 def p_retorno(p):
     '''retorno : RETURN PONTO_VIRGULA
@@ -258,7 +267,7 @@ def p_if_switch(p):
     elseif : ELSEIF PAREN_ABERTO statement PAREN_FECHADO bloco elseif
     | 
     
-    statement : variavel_ou_valor comparador variavel_ou_valor operador_logico
+    statement : expressao
     
     variavel_ou_valor : ID
     | NUMBER_DEC
@@ -268,7 +277,7 @@ def p_if_switch(p):
     | TYPE_CHAR
     | TYPE_FLOAT
     
-    switch : SWITCH PAREN_ABERTO ID PAREN_FECHADO bloco_switch
+    switch : SWITCH PAREN_ABERTO expressao PAREN_FECHADO bloco_switch
     
     bloco_switch : COLCHETE_ABERTO cases COLCHETE_FECHADO
     
@@ -280,8 +289,7 @@ def p_if_switch(p):
 def p_loop(p):
     '''while : WHILE PAREN_ABERTO statement PAREN_FECHADO bloco
     
-    for : FOR PAREN_ABERTO tipo ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco
-    | FOR PAREN_ABERTO ID EQUAL variavel_ou_valor PONTO_VIRGULA variavel_ou_valor comparador variavel_ou_valor PONTO_VIRGULA expressao PAREN_FECHADO bloco'''
+    for : FOR PAREN_ABERTO expressao PONTO_VIRGULA expressao PONTO_VIRGULA expressao PAREN_FECHADO bloco'''
 
 def p_comparador(p):
     '''comparador : LESS_THAN
@@ -307,7 +315,14 @@ def p_array(p):
 
 def p_error(p):
     if p == None:
-        raise Exception('Algum simbolo pode estar faltando ser inserido')
+        size = len(p_last.stack)
+        errorTxt = ''
+        for i in range(size):
+            if i == 0:
+                errorTxt = str(p_last.stack[i])
+            else:
+                errorTxt += ', ' + str(p_last.stack[i])
+        raise Exception('\nERRO SINTAXE\nALGUM SIMBOLO NAO INSERIDO, ERRO DERIVACAO A SEGUIR: {}'.format(errorTxt))
 
     cont = 1
     prev = p.lexer.lexdata[p.lexpos - cont]
@@ -337,5 +352,6 @@ def sintatico():
 
 
 #lexico()
+p_last = None
 sintatico()
 print("----------- FIM ---------------")

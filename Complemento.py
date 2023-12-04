@@ -94,7 +94,6 @@ SPECIAL_SYMBOLS_LIST = {
     '{': 'COLCHETE_ABERTO',
     '}': 'COLCHETE_FECHADO',
     ',': 'VIRGULA',
-    '.' : 'DOT'
 }
 
 reserved_word_table = []
