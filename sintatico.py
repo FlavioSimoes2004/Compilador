@@ -125,14 +125,17 @@ def p_declaracao(p):
     | tipo array EQUAL expressao PONTO_VIRGULA
     | ID PLUS PLUS PONTO_VIRGULA
     | ID MINUS MINUS PONTO_VIRGULA
-    | declaracao_variavel declaracao_variavel
+    | expressao PONTO_VIRGULA
     
     declaracao_funcao : tipo ID PAREN_ABERTO parametros PAREN_FECHADO bloco
     | VOID ID PAREN_ABERTO parametros PAREN_FECHADO bloco
     | tipo MAIN PAREN_ABERTO parametros PAREN_FECHADO bloco
     | VOID MAIN PAREN_ABERTO parametros PAREN_FECHADO bloco
     
-    declaracao_estrutura : STRUCT ID COLCHETE_ABERTO declaracao_variavel COLCHETE_FECHADO
+    declaracao_estrutura : STRUCT ID COLCHETE_ABERTO declaracao_variavel_varias COLCHETE_FECHADO PONTO_VIRGULA
+
+    declaracao_variavel_varias : declaracao_variavel declaracao_variavel_varias
+    | 
     
     declaracao_ou_coisas : declaracao_ou_coisas declaracao_ou_coisas
     | retorno
@@ -158,13 +161,13 @@ def p_declaracao(p):
     | switch
     
     print : PRINTLN PAREN_ABERTO expressao PAREN_FECHADO PONTO_VIRGULA
-    | 
+    |
     
     print_statement : atribuicao operador
     | atribuicao operador print_statement
-    | atribuicao'''
-    global p_last
-    p_last = p
+    | atribuicao
+    
+    bloco : COLCHETE_ABERTO coisas_bloco COLCHETE_FECHADO'''
 
 def p_operador(p):
     '''operador : PLUS
@@ -191,9 +194,10 @@ def p_expressao(p):
     | TYPE_BOOLEAN
     | TYPE_CHAR
     | ID
-    | ID operador expressao
+    | variavel_ou_valor operador variavel_ou_valor
+    | variavel_ou_valor operador expressao
     | ID EQUAL expressao
-    | ID PLUS_EQUAL expressao
+    | ID PLUS_EQUAL variavel_ou_valor
     | ID MINUS_EQUAL expressao
     | ID TIMES_EQUAL expressao
     | ID DIVIDE_EQUAL expressao
@@ -231,10 +235,7 @@ def p_expressao(p):
     | primaria CHAVE_ABERTA expressao CHAVE_FECHADA
     | primaria PAREN_ABERTO argumentos PAREN_FECHADO
     
-    argumentos : expressao_lista
-    | 
-
-    expressao_lista : 
+    argumentos :  
     
     primaria : variavel_ou_valor
     | PAREN_ABERTO expressao PAREN_FECHADO'''
@@ -246,9 +247,6 @@ def p_parametros(p):
     
     parametro : tipo ID
     | tipo ID CHAVE_ABERTA CHAVE_FECHADA'''
-
-def p_bloco(p):
-    '''bloco : COLCHETE_ABERTO coisas_bloco COLCHETE_FECHADO'''
 
 def p_retorno(p):
     '''retorno : RETURN PONTO_VIRGULA
@@ -315,14 +313,7 @@ def p_array(p):
 
 def p_error(p):
     if p == None:
-        size = len(p_last.stack)
-        errorTxt = ''
-        for i in range(size):
-            if i == 0:
-                errorTxt = str(p_last.stack[i])
-            else:
-                errorTxt += ', ' + str(p_last.stack[i])
-        raise Exception('\nERRO SINTAXE\nALGUM SIMBOLO NAO INSERIDO, ERRO DERIVACAO A SEGUIR: {}'.format(errorTxt))
+        raise Exception('ERRO SINTAXE: ALGUMA COISAS ESTA FALTANDO')
 
     cont = 1
     prev = p.lexer.lexdata[p.lexpos - cont]
@@ -352,6 +343,5 @@ def sintatico():
 
 
 #lexico()
-p_last = None
 sintatico()
 print("----------- FIM ---------------")
